@@ -10,7 +10,7 @@ public class UserBean extends GenericBean<User> implements UserBeanI {
     @Override
     public boolean register(User user) throws SQLException {
 
-        if (user.getPassword() !=null)
+        if (false)
             throw new RuntimeException("please enter valid credentials");
 
         //1. check if username already exist

@@ -9,11 +9,11 @@ import com.votifysoft.database.helper.DbTableColumn;
 @DbTable(name = "users")
 public class User implements Serializable {
 
-    @DbTableColumn(name = "id", definition = "int")
-    private Long id;
+    // @DbTableColumn(name = "id", definition = "int")
+    // private Long id;
 
-    @DbTableColumn(name = "userName")
-    private String userName;
+    // @DbTableColumn(name = "userName")
+    // private String userName;
 
     @DbTableColumn(name = "userEmail")
     private String userEmail;
@@ -31,28 +31,28 @@ public class User implements Serializable {
 
     public User(){}
 
-    public User(Long id, String userName,String userEmail, String password) {
-        this.id = id;
-        this.userName = userName;
+    public User(String userEmail, String password) {
+        
+        // this.userName = userName;
         this.password = password;
         this.userEmail=userEmail;
     }
 
-    public Long getId() {
-        return id;
-    }
+    // public Long getId() {
+    //     return id;
+    // }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    // public void setId(Long id) {
+    //     this.id = id;
+    // }
 
-    public String getUserName() {
-        return userName;
-    }
+    // public String getUserName() {
+    //     return userName;
+    // }
 
-    public void setUsername(String userName) {
-        this.userName = userName;
-    }
+    // public void setUsername(String userName) {
+    //     this.userName = userName;
+    // }
 
     public String getPassword() {
         return password;

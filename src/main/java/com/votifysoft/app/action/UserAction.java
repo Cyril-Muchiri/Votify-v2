@@ -1,5 +1,6 @@
 package com.votifysoft.app.action;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -10,9 +11,8 @@ import com.votifysoft.app.beans.UserBeanI;
 import com.votifysoft.model.entity.User;
 
 import java.io.IOException;
-import java.sql.SQLException;
 
- @WebServlet("/user")
+ @WebServlet("/register")
 public class UserAction extends BaseAction {
 
     UserBeanI userBean = new UserBean();
@@ -31,6 +31,12 @@ public class UserAction extends BaseAction {
     }
 
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException{
-        resp.sendRedirect("./register.html");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/register.jsp");
+        try {
+            dispatcher.forward(req, resp);
+        } catch (ServletException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 }
