@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page isELIgnored="false" %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -72,7 +73,21 @@
     </div>
     <!--Container Main start-->
     <div class="height-100 bg-light">
-      <h4>Main Components</h4>
+      <%
+   String userName = (String) session.getAttribute("userName");
+   if (userName != null) {
+%>
+   <h4>Welcome <%= userName %></h4>
+<%
+   } else {
+%>
+   <h4>Welcome Guest</h4>
+<%
+   }
+%>
+
+      <div>
+       <%-- ${requestScope.content}</div> --%>
     </div>
     <!--Container Main end-->
 

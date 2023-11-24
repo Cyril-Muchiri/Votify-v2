@@ -21,6 +21,7 @@ import java.util.Date;
 public class LoginAction extends BaseAction {
 
     AuthBeanI authBean = new AuthBean();
+    public  String LoggedInUser;
 
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession httpSession = req.getSession();
@@ -42,7 +43,10 @@ public class LoginAction extends BaseAction {
                 HttpSession httpSession = req.getSession(true);
 
                 httpSession.setAttribute("loggedInId", new Date().getTime() + "");
-                httpSession.setAttribute("username", userDetails.getUserEmail());
+                httpSession.setAttribute("userName", userDetails.getUserName());
+                System.out.println("TAKE NOTE OF THIS "+httpSession.getAttribute("userName"));
+
+                // httpSession.setAttribute("username", userDetails.getUserName());
 
                 resp.sendRedirect("./home");
 

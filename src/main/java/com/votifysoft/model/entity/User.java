@@ -12,11 +12,14 @@ public class User implements Serializable {
     // @DbTableColumn(name = "id", definition = "int")
     // private Long id;
 
-    // @DbTableColumn(name = "userName")
-    // private String userName;
+    @DbTableColumn(name = "userName")
+    private  String userName;
 
     @DbTableColumn(name = "userEmail")
     private String userEmail;
+
+     @DbTableColumn(name = "password")
+    private String password;
 
     public String getUserEmail() {
         return userEmail;
@@ -26,16 +29,14 @@ public class User implements Serializable {
         this.userEmail = userEmail;
     }
 
-    @DbTableColumn(name = "password")
-    private String password;
-
+   
     public User(){}
 
-    public User(String userEmail, String password) {
-        
-        // this.userName = userName;
+    public User(String userName,String userEmail, String password) {
+        // this.id = id;
+        this.userName = userName;
         this.password = password;
-        this.userEmail=userEmail;
+        this.userEmail= userEmail;
     }
 
     // public Long getId() {
@@ -46,13 +47,13 @@ public class User implements Serializable {
     //     this.id = id;
     // }
 
-    // public String getUserName() {
-    //     return userName;
-    // }
+    public  String getUserName() {
+        return userName;
+    }
 
-    // public void setUsername(String userName) {
-    //     this.userName = userName;
-    // }
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
     public String getPassword() {
         return password;

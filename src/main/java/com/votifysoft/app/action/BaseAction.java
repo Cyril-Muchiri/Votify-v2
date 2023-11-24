@@ -31,7 +31,8 @@ public class BaseAction extends HttpServlet {
             clazzInstance = (T) clazz.getDeclaredConstructor().newInstance();
 
             DateConverter converter = new DateConverter( null );
-            converter.setPattern("yyyy-mm-dd");
+            converter.setPattern("yyyy-MM-dd");
+
             ConvertUtils.register(converter, Date.class);
 
             requestMap.forEach((k,v)-> System.out.println(k + " " + v[0]));

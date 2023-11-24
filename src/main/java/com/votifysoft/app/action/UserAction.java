@@ -11,31 +11,37 @@ import com.votifysoft.app.beans.UserBeanI;
 import com.votifysoft.model.entity.User;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Map;
 
  @WebServlet("/register")
 public class UserAction extends BaseAction {
 
     UserBeanI userBean = new UserBean();
 
-    public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+   public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    try {
+        Map<String, String[]> paramMap = req.getParameterMap();
+        paramMap.forEach((key, value) -> System.out.println(key + ": " + Arrays.toString(value)));
 
-        try {
-            userBean.register(serializeForm(User.class, req.getParameterMap()));
-        } catch (Exception ex){
-            ex.printStackTrace();
-        }
+        User user = serializeForm(User.class, paramMap);
+        System.out.println("Serialized User: " + user.getUserName());
+        System.out.println("Serialized User: " + user.getUserEmail());
 
-        resp.sendRedirect("./");
-
-
+        userBean.register(user);
+    } catch (Exception ex) {
+        ex.printStackTrace();
     }
+
+    resp.sendRedirect("./");
+}
 
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException{
         RequestDispatcher dispatcher = req.getRequestDispatcher("/register.jsp");
         try {
             dispatcher.forward(req, resp);
         } catch (ServletException e) {
-            // TODO Auto-generated catch block
+        
             e.printStackTrace();
         }
     }

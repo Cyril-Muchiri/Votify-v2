@@ -33,7 +33,7 @@
 							<p>Register to create a VOTIFY account</p>
 						</div>
 						<div class="fxt-form">
-							<form action="./register" method="post">
+							<form action="./register" method="post" accept-charset="UTF-8" enctype="application/x-www-form-urlencoded">
 								<div class="form-group">
 									<div class="fxt-transformY-50 fxt-transition-delay-1">
 										<input type="text" id="userName" class="form-control" name="userName" placeholder="Name" required="required">
