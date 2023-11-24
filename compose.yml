@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+  mysql:
+    image: mysql:latest
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    expose:
+      - 3306
+
+    networks:
+      - database
+
+  wildfly:
+    image: jboss/wildfly:latest
+    expose:
+      - 8080
+      - 9990
+    depends_on:
+      - mysql
+    environment:
+      DATABASE_URL: ${DATABASE_URL}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    networks:
+      - internal-only
+      - database
+
+networks:
+  internal-only:
+    driver: bridge
+    internal: true
+  internet:
+    driver: bridge
+  database:

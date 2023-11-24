@@ -22,7 +22,7 @@ public class LoginAction extends BaseAction {
 
     AuthBeanI authBean = new AuthBean();
 
-    public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+    public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession httpSession = req.getSession();
 
         if (StringUtils.isNotBlank((String) httpSession.getAttribute("loggedInId")))
@@ -31,9 +31,9 @@ public class LoginAction extends BaseAction {
             resp.sendRedirect("./");
     }
 
-    public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+    public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        User loginUser  = serializeForm(User.class, req.getParameterMap());
+        User loginUser = serializeForm(User.class, req.getParameterMap());
 
         try {
             User userDetails = authBean.authenticate(loginUser);
@@ -46,11 +46,12 @@ public class LoginAction extends BaseAction {
 
                 resp.sendRedirect("./home");
 
+            } else {
+                req.getRequestDispatcher("app/actionFailed.jsp").forward(req, resp);
+
             }
 
-            PrintWriter print = resp.getWriter();
-            print.write("<html><body>Invalid login details <a href=\".\"> Login again </a></body></html>");
-        }catch (Exception ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
 
