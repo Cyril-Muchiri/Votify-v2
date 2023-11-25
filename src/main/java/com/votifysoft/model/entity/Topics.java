@@ -7,19 +7,19 @@ import com.votifysoft.app.view.helper.HtmlTableColHeader;
 import com.votifysoft.database.helper.DbTable;
 import com.votifysoft.database.helper.DbTableColumn;
 
-@DbTable(name = "customers")
+@DbTable(name = "topics")
 @HtmlTable(addUrl = "./customers?action=add")
 // @HtmlForm(label = "Customer", url = "./customers")
-public class PollEntity extends BaseEntity {
+public class Topics extends BaseEntity {
 
     @DbTableColumn(name = "name")
-    @HtmlTableColHeader(header = "Customer Name")
-    // @HtmlFormField(label = "Customer Name", required = true)
+    @HtmlTableColHeader(header = "Topic Name")
+    @HtmlFormField(label = "Topic Name", required = true)
     private String name;
 
     @DbTableColumn(name = "address")
     @HtmlTableColHeader(header = "Customer Address")
-    // @HtmlFormField(label = "Customer Address", required = true)
+    @HtmlFormField(label = "Customer Address", required = true)
     private String address;
 
     @HtmlTableColHeader(header = "Account Balance")
