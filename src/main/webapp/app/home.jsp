@@ -32,7 +32,7 @@
         <div>
           <a href="#" class="nav_logo">
             <i class="bx bx-layer nav_logo-icon"></i>
-            <span class="nav_logo-name"><h3>Votify-app</h3></span>
+            <span class="nav_logo-name"><h2>VOTIFY APP</h2></span>
           </a>
           <div class="nav_list">
             <a href="./dashboard" class="nav_link active">

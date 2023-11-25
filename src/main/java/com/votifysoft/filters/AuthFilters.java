@@ -37,7 +37,7 @@ public class AuthFilters implements Filter {
             System.out.println("1.New Session");
             httpSession.invalidate();
 
-            if (servletPath.equals("/login") || servletPath.equals("/register") || servletPath.contains(".jsp")) {
+            if (servletPath.equals("/login") || servletPath.equals("/register") || servletPath.contains(".jsp") || servletPath.contains(".css") || servletPath.contains(".js")) {
                 filterChain.doFilter(servletRequest, servletResponse);
 
             } else {

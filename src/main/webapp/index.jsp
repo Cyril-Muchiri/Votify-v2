@@ -1,6 +1,5 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!Doctype html>
 <html class="no-js" lang="">
 <head>
     <meta charset="utf-8" />
@@ -12,7 +11,7 @@
     <link rel="stylesheet" href="resources/css/bootstrap.min.css" />
     <link rel="stylesheet" href="resources/css/fontawesome-all.min.css" />
     <link rel="stylesheet" href="resources/font/flaticon.css" />
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+    <%-- <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" /> --%>
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>

@@ -1,24 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!Doctype html>
 <html class="no-js" lang="">
-
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
 	<title>Votify | Remastering polls </title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<!-- Favicon -->
 	<link rel="shortcut icon" type="image/x-icon" href="img/favicon.png">
-	<!-- Bootstrap CSS -->
+	
 	<link rel="stylesheet" href="resources/css/bootstrap.min.css">
-	<!-- Fontawesome CSS -->
+	
 	<link rel="stylesheet" href="resources/css/fontawesome-all.min.css">
-	<!-- Flaticon CSS -->
+	
 	<link rel="stylesheet" href="resources/font/flaticon.css">
-	<!-- Google Web Fonts -->
+	
 	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
-	<!-- Custom CSS -->
+	
 	<link rel="stylesheet" href="style.css">
 </head>
 
