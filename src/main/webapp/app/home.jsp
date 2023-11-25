@@ -39,26 +39,26 @@
               <i class="bx bx-grid-alt nav_icon"></i>
               <span class="nav_name">Dashboard</span>
             </a>
-              <a href="#" class="nav_link">
+              <a href="./activePolls" class="nav_link">
               <i class="bx bx-bar-chart-alt-2 nav_icon"></i>
               <span class="nav_name">View Active polls</span>
             </a>
             
-            <a href="#" class="nav_link">
+            <a href="./pollCreator" class="nav_link">
              <i class="bi bi-patch-plus" style="font-size: 23px;"></i>
               <span class="nav_name">Create A poll</span>
             </a>
           
           
-            <a href="#" class="nav_link">
+            <a href="./message" class="nav_link">
              <i class="bx bx-message-square-detail nav_icon"></i>
               <span class="nav_name">Messages</span>
             </a>
-             <a href="#" class="nav_link">
+             <a href="./help" class="nav_link">
               <i class="bi bi-patch-question" style="font-size: 23px;"></i>
               <span class="nav_name">Help</span>
             </a>
-            <a href="#" class="nav_link">
+            <a href="./about" class="nav_link">
               <i class="bx bx-user nav_icon"></i>
               <span class="nav_name">About us</span>
             </a>

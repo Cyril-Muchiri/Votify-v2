@@ -1,9 +1,11 @@
 package com.votifysoft.model.entity;
 
+import java.io.Serializable;
+
 import com.votifysoft.database.helper.DbTableColumn;
 import com.votifysoft.database.helper.DbTableId;
 
-public class BaseEntity {
+public class BaseEntity implements Serializable {
 
     @DbTableId
     @DbTableColumn(name = "id", definition = "int")
@@ -16,5 +18,5 @@ public class BaseEntity {
     public void setId(Long id) {
         this.id = id;
     }
-    
+
 }
