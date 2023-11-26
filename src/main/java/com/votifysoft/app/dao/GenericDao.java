@@ -7,16 +7,18 @@ import com.votifysoft.database.MySqlDb;
 
 public class GenericDao<T> implements GenericDaoI<T> {
 
+    private MySqlDb db;
+
     @SuppressWarnings({"unchecked"})
     @Override
     public List<T> list(Class<?> entity) {
-        return (List<T>) MySqlDb.select(entity);
+        return (List<T>) db.select(entity);
 
     }
 
     @Override
     public void addOrUpdate(T entity) {
-        MySqlDb.saveOrUpdate(entity);
+        db.saveOrUpdate(entity);
 
     }
 

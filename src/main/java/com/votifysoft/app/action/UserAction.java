@@ -19,7 +19,7 @@ import java.util.Map;
 public class UserAction extends BaseAction {
 
     @EJB
-    UserBeanI userBean;
+    private UserBeanI userBean;
 
    public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     try {

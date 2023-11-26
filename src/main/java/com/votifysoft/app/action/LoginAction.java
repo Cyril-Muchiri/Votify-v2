@@ -3,26 +3,23 @@ package com.votifysoft.app.action;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.StringUtils;
-
-import com.votifysoft.app.beans.AuthBean;
 import com.votifysoft.app.beans.AuthBeanI;
 import com.votifysoft.model.entity.User;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Date;
 
 @WebServlet(urlPatterns = "/login")
 public class LoginAction extends BaseAction {
 
     @EJB
-    AuthBeanI authBean ;
+    AuthBeanI authBean;
+
     public  String LoggedInUser;
 
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

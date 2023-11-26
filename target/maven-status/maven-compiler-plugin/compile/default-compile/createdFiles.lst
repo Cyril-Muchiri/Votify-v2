@@ -15,7 +15,6 @@ com/votifysoft/model/entity/PollType.class
 com/votifysoft/model/entity/Electives.class
 com/votifysoft/app/beans/AuthBean.class
 com/votifysoft/app/action/DashboardAction.class
-com/votifysoft/database/Database.class
 com/votifysoft/app/action/AboutAction.class
 com/votifysoft/model/entity/Entertainment.class
 com/votifysoft/model/entity/ActivePoll.class
@@ -30,7 +29,6 @@ com/votifysoft/app/action/VoteAction.class
 com/votifysoft/model/entity/DashBoard.class
 com/votifysoft/app/action/PollCreatorAction.class
 com/votifysoft/app/view/helper/HtmlRenderContent.class
-com/votifysoft/event/AppInit.class
 com/votifysoft/app/beans/ActivePollsBean.class
 com/votifysoft/model/entity/BaseEntity.class
 com/votifysoft/database/helper/DbTableId.class
