@@ -21,6 +21,7 @@
   </head>
 
   <body id="body-pd">
+  <div class="main">
     <header class="header" id="header">
       <div class="header_toggle">
         <i class="bx bx-menu" id="header-toggle"></i>
@@ -85,7 +86,6 @@
 <%
    }
 %>
-
       <div>
       <h1> This is the Dashboard section</h1>
     </div>
@@ -130,5 +130,6 @@
         // Your code to run since DOM is loaded and ready
       });
     </script>
+    </div>
   </body>
 </html>

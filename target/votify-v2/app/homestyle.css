@@ -1,3 +1,6 @@
+/* flippers */
+
+
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap");
 
 :root {
@@ -18,6 +21,7 @@
 }
 
 body {
+    background-color: rgba(246, 251, 250, 0.984);
     position: relative;
     margin: var(--header-height) 0 0 0;
     padding: 0 1rem;
@@ -181,3 +185,7 @@ a {
         padding-left: calc(var(--nav-width) + 188px);
     }
 }
+
+/* flipper cards */
+
+
