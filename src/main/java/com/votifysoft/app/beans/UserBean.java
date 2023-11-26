@@ -3,8 +3,13 @@ package com.votifysoft.app.beans;
 
 import java.sql.SQLException;
 
+import javax.ejb.Remote;
+import javax.ejb.Stateless;
+
 import com.votifysoft.model.entity.User;
 
+@Stateless
+@Remote
 public class UserBean extends GenericBean<User> implements UserBeanI {
 
     @Override

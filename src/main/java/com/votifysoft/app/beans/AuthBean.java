@@ -7,9 +7,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.ejb.Remote;
+import javax.ejb.Stateless;
+
 import com.votifysoft.database.MySqlDb;
 import com.votifysoft.model.entity.User;
 
+@Stateless
+@Remote
 public class AuthBean implements AuthBeanI, Serializable {
 
     public User authenticate(User loginUser) throws SQLException {

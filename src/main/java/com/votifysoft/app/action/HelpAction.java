@@ -16,7 +16,7 @@ public class HelpAction extends BaseAction {
         session.setAttribute("content", "<h1>This is the Help content.</h1>");
         System.out.println("%%%%%%%"+ session.getAttribute("content"));
         req.getRequestDispatcher("app/activePolls.jsp").forward(req, resp);
-     
+      
     }
 
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {

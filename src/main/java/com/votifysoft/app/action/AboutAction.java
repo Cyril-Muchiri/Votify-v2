@@ -16,7 +16,7 @@ public class AboutAction extends BaseAction{
         session.setAttribute("content", "<h1>This is the About content.</h1>");
         System.out.println("%%%%%%%"+ session.getAttribute("content"));
         req.getRequestDispatcher("app/aboutUs.jsp").forward(req, resp);
-     
+       
     }
 
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {

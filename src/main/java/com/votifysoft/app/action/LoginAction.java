@@ -1,5 +1,6 @@
 package com.votifysoft.app.action;
 
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -20,7 +21,8 @@ import java.util.Date;
 @WebServlet(urlPatterns = "/login")
 public class LoginAction extends BaseAction {
 
-    AuthBeanI authBean = new AuthBean();
+    @EJB
+    AuthBeanI authBean ;
     public  String LoggedInUser;
 
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

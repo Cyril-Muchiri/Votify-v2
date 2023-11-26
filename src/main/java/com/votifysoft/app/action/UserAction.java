@@ -1,5 +1,6 @@
 package com.votifysoft.app.action;
 
+import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,7 +18,8 @@ import java.util.Map;
  @WebServlet("/register")
 public class UserAction extends BaseAction {
 
-    UserBeanI userBean = new UserBean();
+    @EJB
+    UserBeanI userBean;
 
    public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     try {
