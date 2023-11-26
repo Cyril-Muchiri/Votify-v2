@@ -18,5 +18,9 @@ public class HomeAction extends BaseAction  {
 
         req.getRequestDispatcher("app/home.jsp").forward(req, resp);
     }
+
+    public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+        resp.sendRedirect("./home");
+    }
     
 }

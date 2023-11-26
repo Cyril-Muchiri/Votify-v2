@@ -35,7 +35,7 @@
             <span class="nav_logo-name"><h2>VOTIFY APP</h2></span>
           </a>
           <div class="nav_list">
-            <a href="./dashboard" class="nav_link active">
+            <a href="./home" class="nav_link active">
               <i class="bx bx-grid-alt nav_icon"></i>
               <span class="nav_name">Dashboard</span>
             </a>
@@ -44,7 +44,7 @@
               <span class="nav_name">View Active polls</span>
             </a>
             
-            <a href="./pollCreator" class="nav_link">
+            <a href="./create" class="nav_link">
              <i class="bi bi-patch-plus" style="font-size: 23px;"></i>
               <span class="nav_name">Create A poll</span>
             </a>
@@ -87,7 +87,7 @@
 %>
 
       <div>
-       <%-- ${requestScope.content}</div> --%>
+      <h1> This is the Dashboard section</h1>
     </div>
     <!--Container Main end-->
 
