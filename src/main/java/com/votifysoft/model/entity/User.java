@@ -1,16 +1,11 @@
 package com.votifysoft.model.entity;
 
-import java.io.Serializable;
-
 import com.votifysoft.database.helper.DbTable;
 import com.votifysoft.database.helper.DbTableColumn;
 
 
 @DbTable(name = "users")
-public class User implements Serializable {
-
-    // @DbTableColumn(name = "id", definition = "int")
-    // private Long id;
+public class User extends BaseEntity {
 
     @DbTableColumn(name = "userName")
     private  String userName;
@@ -39,13 +34,6 @@ public class User implements Serializable {
         this.userEmail= userEmail;
     }
 
-    // public Long getId() {
-    //     return id;
-    // }
-
-    // public void setId(Long id) {
-    //     this.id = id;
-    // }
 
     public  String getUserName() {
         return userName;

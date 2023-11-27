@@ -1,0 +1,16 @@
+<!-- # Ignore Maven build files
+target/
+
+# Ignore temporary files and directories
+*.tmp
+*.log
+logs/
+temp/
+
+# Ignore version control files
+.git/
+.gitignore
+
+# Ignore IDE-specific files
+.idea/
+*.iml -->
