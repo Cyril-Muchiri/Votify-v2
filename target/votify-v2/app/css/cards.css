@@ -38,9 +38,11 @@ body {
 .card {
   width: 25%;
   position: relative;
+  border-radius: 15px;
 }
 
 .card__side {
+  border-radius: 15px;
   position: absolute;
   top: 0;
   left: 0;
@@ -49,7 +51,7 @@ body {
   backface-visibility: hidden;
   transition: transform 0.6s ease; /* Updated transition property */
   box-shadow: 1em 1em 2em rgba(0, 0, 0, 0.2);
-  transform-style: preserve-3d; /* Added to ensure smooth rotation */
+  transform-style: preserve-3d; 
 }
 
 .card__side--front {
