@@ -5,7 +5,10 @@ import com.votifysoft.database.helper.DbTableColumn;
 
 
 @DbTable(name = "users")
-public class User extends BaseEntity {
+public class User  {
+
+    @DbTableColumn(name = "userId", definition = "INT PRIMARY KEY AUTO_INCREMENT")
+    private  int userId;
 
     @DbTableColumn(name = "userName")
     private  String userName;
@@ -27,8 +30,8 @@ public class User extends BaseEntity {
    
     public User(){}
 
-    public User(String userName,String userEmail, String password) {
-        // this.id = id;
+    public User(int userId,String userName,String userEmail, String password) {
+        this.userId = userId;
         this.userName = userName;
         this.password = password;
         this.userEmail= userEmail;
@@ -49,5 +52,13 @@ public class User extends BaseEntity {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+      public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 }

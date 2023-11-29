@@ -6,36 +6,37 @@ import com.votifysoft.database.helper.DbTable;
 import com.votifysoft.database.helper.DbTableColumn;
 
 @DbTable(name = "polls")
-public class Polls extends BaseEntity {
+public class Polls  {
 
-    // @DbTableColumn(name = "poll_id", definition = "int")
-    // private int poll_id;
+    @DbTableColumn(name = "poll_id", definition = " INT PRIMARY KEY AUTO_INCREMENT")
+    private int poll_id;
 
-    @DbTableColumn(name = "topic",definition = "VARCHAR(200)")
+    @DbTableColumn(name = "topic", definition = "VARCHAR(200)")
     private String topicName;
 
-    @DbTableColumn(name = "created_at")
+    @DbTableColumn(name = "created_at", definition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Date createdAt;
 
-    @DbTableColumn(name = "deadline")
+    // @DbTableColumn(name = "deadline", definition = "DATETIME")
     private Date deadline;
 
-    public Polls(){};
+    public Polls() {
+    };
 
-    public Polls(String topicName,Date createdAt,Date deadline){
+    public Polls(String topicName, Date createdAt) {
         // this.poll_id=poll_id;
-        this.topicName=topicName;
-        this.createdAt=createdAt;
-        this.deadline=deadline;
+        this.topicName = topicName;
+        this.createdAt = createdAt;
+        // this.deadline = deadline;
     }
 
-    // public int getPoll_id() {
-    //     return poll_id;
-    // }
+    public int getPoll_id() {
+        return poll_id;
+    }
 
-    // public void setPoll_id(int poll_id) {
-    //     this.poll_id = poll_id;
-    // }
+    public void setPoll_id(int poll_id) {
+        this.poll_id = poll_id;
+    }
 
     public String getTopicName() {
         return topicName;

@@ -90,7 +90,7 @@
                             </div>
                             <div class="tab">
                                 <h6>What's the Title of your Topic/question?</h6>
-                                <p><input placeholder="Title..." oninput="this.className = ''" name="fname"></p>
+                                <p><input placeholder="Title..." oninput="this.className = ''" name="topicName"></p>
                             </div>
                             <div class="tab">
                                 <h6>How many number of choices?</h6>
