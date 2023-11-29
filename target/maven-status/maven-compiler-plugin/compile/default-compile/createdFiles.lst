@@ -2,6 +2,7 @@ com/votifysoft/app/view/helper/HtmlTableColHeader.class
 com/votifysoft/app/action/MessageAction.class
 com/votifysoft/app/action/LogoutAction.class
 com/votifysoft/model/entity/PollCreator.class
+com/votifysoft/app/beans/PollBean.class
 com/votifysoft/app/view/helper/HtmlMenu.class
 com/votifysoft/app/beans/ActivePollsBeanI.class
 com/votifysoft/database/helper/DbTable.class
@@ -16,6 +17,7 @@ com/votifysoft/model/entity/Electives.class
 com/votifysoft/app/beans/AuthBean.class
 com/votifysoft/app/action/DashboardAction.class
 com/votifysoft/app/action/AboutAction.class
+com/votifysoft/app/beans/CheckLicenseBean.class
 com/votifysoft/model/entity/Polls.class
 com/votifysoft/model/entity/Entertainment.class
 com/votifysoft/model/entity/ActivePoll.class
@@ -27,6 +29,7 @@ com/votifysoft/app/beans/GenericBeanI.class
 com/votifysoft/event/SessionListener.class
 com/votifysoft/app/beans/DashBoardBeanI.class
 com/votifysoft/app/action/VoteAction.class
+com/votifysoft/app/beans/PollBeanI.class
 com/votifysoft/model/entity/DashBoard.class
 com/votifysoft/app/action/PollCreatorAction.class
 com/votifysoft/app/view/helper/HtmlRenderContent.class
@@ -38,7 +41,6 @@ com/votifysoft/app/action/HomeAction.class
 com/votifysoft/app/action/UserAction.class
 com/votifysoft/app/beans/DashBoardBean.class
 com/votifysoft/app/action/LoginAction.class
-com/votifysoft/app/beans/TopicBean.class
 com/votifysoft/app/view/helper/HtmlTable.class
 com/votifysoft/app/beans/CreatePollBeanI.class
 com/votifysoft/app/view/helper/MenuLink.class
@@ -47,9 +49,7 @@ com/votifysoft/filters/AuthFilters.class
 com/votifysoft/app/action/ActivePollsAction.class
 com/votifysoft/app/action/TopicCreatorAction.class
 com/votifysoft/app/beans/UserBean.class
-com/votifysoft/app/beans/TopicBeanI.class
 com/votifysoft/app/view/helper/HtmlMenuToolbar.class
 com/votifysoft/app/action/HelpAction.class
 com/votifysoft/app/beans/GenericBean.class
-com/votifysoft/model/entity/Topics.class
 com/votifysoft/database/MySqlDb.class

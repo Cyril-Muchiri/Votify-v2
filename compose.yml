@@ -4,12 +4,9 @@ services:
   mysql:
     image: mysql:latest
     environment:
-      MYSQL_DATABASE: ${MYSQL_DATABASE}
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
     expose:
       - 3306
-
     networks:
       - database
 
@@ -35,3 +32,4 @@ networks:
   internet:
     driver: bridge
   database:
+    driver: bridge

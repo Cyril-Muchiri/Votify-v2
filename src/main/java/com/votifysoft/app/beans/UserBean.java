@@ -17,9 +17,6 @@ public class UserBean extends GenericBean<User> implements UserBeanI {
         if (false)
             throw new RuntimeException("please enter valid credentials");
 
-        //1. check if username already exist
-        //2. hash password
-        //3. initiate event to send email ...Observer design pattern
 
         getDao().addOrUpdate(user);
 

@@ -1,24 +1,23 @@
 package com.votifysoft.app.dao;
 
-
 import java.util.List;
 
 import com.votifysoft.database.MySqlDb;
 
 public class GenericDao<T> implements GenericDaoI<T> {
 
-    private MySqlDb db;
+    private MySqlDb database;
 
-    @SuppressWarnings({"unchecked"})
+    @SuppressWarnings({ "unchecked" })
     @Override
-    public List<T> list(Class<?> entity) {
-        return (List<T>) db.select(entity);
+    public List<T> list(Object entity) {
+        return (List<T>) database.fetch(entity);
 
     }
 
     @Override
     public void addOrUpdate(T entity) {
-        db.saveOrUpdate(entity);
+        database.saveOrUpdate(entity);
 
     }
 
@@ -26,4 +25,13 @@ public class GenericDao<T> implements GenericDaoI<T> {
     public void delete(T entity) {
 
     }
+
+    public MySqlDb getDatabase() {
+        return database;
+    }
+
+    public void setDatabase(MySqlDb database) {
+        this.database = database;
+    }
+
 }

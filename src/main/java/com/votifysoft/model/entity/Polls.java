@@ -8,10 +8,10 @@ import com.votifysoft.database.helper.DbTableColumn;
 @DbTable(name = "polls")
 public class Polls extends BaseEntity {
 
-    @DbTableColumn(name = "poll_id")
-    private int poll_id;
+    // @DbTableColumn(name = "poll_id", definition = "int")
+    // private int poll_id;
 
-    @DbTableColumn(name = "topic")
+    @DbTableColumn(name = "topic",definition = "VARCHAR(200)")
     private String topicName;
 
     @DbTableColumn(name = "created_at")
@@ -22,20 +22,20 @@ public class Polls extends BaseEntity {
 
     public Polls(){};
 
-    public Polls(int poll_id,String topicName,Date createdAt,Date deadline){
-        this.poll_id=poll_id;
+    public Polls(String topicName,Date createdAt,Date deadline){
+        // this.poll_id=poll_id;
         this.topicName=topicName;
         this.createdAt=createdAt;
         this.deadline=deadline;
     }
 
-    public int getPoll_id() {
-        return poll_id;
-    }
+    // public int getPoll_id() {
+    //     return poll_id;
+    // }
 
-    public void setPoll_id(int poll_id) {
-        this.poll_id = poll_id;
-    }
+    // public void setPoll_id(int poll_id) {
+    //     this.poll_id = poll_id;
+    // }
 
     public String getTopicName() {
         return topicName;
