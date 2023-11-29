@@ -45,12 +45,14 @@ public class LoginAction extends BaseAction {
                 HttpSession httpSession = req.getSession(true);
 
                 httpSession.setAttribute("loggedInId", new Date().getTime() + "");
-                httpSession.setAttribute("userName", userDetails.getUserName());
-                System.out.println("TAKE NOTE OF THIS "+httpSession.getAttribute("userName"));
 
-                // httpSession.setAttribute("username", userDetails.getUserName());
+                httpSession.setAttribute("userId", userDetails.getUserId());
+                httpSession.setAttribute("userName", userDetails.getUserName());
+                sessionUserId=(Integer)httpSession.getAttribute("userId");
+                System.out.println("TAKE NOTE OF THIS "+sessionUserId);
 
                 resp.sendRedirect("./home");
+
 
             } else {
                 req.getRequestDispatcher("app/actionFailed.jsp").forward(req, resp);

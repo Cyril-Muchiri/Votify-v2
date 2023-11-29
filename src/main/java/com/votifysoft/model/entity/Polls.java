@@ -15,6 +15,9 @@ public class Polls  implements Serializable{
     @DbTableColumn(name = "topic", definition = "VARCHAR(200)")
     private String topicName;
 
+    @DbTableColumn(name ="creator_id",definition = " INT ")
+    private int creator_id;
+
     @DbTableColumn(name = "created_at", definition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Date createdAt;
 
@@ -24,8 +27,8 @@ public class Polls  implements Serializable{
     public Polls() {
     };
 
-    public Polls(String topicName, Date createdAt) {
-        // this.poll_id=poll_id;
+    public Polls(String topicName,int creator_id, Date createdAt) {
+       this.creator_id=creator_id;
         this.topicName = topicName;
         this.createdAt = createdAt;
         // this.deadline = deadline;
@@ -61,6 +64,14 @@ public class Polls  implements Serializable{
 
     public void setDeadline(Date deadline) {
         this.deadline = deadline;
+    }
+
+     public int getcreator_id() {
+        return creator_id;
+    }
+
+    public void setcreator_id(int creator_id) {
+        this.creator_id = creator_id;
     }
 
 }

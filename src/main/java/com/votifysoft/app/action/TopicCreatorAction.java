@@ -41,23 +41,27 @@ public class TopicCreatorAction extends BaseAction {
       Map<String, String[]> paramMap = req.getParameterMap();
 
       List<String[]> choiceValues = paramMap.entrySet().stream()
-      .filter(entry -> entry.getKey().contains("choice"))
-      .map(Map.Entry::getValue)
-      .collect(Collectors.toList());
+          .filter(entry -> entry.getKey().contains("choice"))
+          .map(Map.Entry::getValue)
+          .collect(Collectors.toList());
 
       Map<String, String[]> topicNameParameters = paramMap.entrySet().stream()
           .filter(entry -> entry.getKey().equals("topicName") || entry.getKey().equals("Deadline"))
           .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 
-          for (String[] values : choiceValues) {
-            System.out.println("Choice Parameter: " + Arrays.toString(values));
-        }
-        
+      String ownerIdKey = "creator_id";
+      System.out.println("THIS IS THE OWNERS ID==" + req.getSession(false).getAttribute("userId"));
+      topicNameParameters.put(ownerIdKey, new String[] { String.valueOf(req.getSession(false).getAttribute("userId")) });
+
+      for (String[] values : choiceValues) {
+        System.out.println("Choice Parameter: " + Arrays.toString(values));
+      }
+
       topicNameParameters
           .forEach((key, value) -> System.out.println("Parameter: " + key + ": " + Arrays.toString(value)));
 
       Polls poll = serializeForm(Polls.class, topicNameParameters);
-      topicBean.registerTopic(poll);// works
+      topicBean.registerTopic(poll);
 
       List<Answers> answersList = serializeChoices(choiceValues);
       answersBean.registerChoices(answersList);

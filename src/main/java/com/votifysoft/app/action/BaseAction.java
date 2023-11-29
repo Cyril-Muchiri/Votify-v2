@@ -21,6 +21,7 @@ import org.apache.commons.beanutils.ConvertUtils;
 import org.apache.commons.beanutils.converters.DateConverter;
 
 public class BaseAction extends HttpServlet {
+  public static int sessionUserId;
 
     @SuppressWarnings("unchecked")
     public <T> T serializeForm(Class<?> clazz, Map<String, String[]> requestMap) {
@@ -54,7 +55,6 @@ public class BaseAction extends HttpServlet {
             String choiceValue = choice[0].trim();
 
             if (!isNumeric(choiceValue)) {
-            
                 answers.setChoice(choiceValue);
                 answersList.add(answers);
             }
