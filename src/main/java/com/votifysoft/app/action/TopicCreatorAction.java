@@ -40,23 +40,26 @@ public class TopicCreatorAction extends BaseAction {
     try {
       Map<String, String[]> paramMap = req.getParameterMap();
 
-      Map<String, String[]> choiceParameters = paramMap.entrySet().stream()
-          .filter(entry -> entry.getKey().contains("choice"))
-          .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+      List<String[]> choiceValues = paramMap.entrySet().stream()
+      .filter(entry -> entry.getKey().contains("choice"))
+      .map(Map.Entry::getValue)
+      .collect(Collectors.toList());
 
       Map<String, String[]> topicNameParameters = paramMap.entrySet().stream()
           .filter(entry -> entry.getKey().equals("topicName") || entry.getKey().equals("Deadline"))
           .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 
-      choiceParameters
-          .forEach((key, value) -> System.out.println("Choice Parameter: " + key + ": " + Arrays.toString(value)));
+          for (String[] values : choiceValues) {
+            System.out.println("Choice Parameter: " + Arrays.toString(values));
+        }
+        
       topicNameParameters
           .forEach((key, value) -> System.out.println("Parameter: " + key + ": " + Arrays.toString(value)));
 
       Polls poll = serializeForm(Polls.class, topicNameParameters);
       topicBean.registerTopic(poll);// works
 
-      List<Answers> answersList = serializeChoices(choiceParameters);
+      List<Answers> answersList = serializeChoices(choiceValues);
       answersBean.registerChoices(answersList);
 
     } catch (Exception ex) {

@@ -1,7 +1,5 @@
 package com.votifysoft.app.action;
 
-
-
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
@@ -24,7 +22,6 @@ import org.apache.commons.beanutils.converters.DateConverter;
 
 public class BaseAction extends HttpServlet {
 
-    
     @SuppressWarnings("unchecked")
     public <T> T serializeForm(Class<?> clazz, Map<String, String[]> requestMap) {
 
@@ -33,42 +30,32 @@ public class BaseAction extends HttpServlet {
         try {
             clazzInstance = (T) clazz.getDeclaredConstructor().newInstance();
 
-            DateConverter converter = new DateConverter( null );
+            DateConverter converter = new DateConverter(null);
             converter.setPattern("yyyy-MM-dd");
 
             ConvertUtils.register(converter, Date.class);
 
-            requestMap.forEach((k,v)-> System.out.println(k + " " + v[0]));
+            requestMap.forEach((k, v) -> System.out.println(k + " " + v[0]));
 
             BeanUtils.populate(clazzInstance, requestMap);
 
-        } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException | InstantiationException e ) {
+        } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException
+                | InstantiationException e) {
             throw new RuntimeException(e);
         }
 
         return clazzInstance;
     }
-
-    protected List<Answers> serializeChoices(Map<String, String[]> choiceParameters) {
+    protected List<Answers> serializeChoices(List<String[]> choiceValues) {
         List<Answers> answersList = new ArrayList<>();
     
-        // Extract and serialize each choice
-        for (Map.Entry<String, String[]> entry : choiceParameters.entrySet()) {
+        for (String[] choice : choiceValues) {
             Answers answers = new Answers();
+            String choiceValue = choice[0].trim();
+
+            if (!isNumeric(choiceValue)) {
             
-            // Assuming that your Answers class has a 'choice' attribute
-            String choiceKey = entry.getKey();
-            int choiceIndex = Integer.parseInt(choiceKey.substring("choice".length())) - 1;
-    
-            if (choiceIndex >= 0) {
-                String choiceValue = entry.getValue()[0]; // Assuming each choice parameter has a single value
-    
-                // Set the 'choice' attribute of Answers
                 answers.setChoice(choiceValue);
-    
-                // You may need to set other attributes of Answers based on your data model
-                // For example: answers.setPollId(somePollId);
-    
                 answersList.add(answers);
             }
         }
@@ -76,7 +63,14 @@ public class BaseAction extends HttpServlet {
         return answersList;
     }
     
+    private boolean isNumeric(String str) {
+        try {
+            Double.parseDouble(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+    
 
-
-   
 }
