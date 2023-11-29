@@ -4,6 +4,7 @@ package com.votifysoft.app.action;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +15,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.lang3.StringUtils;
+
+import com.votifysoft.model.entity.Answers;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.ConvertUtils;
@@ -45,6 +48,35 @@ public class BaseAction extends HttpServlet {
 
         return clazzInstance;
     }
+
+    protected List<Answers> serializeChoices(Map<String, String[]> choiceParameters) {
+        List<Answers> answersList = new ArrayList<>();
+    
+        // Extract and serialize each choice
+        for (Map.Entry<String, String[]> entry : choiceParameters.entrySet()) {
+            Answers answers = new Answers();
+            
+            // Assuming that your Answers class has a 'choice' attribute
+            String choiceKey = entry.getKey();
+            int choiceIndex = Integer.parseInt(choiceKey.substring("choice".length())) - 1;
+    
+            if (choiceIndex >= 0) {
+                String choiceValue = entry.getValue()[0]; // Assuming each choice parameter has a single value
+    
+                // Set the 'choice' attribute of Answers
+                answers.setChoice(choiceValue);
+    
+                // You may need to set other attributes of Answers based on your data model
+                // For example: answers.setPollId(somePollId);
+    
+                answersList.add(answers);
+            }
+        }
+    
+        return answersList;
+    }
+    
+
 
    
 }

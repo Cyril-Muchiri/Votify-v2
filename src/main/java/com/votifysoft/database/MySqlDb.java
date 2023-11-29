@@ -24,12 +24,14 @@ import com.votifysoft.model.entity.User;
 
 import java.io.Serializable;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -149,20 +151,6 @@ public class MySqlDb implements Serializable {
 
             PreparedStatement sqlStmt = connection.prepareStatement(query);
 
-            // int paramIdx = 2;
-            // for (Object param : parameters) {
-            // if (param.getClass().isAssignableFrom(BigDecimal.class))
-            // sqlStmt.setBigDecimal(paramIdx++, (BigDecimal) param);
-            // else if (param.getClass().isAssignableFrom(Long.class))
-            // sqlStmt.setLong(paramIdx++, (long) param);
-            // else
-            // System.out.println(paramIdx+"----#"+paramIdx++ +" ----THSIS IS PARAM uno
-            // +++"+param);
-            // // sqlStmt.setInt(paramIdx++, (int) param);
-            // sqlStmt.setString(paramIdx++, (String) param);
-
-            // }
-
             int paramIdx = 1;
             for (Object param : parameters) {
                 if (param instanceof BigDecimal)
@@ -184,14 +172,12 @@ public class MySqlDb implements Serializable {
         }
     }
 
-    @SuppressWarnings("unchecked")
-    public <T> List<T> fetch(T entity) {
 
+    public <T> List<T> select(T entity) {
         List<T> resultList = new ArrayList<>();
 
         try {
             Class<?> clazz = entity.getClass();
-
             if (!clazz.isAnnotationPresent(DbTable.class))
                 return resultList;
 
@@ -207,16 +193,11 @@ public class MySqlDb implements Serializable {
             StringBuilder paramPlaceHolderBuilder = new StringBuilder();
             List<Object> whereParams = new ArrayList<>();
 
-            DateConverter converter = new DateConverter(null);
-            converter.setPattern("yyyy-mm-dd");
-            ConvertUtils.register(converter, Date.class);
-
             for (Field field : fields) {
                 if (!field.isAnnotationPresent(DbTableColumn.class))
                     continue;
 
                 DbTableColumn dbTableColumn = field.getAnnotation(DbTableColumn.class);
-                System.out.println(" This is the table Alias? " + tableAlias);
 
                 columnBuilder.append(tableAlias).append(".").append(dbTableColumn.name()).append(",");
 
@@ -230,31 +211,41 @@ public class MySqlDb implements Serializable {
 
             }
 
-            String queryBuilder = "select " +
-                    columnBuilder +
-                    " from " +
-                    dbTable.name() + " " + tableAlias +
-                    (whereParams.isEmpty() && StringUtils.isBlank(paramPlaceHolderBuilder) ? ""
-                            : " where " + paramPlaceHolderBuilder);
+            String queryBuilder =
+                    "select " +
+                            columnBuilder +
+                            " from " +
+                            dbTable.name() + " " + tableAlias;
+                           // (whereParams.isEmpty() && StringUtils.isBlank(paramPlaceHolderBuilder) ? "" : " where " + paramPlaceHolderBuilder);
 
             String query = queryBuilder.replace(", from", " from");
             System.out.println("Query: " + query);
 
             PreparedStatement sqlStmt = connection.prepareStatement(query);
 
-            int paramIdx = 1;
-            for (Object whereParam : whereParams) {
-                if (whereParam.getClass().isAssignableFrom(BigDecimal.class))
-                    sqlStmt.setBigDecimal(paramIdx++, (BigDecimal) whereParam);
-                else if (whereParam.getClass().isAssignableFrom(Long.class))
-                    sqlStmt.setLong(paramIdx++, (long) whereParam);
-                else
-                    sqlStmt.setString(paramIdx++, (String) whereParam);
-            }
+//            int paramIdx = 1;
+//            for (Object whereParam : whereParams) {
+//
+//                if (whereParam.getClass().isAssignableFrom(BigDecimal.class)) {
+//                    sqlStmt.setBigDecimal(paramIdx++, (BigDecimal) whereParam);
+//                } else if (whereParam.getClass().isAssignableFrom(Long.class)) {
+//                    sqlStmt.setLong(paramIdx++, (long) whereParam);
+//                } else if (whereParam instanceof Enum<?> enumValue && whereParam.getClass().isEnum()) {
+//                    sqlStmt.setObject(paramIdx++, enumValue);
+//                } else if (whereParam instanceof Integer) {
+//                    sqlStmt.setInt(paramIdx++, (int) whereParam);
+//                } else if (whereParam instanceof java.sql.Date && whereParam.getClass().isAssignableFrom(LocalDate.class)) {
+//                    sqlStmt.setObject(paramIdx++, ((java.sql.Date) whereParam).toLocalDate());
+//                } else if (whereParam instanceof LocalDateTime) {
+//                    sqlStmt.setObject(paramIdx++, (LocalDateTime) whereParam);
+//                } else {
+//                    sqlStmt.setString(paramIdx++, (String) whereParam);
+//                }
 
             ResultSet resultSet = sqlStmt.executeQuery();
             ResultSetMetaData resultSetMetaData = resultSet.getMetaData();
             int resultSetMetaDataCnt = resultSetMetaData.getColumnCount();
+            System.out.println("resultSetMetaDataCnt = " + resultSetMetaDataCnt);
 
             while (resultSet.next()) {
                 T bean = (T) entity.getClass().getDeclaredConstructor().newInstance();
@@ -262,15 +253,30 @@ public class MySqlDb implements Serializable {
                 for (int idx = 1; idx <= resultSetMetaDataCnt; idx++) {
                     String colName = resultSetMetaData.getColumnName(idx);
 
+
                     for (Field field : fields) {
                         if (!field.isAnnotationPresent(DbTableColumn.class))
                             continue;
 
                         DbTableColumn dbTableColumn = field.getAnnotation(DbTableColumn.class);
 
-                        field.setAccessible(true);
                         if (dbTableColumn.name().equals(colName)) {
-                            BeanUtils.setProperty(bean, field.getName(), resultSet.getObject(idx));
+
+                            Object value = resultSet.getObject(idx);
+
+                            if (value instanceof java.sql.Date && field.getType() == LocalDate.class) {
+                                value = ((java.sql.Date) value).toLocalDate();
+                            }
+                            if (field.getType().isEnum()) {
+                                value = Enum.valueOf((Class<Enum>) field.getType(), (String) value);
+                            }
+                            if (field.getType() == Long.class) {
+                                assert value instanceof Integer;
+                                value = Long.valueOf((Integer) value);
+                            }
+
+                            field.setAccessible(true);
+                            BeanUtils.setProperty(bean, field.getName(), value);
                             break;
                         }
                     }
@@ -280,13 +286,123 @@ public class MySqlDb implements Serializable {
                 resultList.add(bean);
             }
 
-        } catch (Exception e) {
-            e.printStackTrace();
+
+            return resultList;
+
+
+        } catch (SQLException | NoSuchMethodException | InstantiationException | IllegalAccessException |
+                 InvocationTargetException e) {
+            throw new RuntimeException(e);
         }
-
-        return resultList;
-
     }
+
+    // @SuppressWarnings("unchecked")
+    // public <T> List<T> fetch(T entity) {
+
+    //     List<T> resultList = new ArrayList<>();
+
+    //     try {
+    //         Class<?> clazz = entity.getClass();
+
+    //         if (!clazz.isAnnotationPresent(DbTable.class))
+    //             return resultList;
+
+    //         DbTable dbTable = clazz.getAnnotation(DbTable.class);
+
+    //         String tableAlias = dbTable.name().charAt(0) + "_e_";
+    //         System.out.println("table alias " + tableAlias);
+
+    //         List<Field> fields = new ArrayList<>(Arrays.asList(clazz.getSuperclass().getDeclaredFields()));
+    //         fields.addAll(Arrays.asList(clazz.getDeclaredFields()));
+
+    //         StringBuilder columnBuilder = new StringBuilder();
+    //         StringBuilder paramPlaceHolderBuilder = new StringBuilder();
+    //         List<Object> whereParams = new ArrayList<>();
+
+    //         DateConverter converter = new DateConverter(null);
+    //         converter.setPattern("yyyy-mm-dd");
+    //         ConvertUtils.register(converter, Date.class);
+
+    //         for (Field field : fields) {
+    //             if (!field.isAnnotationPresent(DbTableColumn.class))
+    //                 continue;
+
+    //             DbTableColumn dbTableColumn = field.getAnnotation(DbTableColumn.class);
+    //             System.out.println(" This is the table Alias? " + tableAlias);
+
+    //             columnBuilder.append(tableAlias).append(".").append(dbTableColumn.name()).append(",");
+
+    //             field.setAccessible(true);
+    //             if (field.get(entity) != null) {
+    //                 paramPlaceHolderBuilder
+    //                         .append(whereParams.isEmpty() ? "" : " and ")
+    //                         .append(tableAlias).append(".").append(dbTableColumn.name()).append("=?");
+    //                 whereParams.add(field.get(entity));
+    //             }
+
+    //         }
+
+    //         String queryBuilder = "select " +
+    //                 columnBuilder +
+    //                 " from " +
+    //                 dbTable.name() + " " + tableAlias +
+    //                 (whereParams.isEmpty() && StringUtils.isBlank(paramPlaceHolderBuilder) ? ""
+    //                         : " where " + paramPlaceHolderBuilder);
+
+    //         String query = queryBuilder.replace(", from", " from");
+    //         System.out.println("Query: " + query);
+
+    //         PreparedStatement sqlStmt = connection.prepareStatement(query);
+
+    //       int paramIdx = 1;
+    //         for (Object param : whereParams) {
+    //             if (param instanceof BigDecimal)
+    //                 sqlStmt.setBigDecimal(paramIdx++, (BigDecimal) param);
+    //             else if (param instanceof Long)
+    //                 sqlStmt.setLong(paramIdx++, (long) param);
+    //             else if (param instanceof String)
+    //                 sqlStmt.setString(paramIdx++, (String) param);
+    //             else if (param instanceof Integer)
+    //                 sqlStmt.setInt(paramIdx++, (int) param);
+    //             else
+    //                 System.out.println("Unknown parameter type: " + param);
+    //         }
+
+    //         ResultSet resultSet = sqlStmt.executeQuery();
+    //         ResultSetMetaData resultSetMetaData = resultSet.getMetaData();
+    //         int resultSetMetaDataCnt = resultSetMetaData.getColumnCount();
+
+    //         while (resultSet.next()) {
+    //             T bean = (T) entity.getClass().getDeclaredConstructor().newInstance();
+
+    //             for (int idx = 1; idx <= resultSetMetaDataCnt; idx++) {
+    //                 String colName = resultSetMetaData.getColumnName(idx);
+
+    //                 for (Field field : fields) {
+    //                     if (!field.isAnnotationPresent(DbTableColumn.class))
+    //                         continue;
+
+    //                     DbTableColumn dbTableColumn = field.getAnnotation(DbTableColumn.class);
+
+    //                     field.setAccessible(true);
+    //                     if (dbTableColumn.name().equals(colName)) {
+    //                         BeanUtils.setProperty(bean, field.getName(), resultSet.getObject(idx));
+    //                         break;
+    //                     }
+    //                 }
+
+    //             }
+
+    //             resultList.add(bean);
+    //         }
+
+    //     } catch (Exception e) {
+    //         e.printStackTrace();
+    //     }
+
+    //     return resultList;
+
+    // }
 
     @PreDestroy
     public void closeConnection() {

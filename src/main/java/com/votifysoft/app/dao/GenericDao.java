@@ -11,7 +11,7 @@ public class GenericDao<T> implements GenericDaoI<T> {
     @SuppressWarnings({ "unchecked" })
     @Override
     public List<T> list(Object entity) {
-        return (List<T>) database.fetch(entity);
+        return (List<T>) database.select(entity);
 
     }
 

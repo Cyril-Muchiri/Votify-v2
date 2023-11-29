@@ -5,33 +5,38 @@ import java.sql.SQLException;
 import java.util.List;
 
 import javax.ejb.EJB;
-import javax.ejb.Remote;
 import javax.ejb.Stateless;
 
 import com.votifysoft.database.MySqlDb;
 import com.votifysoft.model.entity.User;
 
 @Stateless
-@Remote
 public class AuthBean implements AuthBeanI, Serializable {
 
     @EJB
     MySqlDb db;
 
-    User userResult;
+    User userResult = null;
 
     public User authenticate(User loginUser) throws SQLException {
 
-        List<User> users = db.fetch(loginUser);
+        List<User> users = db.select(loginUser);
 
-        if (users.isEmpty() || users.get(0) == null) {
-
-            userResult=null;
-
-        }else{
-            userResult=users.get(0);
+        for (User user : users) {
+            if (user.getUserEmail().equals(loginUser.getUserEmail()) &&
+                    user.getPassword().equals(loginUser.getPassword())) {
+                userResult = user;
+                break;
+            }
         }
-          return userResult;
+
+        if (userResult == null) {
+            return userResult;
+
+        } else {
+            return userResult;
+        }
 
     }
+
 }

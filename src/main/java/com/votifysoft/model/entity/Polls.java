@@ -1,12 +1,13 @@
 package com.votifysoft.model.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import com.votifysoft.database.helper.DbTable;
 import com.votifysoft.database.helper.DbTableColumn;
 
 @DbTable(name = "polls")
-public class Polls  {
+public class Polls  implements Serializable{
 
     @DbTableColumn(name = "poll_id", definition = " INT PRIMARY KEY AUTO_INCREMENT")
     private int poll_id;

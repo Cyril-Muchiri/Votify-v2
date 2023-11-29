@@ -3,6 +3,7 @@ package com.votifysoft.app.action;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -38,6 +39,7 @@ public class TopicCreatorAction extends BaseAction {
 
     try {
       Map<String, String[]> paramMap = req.getParameterMap();
+
       Map<String, String[]> choiceParameters = paramMap.entrySet().stream()
           .filter(entry -> entry.getKey().contains("choice"))
           .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
@@ -52,9 +54,10 @@ public class TopicCreatorAction extends BaseAction {
           .forEach((key, value) -> System.out.println("Parameter: " + key + ": " + Arrays.toString(value)));
 
       Polls poll = serializeForm(Polls.class, topicNameParameters);
-      topicBean.registerTopic(poll);
-      Answers answers = serializeForm(Answers.class, choiceParameters);
-      answersBean.registerChoices(answers);
+      topicBean.registerTopic(poll);// works
+
+      List<Answers> answersList = serializeChoices(choiceParameters);
+      answersBean.registerChoices(answersList);
 
     } catch (Exception ex) {
       ex.printStackTrace();
