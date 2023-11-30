@@ -13,15 +13,12 @@ import com.votifysoft.model.entity.User;
 public class UserBean extends GenericBean<User> implements UserBeanI {
 
     @Inject
-    private EncryptPwd hashPwd;
+         private EncryptPwd encPwd;
 
     @Override
     public boolean register(User user) throws SQLException {
 
-        // if (false)
-        //     throw new RuntimeException("please enter valid credentials");
-
-        // user.setPassword(hashPwd.encrypt(user.getPassword()));
+        user.setPassword(encPwd.encrypt(user.getPassword()));
 
         getDao().addOrUpdate(user);
 

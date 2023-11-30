@@ -12,15 +12,16 @@ import com.votifysoft.model.entity.Answers;
 public class AnswersBean extends GenericBean<Answers> implements AnswersBeanI {
 
     @Override
-    public boolean registerChoices(List<Answers> topicChoicesList) {
+    public boolean registerChoices(int pollId,List<Answers> topicChoicesList) {
        
         for (Answers topicChoices : topicChoicesList) {
-            // Inspect the content of each Answers object
             System.out.println("Answer ID: " + topicChoices.getAnswer_id());
             System.out.println("Poll ID: " + topicChoices.getPoll_id());
             System.out.println("Votes: " + topicChoices.getVotes());
           
+            topicChoices.setPoll_id(pollId);
             getDao().addOrUpdate(topicChoices);
+            
         }
        
         return false;

@@ -16,11 +16,15 @@ import javax.servlet.http.HttpSession;
 
 import com.votifysoft.app.beans.AnswersBeanI;
 import com.votifysoft.app.beans.PollBeanI;
+import com.votifysoft.database.MySqlDb;
 import com.votifysoft.model.entity.Answers;
 import com.votifysoft.model.entity.Polls;
+import com.votifysoft.model.entity.User;
 
 @WebServlet("/topics")
 public class TopicCreatorAction extends BaseAction {
+  @EJB
+  MySqlDb db;
 
   @EJB
   PollBeanI topicBean;
@@ -30,7 +34,7 @@ public class TopicCreatorAction extends BaseAction {
 
   public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     HttpSession session = req.getSession(true);
-    session.setAttribute("content", "<h1>This is the Active content.</h1>");
+    session.setAttribute("content", "<h1>This is the Topics content.</h1>");
     req.getRequestDispatcher("app/TopicCreator.jsp").forward(req, resp);
 
   }
@@ -50,8 +54,10 @@ public class TopicCreatorAction extends BaseAction {
           .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 
       String ownerIdKey = "creator_id";
+
       System.out.println("THIS IS THE OWNERS ID==" + req.getSession(false).getAttribute("userId"));
-      topicNameParameters.put(ownerIdKey, new String[] { String.valueOf(req.getSession(false).getAttribute("userId")) });
+      topicNameParameters.put(ownerIdKey,
+          new String[] { String.valueOf(req.getSession(false).getAttribute("userId")) });
 
       for (String[] values : choiceValues) {
         System.out.println("Choice Parameter: " + Arrays.toString(values));
@@ -63,8 +69,16 @@ public class TopicCreatorAction extends BaseAction {
       Polls poll = serializeForm(Polls.class, topicNameParameters);
       topicBean.registerTopic(poll);
 
+      int pollId=0;
+      List<Polls> topics = db.select(poll);
+      for (Polls topic : topics) {
+        pollId = topic.getPoll_id();
+      }
+
+      System.out.println("THIS IS THE POLL ID -->" + pollId);
+
       List<Answers> answersList = serializeChoices(choiceValues);
-      answersBean.registerChoices(answersList);
+      answersBean.registerChoices(pollId,answersList);
 
     } catch (Exception ex) {
       ex.printStackTrace();

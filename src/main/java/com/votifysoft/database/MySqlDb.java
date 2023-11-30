@@ -39,7 +39,6 @@ import java.util.List;
 
 @Singleton
 @Startup
-@DependsOn({ "CheckLicenseBean" })
 public class MySqlDb implements Serializable {
 
     private Connection connection;

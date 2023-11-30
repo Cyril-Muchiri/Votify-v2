@@ -5,7 +5,7 @@ COPY . .
 RUN mvn clean compile package
 
 # Deployment Stage
-FROM jboss/wildfly:latest AS deploy
+FROM quay.io/wildfly/wildfly:26.1.3.Final-jdk11 AS deploy
 COPY --from=build /app/target/votify-v2.war /opt/jboss/wildfly/standalone/deployments/
 RUN rm /opt/jboss/wildfly/standalone/configuration/standalone.xml
 COPY --from=build app/standalone.xml /opt/jboss/wildfly/standalone/configuration/standalone.xml

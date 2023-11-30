@@ -18,30 +18,23 @@ public class AuthBean implements AuthBeanI, Serializable {
     @EJB
     MySqlDb db;
 
-     @Inject
+    @Inject
     private EncryptPwd hashPwd;
 
     User userResult = null;
 
     public User authenticate(User loginUser) throws SQLException {
 
-        
         List<User> users = db.select(loginUser);
 
         for (User user : users) {
             if (user.getUserEmail().equals(loginUser.getUserEmail()) &&
-                   user.getPassword().equals(loginUser.getPassword())) {
+                  user.getPassword().equals(hashPwd.encrypt(loginUser.getPassword()))) {
                 userResult = user;
                 break;
             }
         }
-
-        if (userResult == null) {
-            return userResult;
-
-        } else {
-            return userResult;
-        }
+        return userResult;
 
     }
 
