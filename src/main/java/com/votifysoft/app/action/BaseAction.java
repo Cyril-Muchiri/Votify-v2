@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.lang3.StringUtils;
 
+import com.votifysoft.app.view.helper.HtmlRenderContent;
 import com.votifysoft.model.entity.Answers;
 
 import org.apache.commons.beanutils.BeanUtils;
@@ -21,7 +22,7 @@ import org.apache.commons.beanutils.ConvertUtils;
 import org.apache.commons.beanutils.converters.DateConverter;
 
 public class BaseAction extends HttpServlet {
-  public static int sessionUserId;
+    public static int sessionUserId;
 
     @SuppressWarnings("unchecked")
     public <T> T serializeForm(Class<?> clazz, Map<String, String[]> requestMap) {
@@ -47,9 +48,10 @@ public class BaseAction extends HttpServlet {
 
         return clazzInstance;
     }
+
     protected List<Answers> serializeChoices(List<String[]> choiceValues) {
         List<Answers> answersList = new ArrayList<>();
-    
+
         for (String[] choice : choiceValues) {
             Answers answers = new Answers();
             String choiceValue = choice[0].trim();
@@ -59,10 +61,31 @@ public class BaseAction extends HttpServlet {
                 answersList.add(answers);
             }
         }
-    
+
         return answersList;
     }
-    
+
+    public void renderDiv(HttpServletRequest request, HttpServletResponse response,
+            Class<?> entity, List<?> entityList)
+            throws ServletException, IOException {
+        System.out.println("----&&^THIS METHOD IS WORKING FOR RENDER");
+
+        String actionParam = StringUtils.trimToEmpty(request.getParameter("action"));
+        System.out.println("Action Parameter: " + actionParam);
+
+        String content = HtmlRenderContent.renderMainContentDiv(entityList, entity);
+        System.out.println("Rendered Content: " + content);
+
+        if ("add".equals(actionParam)) {
+            request.setAttribute("content", content);
+        } else {
+            request.setAttribute("content", content);
+        }
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher("app/activePolls.jsp");
+        dispatcher.forward(request, response);
+    }
+
     private boolean isNumeric(String str) {
         try {
             Double.parseDouble(str);
@@ -71,6 +94,5 @@ public class BaseAction extends HttpServlet {
             return false;
         }
     }
-    
 
 }

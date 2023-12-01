@@ -73,7 +73,8 @@
         %>
 
         <div>
-             ${sessionScope.content} 
+              ${requestScope.content}
+
         </div>
     </div>
     <!--Container Main end-->

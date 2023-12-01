@@ -11,6 +11,10 @@ import com.votifysoft.model.entity.Answers;
 @Remote
 public class AnswersBean extends GenericBean<Answers> implements AnswersBeanI {
 
+    public boolean fetchChoices(){
+        return false;
+    }
+
     @Override
     public boolean registerChoices(int pollId,List<Answers> topicChoicesList) {
        

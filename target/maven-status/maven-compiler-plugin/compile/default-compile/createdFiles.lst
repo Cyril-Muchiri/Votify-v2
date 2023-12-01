@@ -19,6 +19,7 @@ com/votifysoft/app/action/DashboardAction.class
 com/votifysoft/app/utils/EncryptSha256.class
 com/votifysoft/app/action/AboutAction.class
 com/votifysoft/app/beans/CheckLicenseBean.class
+com/votifysoft/app/view/helper/HtmlDiv.class
 com/votifysoft/model/entity/Polls.class
 com/votifysoft/model/entity/Entertainment.class
 com/votifysoft/model/entity/ActivePoll.class
@@ -42,7 +43,6 @@ com/votifysoft/app/action/HomeAction.class
 com/votifysoft/app/action/UserAction.class
 com/votifysoft/app/beans/DashBoardBean.class
 com/votifysoft/app/action/LoginAction.class
-com/votifysoft/app/view/helper/HtmlTable.class
 com/votifysoft/app/beans/CreatePollBeanI.class
 com/votifysoft/app/view/helper/MenuLink.class
 com/votifysoft/app/beans/UserBeanI.class
