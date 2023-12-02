@@ -50,7 +50,6 @@ com/votifysoft/filters/AuthFilters.class
 com/votifysoft/app/action/ActivePollsAction.class
 com/votifysoft/app/action/TopicCreatorAction.class
 com/votifysoft/app/beans/UserBean.class
-com/votifysoft/app/view/helper/HtmlMenuToolbar.class
 com/votifysoft/app/action/HelpAction.class
 com/votifysoft/app/beans/GenericBean.class
 com/votifysoft/database/MySqlDb.class

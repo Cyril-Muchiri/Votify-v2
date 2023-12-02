@@ -65,16 +65,16 @@ public class BaseAction extends HttpServlet {
         return answersList;
     }
 
-    public void renderDiv(HttpServletRequest request, HttpServletResponse response,
-            Class<?> entity, List<?> entityList)
+    public void renderPoll(HttpServletRequest request, HttpServletResponse response,
+            Class<?> poll, Class<?> answer, List<?> pollList,List<?> answerList)
             throws ServletException, IOException {
-        System.out.println("----&&^THIS METHOD IS WORKING FOR RENDER");
 
         String actionParam = StringUtils.trimToEmpty(request.getParameter("action"));
         System.out.println("Action Parameter: " + actionParam);
 
-        String content = HtmlRenderContent.renderMainContentDiv(entityList, entity);
-        System.out.println("Rendered Content: " + content);
+        
+
+        String content = HtmlRenderContent.renderMainContentDiv(pollList, answerList,poll,answer);
 
         if ("add".equals(actionParam)) {
             request.setAttribute("content", content);

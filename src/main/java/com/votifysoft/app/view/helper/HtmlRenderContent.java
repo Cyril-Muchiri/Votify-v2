@@ -1,67 +1,88 @@
 package com.votifysoft.app.view.helper;
 
-import java.lang.reflect.Field;
-import java.math.BigDecimal;
-import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
-import org.apache.commons.lang3.StringUtils;
+import com.votifysoft.model.entity.Answers;
+import com.votifysoft.model.entity.Polls;
 
 public class HtmlRenderContent {
 
-    public static String renderMainContentDiv(List<?> dataList, Class<?> dataClass) {
+    public static String renderMainContentDiv(List<?> pollList, List<?> answerList, Class<?> pollClass,
+            Class<?> answerClass) {
         StringBuilder mainContentBuilder = new StringBuilder();
         System.out.println("This is the HtmlRenderContent class method");
-        // Opening div with class attribute
-        mainContentBuilder.append("<div class=\"height-100 bg-light\">");
+    
+        // mainContentBuilder.append("<div class=\"height-100 bg-light\">");
 
         mainContentBuilder.append("<div class=\"mainContent\">");
 
-        for (Object data : dataList) {
+        for (Object topic : pollList) {
 
             boolean displayTopicDiv = true;
 
             if (displayTopicDiv) {
 
                 mainContentBuilder.append("<div class=\"topicDiv\" onclick=\"toggleForm('pollForm')\">")
-                        .append("<div><h4>1.</h4></div>")
-                        .append("<div><h4>").append(getTopic(data)).append("</h4></div>")
+                .append("<div><h4>").append(getTopicId(topic)).append(".</h4></div>")
+                        .append("<div><h4>").append(getTopic(topic)).append("</h4></div>")
                         .append("</div>");
             }
 
-            mainContentBuilder.append("<div class=\"topic\" id=\"pollForm\" style=\"display: ;\">")
-                    .append("<form action=\"./answer\" method=\"post\">")
-                    .append("<label for=\"topic\">Choose:</label>")
-                    .append("<input type=\"radio\" id=\"topic1\" name=\"topic\" value=\"topic1\">")
-                    .append("<label for=\"topic1\">Topic 1</label>")
-                    .append("<input type=\"radio\" id=\"topic2\" name=\"topic\" value=\"topic2\">")
-                    .append("<label for=\"topic2\">Topic 2</label>")
-                    .append("<div class=\"buttonDiv\">")
-                    .append("<div class=\"submit-btn\" style=\"margin-top:5px\" id=\"submit-btn\">")
-                    .append("<button type=\"submit\">Submit Answer</button>")
-                    .append("</div>")
-                    .append("<div class=\"view-btn\" style=\"margin-top:5px\" id=\"view-btn\">")
-                    .append("<button type=\"submit\">View Results</button>")
-                    .append("</div>")
-                    .append("</div>")
-                    .append("</form>")
-                    .append("</div>");
+            int topicId = getTopicId(topic); 
+
+            for (Object answerValue : answerList) {
+                String answerId = "topic" + (answerList.indexOf(answerValue) + 1);
+                if (getAnswer(answerValue, topicId) != null) {
+                    mainContentBuilder.append("<form action=\"/vote\">")
+                            .append("<input type=\"radio\" id=\"").append(answerId)
+                            .append("\" name=\"topic\" value=\"").append(answerId).append("\">")
+                            .append("<label for=\"").append(answerId).append("\">").append(getAnswer(answerValue, topicId)).append("</label>");
+                }
+            }
+
+            mainContentBuilder.append("<div class=\"buttonDiv\">")
+            .append("<div class=\"submit-btn\" style=\"margin-top:5px\" id=\"submit-btn\">")
+            .append("<button type=\"submit\">Submit Answer</button>")
+            .append("</div>")
+            .append("<div class=\"view-btn\" style=\"margin-top:5px\" id=\"view-btn\">")
+            .append("<button type=\"submit\">View Results</button>")
+            // .append("</div>")
+            .append("</div>")
+            .append("</form>")
+            .append("</div>");
 
         }
-
-        // Closing mainContent and outer div
         mainContentBuilder.append("</div></div>");
 
         return mainContentBuilder.toString();
     }
 
-    // Assume this method extracts the favorite color from your data object
+    
     private static String getTopic(Object data) {
-        // Implement your logic to get the favorite color from the data object
-        return "What is your favourite colour"; // Placeholder, replace with actual logic
+        if (data != null) {
+            Polls poll = (Polls) data;
+            return poll.getTopicName();
+        }
+        return null;
     }
+    
+    private static String getAnswer(Object data,int topicId) {
+        if (data != null) {
+            Answers answer = (Answers) data;
+            if (answer.getPoll_id() == topicId) {
+                return answer.getChoice().toString();
+            }
+        }
+        return null;
+    }
+
+    private static int getTopicId(Object data) {
+        if (data != null) {
+            Polls poll = (Polls) data;
+            return poll.getPoll_id(); 
+        }
+        return -1; 
+    }
+    
 
 }

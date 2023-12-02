@@ -63,4 +63,9 @@ public class Answers implements Serializable{
         this.votes = votes;
     }
 
+    @Override
+    public String toString() {
+        return   choice ;
+    }
+
 }
