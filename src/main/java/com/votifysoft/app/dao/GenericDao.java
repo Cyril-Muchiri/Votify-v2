@@ -21,6 +21,10 @@ public class GenericDao<T> implements GenericDaoI<T> {
 
     }
 
+    public void addVote(int id){
+        database.updateVotes(id);
+    }
+
     @Override
     public void delete(T entity) {
 

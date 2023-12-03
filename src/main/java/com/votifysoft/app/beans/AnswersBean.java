@@ -31,6 +31,12 @@ public class AnswersBean extends GenericBean<Answers> implements AnswersBeanI {
         return false;
     }
 
+    @Override
+    public boolean registerVote( int choiceId) {
+       
+          getDao().addVote(choiceId);
+        return false;
+    }
 
     
 }

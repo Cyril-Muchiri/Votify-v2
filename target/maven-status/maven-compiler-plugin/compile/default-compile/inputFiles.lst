@@ -34,6 +34,7 @@
 /media/chief/New Volume/systech Material/class projects/Votify-v2/src/main/java/com/votifysoft/model/entity/HtmlFormFieldType.java
 /media/chief/New Volume/systech Material/class projects/Votify-v2/src/main/java/com/votifysoft/app/action/UserAction.java
 /media/chief/New Volume/systech Material/class projects/Votify-v2/src/main/java/com/votifysoft/model/entity/PollType.java
+/media/chief/New Volume/systech Material/class projects/Votify-v2/src/main/java/com/votifysoft/model/entity/Vote.java
 /media/chief/New Volume/systech Material/class projects/Votify-v2/src/main/java/com/votifysoft/app/beans/UserBean.java
 /media/chief/New Volume/systech Material/class projects/Votify-v2/src/main/java/com/votifysoft/app/action/ActivePollsAction.java
 /media/chief/New Volume/systech Material/class projects/Votify-v2/src/main/java/com/votifysoft/app/action/AboutAction.java

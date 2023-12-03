@@ -52,5 +52,6 @@ com/votifysoft/app/action/TopicCreatorAction.class
 com/votifysoft/app/beans/UserBean.class
 com/votifysoft/app/action/HelpAction.class
 com/votifysoft/app/beans/GenericBean.class
+com/votifysoft/model/entity/Vote.class
 com/votifysoft/database/MySqlDb.class
 com/votifysoft/app/beans/AnswersBean.class

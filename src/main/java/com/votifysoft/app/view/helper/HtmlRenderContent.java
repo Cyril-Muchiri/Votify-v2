@@ -11,7 +11,7 @@ public class HtmlRenderContent {
             Class<?> answerClass) {
         StringBuilder mainContentBuilder = new StringBuilder();
         System.out.println("This is the HtmlRenderContent class method");
-    
+
         // mainContentBuilder.append("<div class=\"height-100 bg-light\">");
 
         mainContentBuilder.append("<div class=\"mainContent\">");
@@ -23,33 +23,40 @@ public class HtmlRenderContent {
             if (displayTopicDiv) {
 
                 mainContentBuilder.append("<div class=\"topicDiv\" onclick=\"toggleForm('pollForm')\">")
-                .append("<div><h4>").append(getTopicId(topic)).append(".</h4></div>")
+                        .append("<div><h4>").append(getTopicId(topic)).append(".</h4></div>")
                         .append("<div><h4>").append(getTopic(topic)).append("</h4></div>")
                         .append("</div>");
             }
 
-            int topicId = getTopicId(topic); 
+            int topicId = getTopicId(topic);
+        
 
             for (Object answerValue : answerList) {
-                String answerId = "topic" + (answerList.indexOf(answerValue) + 1);
+                int answerId = getAnswerId(answerValue);
+             
+
                 if (getAnswer(answerValue, topicId) != null) {
-                    mainContentBuilder.append("<form action=\"/vote\">")
+                    
+                    mainContentBuilder.append("<form action=\"./vote\" method=\"post\">")
                             .append("<input type=\"radio\" id=\"").append(answerId)
                             .append("\" name=\"topic\" value=\"").append(answerId).append("\">")
-                            .append("<label for=\"").append(answerId).append("\">").append(getAnswer(answerValue, topicId)).append("</label>");
+                            .append("<label for=\"").append(answerId).append("\">")
+                            .append(getAnswer(answerValue, topicId)).append("</label>");
+
+                            System.out.println("This is the anser Id***"+answerId);
                 }
             }
 
             mainContentBuilder.append("<div class=\"buttonDiv\">")
-            .append("<div class=\"submit-btn\" style=\"margin-top:5px\" id=\"submit-btn\">")
-            .append("<button type=\"submit\">Submit Answer</button>")
-            .append("</div>")
-            .append("<div class=\"view-btn\" style=\"margin-top:5px\" id=\"view-btn\">")
-            .append("<button type=\"submit\">View Results</button>")
-            // .append("</div>")
-            .append("</div>")
-            .append("</form>")
-            .append("</div>");
+                    .append("<div class=\"submit-btn\" style=\"margin-top:5px\" id=\"submit-btn\">")
+                    .append("<button type=\"submit\">Submit Answer</button>")
+                    .append("</div>")
+                    .append("<div class=\"view-btn\" style=\"margin-top:5px\" id=\"view-btn\">")
+                    .append("<button type=\"submit\">View Results</button>")
+                    // .append("</div>")
+                    .append("</div>")
+                    .append("</form>")
+                    .append("</div>");
 
         }
         mainContentBuilder.append("</div></div>");
@@ -57,7 +64,6 @@ public class HtmlRenderContent {
         return mainContentBuilder.toString();
     }
 
-    
     private static String getTopic(Object data) {
         if (data != null) {
             Polls poll = (Polls) data;
@@ -65,8 +71,8 @@ public class HtmlRenderContent {
         }
         return null;
     }
-    
-    private static String getAnswer(Object data,int topicId) {
+
+    private static String getAnswer(Object data, int topicId) {
         if (data != null) {
             Answers answer = (Answers) data;
             if (answer.getPoll_id() == topicId) {
@@ -79,10 +85,18 @@ public class HtmlRenderContent {
     private static int getTopicId(Object data) {
         if (data != null) {
             Polls poll = (Polls) data;
-            return poll.getPoll_id(); 
+            return poll.getPoll_id();
         }
-        return -1; 
+        return -1;
     }
-    
+
+
+    private static int getAnswerId(Object data) {
+        if (data != null) {
+            Answers answer = (Answers) data;
+            return answer.getAnswer_id();
+        }
+        return -1;
+    }
 
 }
