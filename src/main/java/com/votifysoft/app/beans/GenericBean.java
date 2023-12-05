@@ -3,13 +3,14 @@ package com.votifysoft.app.beans;
 import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 import com.votifysoft.app.dao.GenericDao;
 import com.votifysoft.app.dao.GenericDaoI;
 
 public abstract class GenericBean<T> implements GenericBeanI<T> {
 
-    @Inject
+    @PersistenceContext
     EntityManager em;
 
     @Inject

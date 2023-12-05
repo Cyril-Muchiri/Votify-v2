@@ -1,19 +1,19 @@
-package com.votifysoft.app.beans;
+// package com.votifysoft.app.beans;
 
-import javax.ejb.Stateless;
+// import javax.ejb.Stateless;
 
-import com.votifysoft.model.entity.Polls;
+// import com.votifysoft.model.entity.Polls;
 
-@Stateless
-public class PollBean extends GenericBean<Polls> implements PollBeanI {
+// @Stateless
+// public class PollBean extends GenericBean<Polls> implements PollBeanI {
 
-    @Override
-    public boolean registerTopic(Polls pollTopic) {
-        getDao().addOrUpdate(pollTopic);
+//     @Override
+//     public boolean registerTopic(Polls pollTopic) {
+//         getDao().addOrUpdate(pollTopic);
        
-        return false;
-    }
+//         return false;
+//     }
 
 
     
-}
+// }

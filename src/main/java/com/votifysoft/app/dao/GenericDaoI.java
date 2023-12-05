@@ -13,8 +13,5 @@ public interface GenericDaoI <T> extends Serializable {
 
     void delete(T entity);
 
-    MySqlDb getDatabase();
-
-    void setDatabase(MySqlDb database);
 
 }

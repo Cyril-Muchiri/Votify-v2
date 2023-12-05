@@ -1,43 +1,43 @@
-package com.votifysoft.app.beans;
+// package com.votifysoft.app.beans;
 
-import java.util.List;
+// import java.util.List;
 
-import javax.ejb.Remote;
-import javax.ejb.Stateless;
+// import javax.ejb.Remote;
+// import javax.ejb.Stateless;
 
-import com.votifysoft.model.entity.Answers;
+// import com.votifysoft.model.entity.Answers;
 
-@Stateless
-@Remote
-public class AnswersBean extends GenericBean<Answers> implements AnswersBeanI {
+// @Stateless
+// @Remote
+// public class AnswersBean extends GenericBean<Answers> implements AnswersBeanI {
 
-    public boolean fetchChoices(){
-        return false;
-    }
+//     public boolean fetchChoices(){
+//         return false;
+//     }
 
-    @Override
-    public boolean registerChoices(int pollId,List<Answers> topicChoicesList) {
+//     @Override
+//     public boolean registerChoices(int pollId,List<Answers> topicChoicesList) {
        
-        for (Answers topicChoices : topicChoicesList) {
-            System.out.println("Answer ID: " + topicChoices.getAnswer_id());
-            System.out.println("Poll ID: " + topicChoices.getPoll_id());
-            System.out.println("Votes: " + topicChoices.getVotes());
+//         for (Answers topicChoices : topicChoicesList) {
+//             System.out.println("Answer ID: " + topicChoices.getAnswer_id());
+//             System.out.println("Poll ID: " + topicChoices.getPoll_id());
+//             System.out.println("Votes: " + topicChoices.getVotes());
           
-            topicChoices.setPoll_id(pollId);
-            getDao().addOrUpdate(topicChoices);
+//             topicChoices.setPoll_id(pollId);
+//             getDao().addOrUpdate(topicChoices);
             
-        }
+//         }
        
-        return false;
-    }
+//         return false;
+//     }
 
-    @Override
-    public boolean registerVote( int choiceId) {
+//     @Override
+//     public boolean registerVote( int choiceId) {
        
-          getDao().addVote(choiceId);
-        return false;
-    }
+//           getDao().addVote(choiceId);
+//         return false;
+//     }
 
     
-}
+// }
 

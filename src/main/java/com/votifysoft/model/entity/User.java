@@ -1,11 +1,13 @@
 package com.votifysoft.model.entity;
 
+import javax.persistence.Entity;
+
 import com.votifysoft.database.helper.DbTable;
 import com.votifysoft.database.helper.DbTableColumn;
 
-
+@Entity
 @DbTable(name = "users")
-public class User  {
+public class User extends BaseEntity  {
 
     @DbTableColumn(name = "userId", definition = "INT PRIMARY KEY AUTO_INCREMENT")
     private  int userId;

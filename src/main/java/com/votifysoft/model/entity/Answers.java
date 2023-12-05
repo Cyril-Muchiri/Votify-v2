@@ -2,11 +2,15 @@ package com.votifysoft.model.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.Entity;
+
 import com.votifysoft.database.helper.DbTable;
 import com.votifysoft.database.helper.DbTableColumn;
 
+
+@Entity
 @DbTable(name = "answers")
-public class Answers implements Serializable{
+public class Answers extends BaseEntity implements Serializable {
 
  @DbTableColumn(name = "answer_id",definition = "INT PRIMARY KEY AUTO_INCREMENT")
     private int answer_id;

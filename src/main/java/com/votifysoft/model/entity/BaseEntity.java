@@ -2,13 +2,17 @@ package com.votifysoft.model.entity;
 
 import java.io.Serializable;
 
-import com.votifysoft.database.helper.DbTableColumn;
-import com.votifysoft.database.helper.DbTableId;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
 
+
+@MappedSuperclass
 public class BaseEntity implements Serializable {
 
-    @DbTableId
-    @DbTableColumn(name = "id", definition = "int")
+    @Id
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private Long id;
 
     public Long getId() {

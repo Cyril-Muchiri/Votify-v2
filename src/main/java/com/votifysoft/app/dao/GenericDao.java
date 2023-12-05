@@ -3,30 +3,30 @@ package com.votifysoft.app.dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-
-import com.votifysoft.database.MySqlDb;
+import javax.persistence.PersistenceContext;
 
 public class GenericDao<T> implements GenericDaoI<T> {
 
-    private MySqlDb database;
+  
 
+    @PersistenceContext
     private EntityManager em;
 
     @SuppressWarnings({ "unchecked" })
     @Override
     public List<T> list(Object entity) {
-        return (List<T>) database.select(entity);
+        String jpql = "FROM " + entity.getClass().getSimpleName() + " e";
+
+        List<T> results = (List<T>) em.createQuery(jpql, entity.getClass());
+
+        return results;
 
     }
 
     @Override
     public void addOrUpdate(T entity) {
-        database.saveOrUpdate(entity);
+        em.merge(entity);
 
-    }
-
-    public void addVote(int id){
-        database.updateVotes(id);
     }
 
     @Override
@@ -34,12 +34,16 @@ public class GenericDao<T> implements GenericDaoI<T> {
 
     }
 
-    public MySqlDb getDatabase() {
-        return database;
+    public EntityManager getEm() {
+        return em;
     }
 
-    public void setDatabase(MySqlDb database) {
-        this.database = database;
+    public void setEm(EntityManager em) {
+        this.em = em;
+    }
+
+    public void addVote(int id) {
+        em.merge(id);
     }
 
 }

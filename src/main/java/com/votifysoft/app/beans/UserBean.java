@@ -5,6 +5,8 @@ import java.sql.SQLException;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 import com.votifysoft.app.utils.EncryptPwd;
 import com.votifysoft.model.entity.User;
@@ -12,8 +14,9 @@ import com.votifysoft.model.entity.User;
 @Stateless
 public class UserBean extends GenericBean<User> implements UserBeanI {
 
+
     @Inject
-         private EncryptPwd encPwd;
+    private EncryptPwd encPwd;
 
     @Override
     public boolean register(User user) throws SQLException {
