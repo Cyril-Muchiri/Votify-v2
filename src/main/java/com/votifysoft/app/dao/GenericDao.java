@@ -2,11 +2,15 @@ package com.votifysoft.app.dao;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+
 import com.votifysoft.database.MySqlDb;
 
 public class GenericDao<T> implements GenericDaoI<T> {
 
     private MySqlDb database;
+
+    private EntityManager em;
 
     @SuppressWarnings({ "unchecked" })
     @Override

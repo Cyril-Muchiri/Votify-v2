@@ -2,7 +2,6 @@ package com.votifysoft.app.action;
 
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -19,7 +18,6 @@ import com.votifysoft.app.beans.PollBeanI;
 import com.votifysoft.database.MySqlDb;
 import com.votifysoft.model.entity.Answers;
 import com.votifysoft.model.entity.Polls;
-import com.votifysoft.model.entity.User;
 
 @WebServlet("/topics")
 public class TopicCreatorAction extends BaseAction {

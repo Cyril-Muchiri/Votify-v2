@@ -274,7 +274,6 @@ public class MySqlDb implements Serializable {
             String tableName = "answers";
             String columnName = "votes";
             
-            // Increment the votes column by 1 where answer_id matches the provided parameter
             String updateQuery = "UPDATE " + tableName + " SET " + columnName + " = " + columnName + " + 1 WHERE answer_id = ?";
             PreparedStatement updateStmt = connection.prepareStatement(updateQuery);
             updateStmt.setInt(1, answerId);
