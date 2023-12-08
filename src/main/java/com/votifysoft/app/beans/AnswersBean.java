@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import com.votifysoft.model.entity.Answers;
+import com.votifysoft.model.entity.Polls;
 
 @Stateless
 @Remote
@@ -52,19 +53,18 @@ public class AnswersBean extends GenericBean<Answers> implements AnswersBeanI {
     //         return false;
     //     }
     // }
-    public boolean registerChoices(int pollId, List<Answers> topicChoices) {
+    @Override
+    public boolean registerChoices(Polls poll, List<Answers> topicChoices) {
         System.out.println("GVGVFCRTDED!!");
         try {
             for (Answers topicChoice : topicChoices) {
                 Answers answer = new Answers();
-                System.out.println("Poll_IDDDD_" + pollId);
-                
-                topicChoice.setPollId(pollId);
-                System.out.println("WASADAD " + topicChoice.getPollId());
-                answer.setPollId(topicChoice.getPollId());
-                System.out.println("1st choice: " + topicChoice);
+                System.out.println("Poll_IDDDD_" + poll.getPoll_id());
+                answer.setPoll(poll);
                 answer.setChoice(topicChoice.getChoice());
-                System.out.println("Answer.getCHoice" + answer.getChoice());
+                System.out.println("1st choice: " + topicChoice);
+                System.out.println("Answer.getChoice: " + answer.getChoice());
+
                 getDao().addOrUpdate(answer);
             }
             return true;
@@ -73,6 +73,8 @@ public class AnswersBean extends GenericBean<Answers> implements AnswersBeanI {
             return false;
         }
     }
+
+    
 
     @Override
     public boolean registerVote(int choiceId) {

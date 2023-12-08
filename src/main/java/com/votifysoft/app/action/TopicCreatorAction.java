@@ -72,13 +72,15 @@ public class TopicCreatorAction extends BaseAction {
       poll.setCreator(creator);
       int pollId=topicBean.registerTopic(poll);
 
+      Polls latestPoll=topicBean.getLatestPoll();
+
       System.out.println("####### POll id" + pollId);
         System.out.println("A big NUll");
     
     
 
       List<Answers> answersList = serializeChoices(choiceValues);
-      answersBean.registerChoices(pollId, answersList);
+      answersBean.registerChoices(latestPoll, answersList);
       
 
     } catch (Exception ex) {

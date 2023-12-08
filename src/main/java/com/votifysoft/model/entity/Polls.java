@@ -16,6 +16,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 @Entity
 @Table(name = "polls")
 public class Polls implements Serializable {
@@ -34,7 +36,8 @@ public class Polls implements Serializable {
     @OneToMany(mappedBy = "poll", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Answers> answers;
 
-    @Column
+    @CreationTimestamp
+    @Column(name = "createdAt", updatable = false)
     private Date createdAt;
 
     @Transient
