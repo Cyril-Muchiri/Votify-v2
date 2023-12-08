@@ -2,12 +2,13 @@ package com.votifysoft.model.entity;
 
 import java.io.Serializable;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -18,8 +19,9 @@ public class Answers implements Serializable {
     @GeneratedValue(strategy = GenerationType.TABLE)
     private int answer_id;
 
-    @Column
-    private int pollId;
+    @ManyToOne
+    @JoinColumn(name = "poll_id", referencedColumnName = "poll_id")
+    private Polls poll;
 
     @Column
     private String choice;
@@ -30,9 +32,9 @@ public class Answers implements Serializable {
     public Answers() {
     }
 
-    public Answers(int answer_id, int poll_Id, String choice, int votes) {
+    public Answers(int answer_id, Polls poll, String choice, int votes) {
         this.answer_id = answer_id;
-        this.pollId = poll_Id;
+        this.poll = poll;
         this.choice = choice;
         this.votes = votes;
     }
@@ -56,14 +58,6 @@ public class Answers implements Serializable {
     public int getVotes() {
         return votes;
     }
-    public int getPollId() {
-        return pollId;
-    }
-
-    public void setPollId(int pollId) {
-        this.pollId = pollId;
-    }
-
 
     public void setVotes(int votes) {
         this.votes = votes;
@@ -72,5 +66,13 @@ public class Answers implements Serializable {
     @Override
     public String toString() {
         return choice;
+    }
+
+    public Polls getPoll() {
+        return poll;
+    }
+
+    public void setPoll(Polls poll) {
+        this.poll = poll;
     }
 }

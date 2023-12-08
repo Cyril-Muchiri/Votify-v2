@@ -40,7 +40,6 @@ public class TopicCreatorAction extends BaseAction {
 
   }
 
-  @Transactional
   public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
     try {

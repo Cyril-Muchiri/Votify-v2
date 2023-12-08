@@ -1,13 +1,18 @@
 package com.votifysoft.model.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
@@ -17,6 +22,7 @@ import org.hibernate.annotations.DynamicUpdate;
 @DynamicInsert
 @DynamicUpdate
 public class User implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int userId;
@@ -24,11 +30,16 @@ public class User implements Serializable {
     @Column
     private String userName;
 
-    @Column
+    @NotNull
+    @Column(name = "userEmail", nullable = false, unique = true)
     private String userEmail;
-    
-    @Column
+
+    @NotNull
+    @Column(name = "password", nullable = false)
     private String password;
+
+    @OneToMany(mappedBy = "creator", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Polls> createdPolls = new ArrayList<>();
 
     public String getUserEmail() {
         return userEmail;
@@ -70,5 +81,13 @@ public class User implements Serializable {
 
     public void setUserId(int userId) {
         this.userId = userId;
+    }
+
+    public List<Polls> getCreatedPolls() {
+        return createdPolls;
+    }
+
+    public void setCreatedPolls(List<Polls> createdPolls) {
+        this.createdPolls = createdPolls;
     }
 }

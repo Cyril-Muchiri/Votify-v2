@@ -33,6 +33,7 @@ com/votifysoft/app/action/PollCreatorAction.class
 com/votifysoft/app/view/helper/HtmlRenderContent.class
 com/votifysoft/app/beans/ActivePollsBean.class
 com/votifysoft/app/utils/EncryptPwd.class
+com/votifysoft/model/entity/BaseEntity.class
 com/votifysoft/model/entity/Answers.class
 com/votifysoft/app/action/HomeAction.class
 com/votifysoft/app/action/UserAction.class
@@ -48,4 +49,5 @@ com/votifysoft/app/beans/UserBean.class
 com/votifysoft/app/action/HelpAction.class
 com/votifysoft/app/beans/GenericBean.class
 com/votifysoft/model/entity/Vote.class
+com/votifysoft/model/entity/AuditLog.class
 com/votifysoft/app/beans/AnswersBean.class

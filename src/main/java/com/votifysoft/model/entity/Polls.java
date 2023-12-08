@@ -2,15 +2,17 @@ package com.votifysoft.model.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -21,14 +23,17 @@ public class Polls implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int poll_id;
-    
+
     @Column
     private String topicName;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "creator_id", referencedColumnName = "userId")
     private User creator;
-    
+
+    @OneToMany(mappedBy = "poll", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Answers> answers;
+
     @Column
     private Date createdAt;
 
@@ -38,9 +43,9 @@ public class Polls implements Serializable {
     public Polls() {
     };
 
-    public Polls(String topicName, User creator, Date createdAt) {
+    public Polls(String topicName, List<Answers> answers, Date createdAt) {
         this.topicName = topicName;
-        this.creator = creator;
+        this.answers = answers;
         this.createdAt = createdAt;
     }
 
@@ -82,5 +87,13 @@ public class Polls implements Serializable {
 
     public void setDeadline(Date deadline) {
         this.deadline = deadline;
+    }
+
+    public List<Answers> getAnswers() {
+        return answers;
+    }
+
+    public void setAnswers(List<Answers> answers) {
+        this.answers = answers;
     }
 }
