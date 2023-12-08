@@ -1,24 +1,33 @@
 package com.votifysoft.model.entity;
 
-import javax.persistence.Entity;
+import java.io.Serializable;
 
-import com.votifysoft.database.helper.DbTable;
-import com.votifysoft.database.helper.DbTableColumn;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 @Entity
-@DbTable(name = "users")
-public class User extends BaseEntity  {
+@Table(name = "users")
+@DynamicInsert
+@DynamicUpdate
+public class User implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int userId;
 
-    @DbTableColumn(name = "userId", definition = "INT PRIMARY KEY AUTO_INCREMENT")
-    private  int userId;
+    @Column
+    private String userName;
 
-    @DbTableColumn(name = "userName")
-    private  String userName;
-
-    @DbTableColumn(name = "userEmail")
+    @Column
     private String userEmail;
-
-     @DbTableColumn(name = "password")
+    
+    @Column
     private String password;
 
     public String getUserEmail() {
@@ -29,18 +38,17 @@ public class User extends BaseEntity  {
         this.userEmail = userEmail;
     }
 
-   
-    public User(){}
+    public User() {
+    }
 
-    public User(int userId,String userName,String userEmail, String password) {
+    public User(int userId, String userName, String userEmail, String password) {
         this.userId = userId;
         this.userName = userName;
         this.password = password;
-        this.userEmail= userEmail;
+        this.userEmail = userEmail;
     }
 
-
-    public  String getUserName() {
+    public String getUserName() {
         return userName;
     }
 
@@ -56,7 +64,7 @@ public class User extends BaseEntity  {
         this.password = password;
     }
 
-      public int getUserId() {
+    public int getUserId() {
         return userId;
     }
 

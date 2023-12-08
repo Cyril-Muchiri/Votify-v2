@@ -8,45 +8,34 @@ import javax.persistence.PersistenceContext;
 import com.votifysoft.app.dao.GenericDao;
 import com.votifysoft.app.dao.GenericDaoI;
 
-public abstract class GenericBean<T> implements GenericBeanI<T> {
+public class GenericBean<T> implements GenericBeanI<T> {
 
     @PersistenceContext
-    EntityManager em;
+    private EntityManager em;
 
     @Inject
     private GenericDaoI<T> genericDao;
 
-    @SuppressWarnings({ "unchecked" })
     @Override
-    public List<T> list(Object entity) {
-        String jpql = "FROM " + entity.getClass().getSimpleName() + " e";
-
-        List<T> results = (List<T>) em.createQuery(jpql, entity.getClass());
-
-        return results;
-
+    public List<T> list(T entity) {
+        genericDao.setEm(em);
+        return genericDao.list(entity);
     }
 
     @Override
-    public void addOrUpdate(T entity) {
-        em.merge(entity);
+    public T addOrUpdate(T entity) {
+        genericDao.setEm(em);
+        return genericDao.addOrUpdate(entity);
     }
 
     @Override
     public void delete(T entity) {
-
+        genericDao.setEm(em);
+        genericDao.delete(entity);
     }
 
     public GenericDao<T> getDao() {
+        genericDao.setEm(em);
         return (GenericDao<T>) genericDao;
     }
-
-    public EntityManager getEm() {
-        return em;
-    }
-
-    public void setEm(EntityManager em) {
-        this.em = em;
-    }
-
 }

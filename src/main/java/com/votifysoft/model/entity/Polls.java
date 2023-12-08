@@ -3,38 +3,45 @@ package com.votifysoft.model.entity;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
-
-import com.votifysoft.database.helper.DbTable;
-import com.votifysoft.database.helper.DbTableColumn;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
-@DbTable(name = "polls")
-public class Polls extends BaseEntity implements Serializable{
+@Table(name = "polls")
+public class Polls implements Serializable {
 
-    @DbTableColumn(name = "poll_id", definition = " INT PRIMARY KEY AUTO_INCREMENT")
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int poll_id;
-
-    @DbTableColumn(name = "topic", definition = "VARCHAR(200)")
+    
+    @Column
     private String topicName;
 
-    @DbTableColumn(name ="creator_id",definition = " INT ")
-    private int creator_id;
-
-    @DbTableColumn(name = "created_at", definition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "creator_id", referencedColumnName = "userId")
+    private User creator;
+    
+    @Column
     private Date createdAt;
 
-    // @DbTableColumn(name = "deadline", definition = "DATETIME")
+    @Transient
     private Date deadline;
 
     public Polls() {
     };
 
-    public Polls(String topicName,int creator_id, Date createdAt) {
-       this.creator_id=creator_id;
+    public Polls(String topicName, User creator, Date createdAt) {
         this.topicName = topicName;
+        this.creator = creator;
         this.createdAt = createdAt;
-        // this.deadline = deadline;
     }
 
     public int getPoll_id() {
@@ -53,6 +60,14 @@ public class Polls extends BaseEntity implements Serializable{
         this.topicName = topicName;
     }
 
+    public User getCreator() {
+        return creator;
+    }
+
+    public void setCreator(User creator) {
+        this.creator = creator;
+    }
+
     public Date getCreatedAt() {
         return createdAt;
     }
@@ -68,13 +83,4 @@ public class Polls extends BaseEntity implements Serializable{
     public void setDeadline(Date deadline) {
         this.deadline = deadline;
     }
-
-     public int getcreator_id() {
-        return creator_id;
-    }
-
-    public void setcreator_id(int creator_id) {
-        this.creator_id = creator_id;
-    }
-
 }

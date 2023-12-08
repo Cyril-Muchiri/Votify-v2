@@ -74,7 +74,9 @@ public class BaseAction extends HttpServlet {
 
         
 
-        String content = HtmlRenderContent.renderMainContentDiv(pollList, answerList,poll,answer);
+        // String content = HtmlRenderContent.renderMainContentDiv(pollList, answerList,poll,answer);
+        HtmlRenderContent renderContent=new HtmlRenderContent();
+         String content = renderContent.renderMainContentDiv();
 
         if ("add".equals(actionParam)) {
             request.setAttribute("content", content);

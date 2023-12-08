@@ -2,47 +2,39 @@ package com.votifysoft.model.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
-
-import com.votifysoft.database.helper.DbTable;
-import com.votifysoft.database.helper.DbTableColumn;
-
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
-@DbTable(name = "answers")
-public class Answers extends BaseEntity implements Serializable {
+@Table(name = "answers")
+public class Answers implements Serializable {
 
- @DbTableColumn(name = "answer_id",definition = "INT PRIMARY KEY AUTO_INCREMENT")
+    @Id
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private int answer_id;
 
-    @DbTableColumn(name = "poll_id" )
-    private int poll_id;
+    @Column
+    private int pollId;
 
-    @DbTableColumn(name = "choice" )
+    @Column
     private String choice;
 
-    @DbTableColumn(name ="votes",definition = "INT DEFAULT 0")
+    @Column
     private int votes;
 
-
-    public Answers(){};
-
-    public Answers(int id){};
-
-    public Answers(int answer_id,int poll_id,String choice,int votes){
-        this.answer_id=answer_id;
-        this.poll_id=poll_id;
-        this.choice=choice;
-        this.votes=votes;    
-        
+    public Answers() {
     }
 
-    public int getPoll_id() {
-        return poll_id;
-    }
-
-    public void setPoll_id(int poll_id) {
-        this.poll_id = poll_id;
+    public Answers(int answer_id, int poll_Id, String choice, int votes) {
+        this.answer_id = answer_id;
+        this.pollId = poll_Id;
+        this.choice = choice;
+        this.votes = votes;
     }
 
     public int getAnswer_id() {
@@ -57,13 +49,21 @@ public class Answers extends BaseEntity implements Serializable {
         return choice;
     }
 
-    public void setChoice(String choice) {
-        this.choice = choice;
+    public void setChoice(String topicChoice) {
+        this.choice = topicChoice;
     }
 
     public int getVotes() {
         return votes;
     }
+    public int getPollId() {
+        return pollId;
+    }
+
+    public void setPollId(int pollId) {
+        this.pollId = pollId;
+    }
+
 
     public void setVotes(int votes) {
         this.votes = votes;
@@ -71,7 +71,6 @@ public class Answers extends BaseEntity implements Serializable {
 
     @Override
     public String toString() {
-        return   choice ;
+        return choice;
     }
-
 }

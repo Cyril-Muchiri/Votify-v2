@@ -6,9 +6,9 @@ import com.votifysoft.model.entity.Answers;
 
 public interface AnswersBeanI extends GenericBeanI<Answers> {
 
-     public boolean registerChoices(int pollId,List<Answers> topicChoicesList);
+     // public boolean registerChoices(int pollId,List<Answers> topicChoicesList);
+     boolean registerChoices(int pollId, List<Answers> topicChoices);
 
-     public boolean registerVote( int choiceId);
-    
+     public boolean registerVote(int choiceId);
 
 }

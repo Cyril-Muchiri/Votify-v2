@@ -3,15 +3,20 @@ package com.votifysoft.app.dao;
 import java.io.Serializable;
 import java.util.List;
 
-import com.votifysoft.database.MySqlDb;
+import javax.persistence.EntityManager;
+
 
 public interface GenericDaoI <T> extends Serializable {
 
-    List<T> list(Object entity);
+ List<T> list(T entity);
 
-    void addOrUpdate(T entity);
+    T addOrUpdate(T entity);
 
     void delete(T entity);
+
+    EntityManager getEm();
+
+    void setEm(EntityManager em);
 
 
 }

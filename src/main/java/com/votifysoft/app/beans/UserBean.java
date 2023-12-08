@@ -1,35 +1,49 @@
 package com.votifysoft.app.beans;
 
-import java.sql.SQLException;
-
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 import com.votifysoft.app.utils.EncryptPwd;
 import com.votifysoft.model.entity.User;
 
+import java.sql.SQLException;
+import java.util.List;
+
 @Stateless
+@Remote
 public class UserBean extends GenericBean<User> implements UserBeanI {
 
-
     @Inject
-    private EncryptPwd encPwd;
+    private EncryptPwd encryptText;
 
     @Override
-    public boolean register(User user) throws SQLException {
+    public User addOrUpdate(User user) {
+        List<User> checkUser = list(new User());
+        if (!checkUser.isEmpty()) {
+            throw new RuntimeException("User already exists!");
+        }
 
-        user.setPassword(encPwd.encrypt(user.getPassword()));
-
-        getDao().addOrUpdate(user);
-
-        return false;
+        try {
+            user.setPassword(encryptText.encrypt(user.getPassword()));
+        } catch (Exception ex) {
+            throw new RuntimeException(ex.getMessage());
+        }
+        return getDao().addOrUpdate(user);
     }
 
     @Override
     public boolean unregister(User user) {
         return true;
+    }
+
+    @Override
+    public User getUserById(int userId) {
+        throw new UnsupportedOperationException("Unimplemented method 'getUserById'");
+    }
+
+    @Override
+    public boolean register(User user) throws SQLException {
+        throw new UnsupportedOperationException("Unimplemented method 'register'");
     }
 }
