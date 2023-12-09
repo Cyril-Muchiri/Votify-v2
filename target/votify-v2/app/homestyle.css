@@ -24,17 +24,85 @@
     /* border-style: solid; */
     display: flex;
 
-    flex-direction: column;
+    /* flex-direction: column; */
     
 }
 
-.topicDiv{
+/* dropdown */
+
+.touchDiv{
+    display: flex;
+     border-style: solid; 
+     /* width:100rem */
+     width : 300px; 
+
+}
+
+.dropDown{
     display: flex;
     flex-direction: row;
+    /* border-style: solid; */
+
+}
+.drop {
+    display: flex;
+    width : 300px; 
+    flex-direction: column;
+    /* background: #d9d9d9; */
+    /* margin : 40px auto;  */
+    border-style: solid;
+    border-color: red;
+  }
+  
+  span {
+    /* padding : 30px; */
+    /* background : #2d2f31;  */
+    color : white;
+    font-size : 1.2em;
+    font-variant : small-caps;
+    cursor : pointer;
+    display: block;
+  }
+  
+  span::after {
+    /* float: right;
+    right: 10%; */
+    content: "+";
+  }
+  
+  .slideAction {
+    display:flex;
+    flex-direction: column;
+    /* justify-content: right; */
+    
+    clear:both;
+    width:100%;
+    height:0px;
+    overflow: hidden;
+    border-style: solid;
+    border-color: chartreuse;
+    
+    /* text-align: center; */
+    transition: height 0.4s ease;
+  }
+  
+  /* .slide li {padding : 30px;} */
+  
+  #touch {position: absolute; opacity: 0; height: 0px;}    
+  
+  #touch:checked + .slideAction {height: fit-content;
+    transition: height 0.3s ease; } 
+
+/*  */
+
+.topicDiv{
+    display: flex;
+    flex-direction: column;
     gap: 10px;
 }
 .topic{
-    border-style: solid;
+    /* border-style: solid; */
+    display: inline-flex;
 }
 .buttonDiv{
 /* border-style: solid; */
@@ -53,7 +121,10 @@ body {
 }
 
 form {
-    max-width: 400px;
+    width: 100%;
+    /* border-style: solid;
+    border-color: blue; */
+    left: 0;
 }
 
 label {

@@ -7,6 +7,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -22,6 +24,10 @@ import org.apache.commons.beanutils.ConvertUtils;
 import org.apache.commons.beanutils.converters.DateConverter;
 
 public class BaseAction extends HttpServlet {
+
+    @PersistenceContext
+    private EntityManager entityManager;
+
     public static int sessionUserId;
 
     @SuppressWarnings("unchecked")
@@ -66,17 +72,14 @@ public class BaseAction extends HttpServlet {
     }
 
     public void renderPoll(HttpServletRequest request, HttpServletResponse response,
-            Class<?> poll, Class<?> answer, List<?> pollList,List<?> answerList)
+            Class<?> poll, Class<?> answer, List<?> pollList, List<?> answerList)
             throws ServletException, IOException {
 
         String actionParam = StringUtils.trimToEmpty(request.getParameter("action"));
         System.out.println("Action Parameter: " + actionParam);
 
-        
-
-        // String content = HtmlRenderContent.renderMainContentDiv(pollList, answerList,poll,answer);
-        HtmlRenderContent renderContent=new HtmlRenderContent();
-         String content = renderContent.renderMainContentDiv();
+        HtmlRenderContent renderContent = new HtmlRenderContent(entityManager);
+        String content = renderContent.renderMainContentDiv();
 
         if ("add".equals(actionParam)) {
             request.setAttribute("content", content);

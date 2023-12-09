@@ -42,12 +42,9 @@ public class AnswersBean extends GenericBean<Answers> implements AnswersBeanI {
         }
     }
 
-    
-
     @Override
     public boolean registerVote(int choiceId) {
-
-        getDao().addVote(choiceId);
+        getDao().updateVotes(choiceId);
         return false;
     }
 

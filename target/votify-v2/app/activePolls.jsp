@@ -29,7 +29,7 @@
                         <i class="bx bx-grid-alt nav_icon"></i>
                         <span class="nav_name">Dashboard</span>
                     </a>
-                    <a href="./active" class="nav_link${pageContext.request.requestURI == '/active' ? ' active' : ''}">
+                    <a href="./active" class="nav_link">
                         <i class="bx bx-bar-chart-alt-2 nav_icon"></i>
                         <span class="nav_name">View Active polls</span>
                     </a>
