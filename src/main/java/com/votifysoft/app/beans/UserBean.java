@@ -40,7 +40,7 @@ public class UserBean extends GenericBean<User> implements UserBeanI {
 
     @SuppressWarnings("unchecked")
     public User getUserById(int userId) {
-        String sql = "SELECT * FROM users WHERE user_id = :userId"; // Assuming "users" is the name of your user table
+        String sql = "SELECT * FROM users WHERE userId = :userId"; 
 
         List<User> userList = em.createNativeQuery(sql, User.class)
                 .setParameter("userId", userId)
