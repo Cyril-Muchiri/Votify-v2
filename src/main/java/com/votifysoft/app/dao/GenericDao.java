@@ -99,22 +99,5 @@ public class GenericDao<T> implements GenericDaoI<T> {
         this.em = em;
     }
 
-     @Transactional
-    public void updateVotes(int answerId) {
-        try {
-            String jpql = "UPDATE Answers SET votes = votes + 1 WHERE answer_id = :answerId";
-            Query query = em.createQuery(jpql);
-            query.setParameter("answerId", answerId);
-
-            int updatedCount = query.executeUpdate();
-
-            if (updatedCount > 0) {
-                System.out.println("Update successful.");
-            } else {
-                System.out.println("No records were updated for answerId: " + answerId);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+    
 }

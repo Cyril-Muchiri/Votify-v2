@@ -38,8 +38,7 @@ public class User implements Serializable {
     @Column(name = "password", nullable = false)
     private String password;
 
-    @Column
-    private String pollsTaken;
+    
 
     @OneToMany(mappedBy = "creator", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Polls> createdPolls = new ArrayList<>();
@@ -94,11 +93,4 @@ public class User implements Serializable {
         this.createdPolls = createdPolls;
     }
 
-    public String getPollsTaken() {
-        return pollsTaken;
-    }
-
-    public void setPollsTaken(String pollsTaken) {
-        this.pollsTaken = pollsTaken;
-    }
 }

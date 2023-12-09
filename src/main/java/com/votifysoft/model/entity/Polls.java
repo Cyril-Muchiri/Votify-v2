@@ -40,6 +40,9 @@ public class Polls implements Serializable {
     @Column(name = "createdAt", updatable = false)
     private Date createdAt;
 
+    @Column(name = "participants")
+    private String participants;
+
     @Transient
     private Date deadline;
 
@@ -98,5 +101,13 @@ public class Polls implements Serializable {
 
     public void setAnswers(List<Answers> answers) {
         this.answers = answers;
+    }
+
+    public String getParticipants() {
+        return participants;
+    }
+
+    public void setParticipants(String participants) {
+        this.participants = participants;
     }
 }

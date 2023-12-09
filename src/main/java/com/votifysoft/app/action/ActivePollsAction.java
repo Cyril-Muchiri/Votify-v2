@@ -31,19 +31,7 @@ public class ActivePollsAction extends BaseAction {
         HttpSession session = req.getSession(true);
         
         try {
-            List<Polls> allPolls= activePollsBean.fetchAllPolls();
-
-            for (Polls poll : allPolls) {
-                System.out.println(" *****Topic: " + poll.getTopicName());
-               
-            }
-
-            List<Answers> allAnswers=activePollsBean.fetchAllPollChoices();
-            for (Answers answer : allAnswers) {
-               
-                System.out.println("****Choice: " + answer.getChoice());
-            }
-
+           
             renderPoll(req, resp, Polls.class,Answers.class, activePollsBean.fetchAllPolls(),activePollsBean.fetchAllPollChoices());
         } catch (SQLException e) {
 
