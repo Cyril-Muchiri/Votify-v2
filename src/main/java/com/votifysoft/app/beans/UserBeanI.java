@@ -7,9 +7,9 @@ import com.votifysoft.model.entity.User;
 
 public interface UserBeanI extends GenericBeanI<User>{
 
-    boolean register(User user) throws SQLException;
+    // boolean register(User user) throws SQLException;
 
-    boolean unregister(User user);
+    // boolean unregister(User user);
 
-    User getUserById(int userId);
+    public User getUserById(int userId);
 }

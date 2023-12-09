@@ -12,7 +12,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.transaction.Transactional;
 
 import com.votifysoft.app.beans.AnswersBeanI;
 import com.votifysoft.app.beans.PollBeanI;
@@ -68,7 +67,7 @@ public class TopicCreatorAction extends BaseAction {
           .forEach((key, value) -> System.out.println("Parameter: " + key + ": " + Arrays.toString(value)));
 
       Polls poll = serializeForm(Polls.class, topicNameParameters);
-      User creator = userBeanI.getUserById((Integer) (req.getSession(false).getAttribute("userId")));
+      User creator = userBeanI.getUserById((int)(req.getSession(false).getAttribute("userId")));
       poll.setCreator(creator);
       int pollId=topicBean.registerTopic(poll);
 

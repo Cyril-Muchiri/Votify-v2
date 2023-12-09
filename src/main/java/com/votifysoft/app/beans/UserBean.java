@@ -3,6 +3,8 @@ package com.votifysoft.app.beans;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 import com.votifysoft.app.utils.EncryptPwd;
 import com.votifysoft.model.entity.User;
@@ -16,6 +18,9 @@ public class UserBean extends GenericBean<User> implements UserBeanI {
 
     @Inject
     private EncryptPwd encryptText;
+
+    @PersistenceContext
+    private EntityManager em;
 
     @Override
     public User addOrUpdate(User user) {
@@ -32,18 +37,16 @@ public class UserBean extends GenericBean<User> implements UserBeanI {
         return getDao().addOrUpdate(user);
     }
 
-    @Override
-    public boolean unregister(User user) {
-        return true;
-    }
 
-    @Override
+    @SuppressWarnings("unchecked")
     public User getUserById(int userId) {
-        throw new UnsupportedOperationException("Unimplemented method 'getUserById'");
+        String sql = "SELECT * FROM users WHERE user_id = :userId"; // Assuming "users" is the name of your user table
+
+        List<User> userList = em.createNativeQuery(sql, User.class)
+                .setParameter("userId", userId)
+                .getResultList();
+
+        return userList.isEmpty() ? null : userList.get(0);
     }
 
-    @Override
-    public boolean register(User user) throws SQLException {
-        throw new UnsupportedOperationException("Unimplemented method 'register'");
-    }
 }

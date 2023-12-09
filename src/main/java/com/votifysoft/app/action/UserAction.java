@@ -29,7 +29,7 @@ public class UserAction extends BaseAction {
         System.out.println("Serialized User: " + user.getUserName());
         System.out.println("Serialized User: " + user.getUserEmail());
 
-        userBean.register(user);
+        userBean.addOrUpdate(user);
     } catch (Exception ex) {
         ex.printStackTrace();
     }

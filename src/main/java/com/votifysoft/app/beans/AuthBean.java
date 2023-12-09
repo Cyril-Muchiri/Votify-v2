@@ -31,7 +31,6 @@ public class AuthBean extends GenericBean<User> implements AuthBeanI {
     User userResult = null;
 
     public User authenticate(User loginUser) throws SQLException {
-
         try {
             loginUser.setPassword(hashPwd.encrypt(loginUser.getPassword()));
         } catch (Exception ex) {
@@ -40,15 +39,19 @@ public class AuthBean extends GenericBean<User> implements AuthBeanI {
 
         List<User> users = list(loginUser);
 
-        if (users.isEmpty() || users.get(0) == null)
-            throw new RuntimeException("Invalid user!!");
+        if (users == null || users.isEmpty() || users.get(0) == null) {
+            userResult = null;
+        } else {
+            AuditLog log = new AuditLog();
+            log.setLogDetails("User logged in at " + DateFormat.getDateTimeInstance().format(new Date())
+                    + ", " + users.get(0).getUserEmail());
 
-        AuditLog log = new AuditLog();
-        log.setLogDetails("User logged in at " + DateFormat.getDateTimeInstance().format(new Date())
-                + ", " + users.get(0).getUserEmail());
+            logger.fire(log);
 
-        logger.fire(log);
+            userResult = users.get(0);
+        }
 
-        return users.get(0);
+        return userResult;
     }
+
 }
