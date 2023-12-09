@@ -55,10 +55,14 @@ public class AnswersBean extends GenericBean<Answers> implements AnswersBeanI {
             int pollId=votedPoll.getPoll_id();
 
             System.out.println("This is the pollId voted on "+pollId);
+
+            Polls existingPoll = em.find(Polls.class, pollId);
+            String currentParticipants = existingPoll.getParticipants();
+            String updatedParticipants = currentParticipants + participant;
            
             String jpqlUpdate = "UPDATE Polls p SET p.participants = :participants WHERE p.poll_id = :poll_id";
             Query userQuery = em.createQuery(jpqlUpdate);
-            userQuery.setParameter("participants", participant);
+            userQuery.setParameter("participants", updatedParticipants);
             userQuery.setParameter("poll_id", pollId);
 
             userQuery.executeUpdate();

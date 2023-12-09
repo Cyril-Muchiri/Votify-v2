@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.lang3.StringUtils;
 
-import com.votifysoft.app.view.helper.HtmlRenderContent;
+import com.votifysoft.app.view.helper.HtmlRenderActiveContent;
 import com.votifysoft.model.entity.Answers;
 
 import org.apache.commons.beanutils.BeanUtils;
@@ -72,14 +72,14 @@ public class BaseAction extends HttpServlet {
     }
 
     public void renderPoll(HttpServletRequest request, HttpServletResponse response,
-            Class<?> poll, Class<?> answer, List<?> pollList, List<?> answerList)
+            Class<?> poll, Class<?> answer, List<?> pollList, List<?> answerList,int activeUserId)
             throws ServletException, IOException {
 
         String actionParam = StringUtils.trimToEmpty(request.getParameter("action"));
         System.out.println("Action Parameter: " + actionParam);
 
-        HtmlRenderContent renderContent = new HtmlRenderContent(entityManager);
-        String content = renderContent.renderMainContentDiv();
+        HtmlRenderActiveContent renderContent = new HtmlRenderActiveContent(entityManager);
+        String content = renderContent.renderMainContentDiv(activeUserId);
 
         if ("add".equals(actionParam)) {
             request.setAttribute("content", content);

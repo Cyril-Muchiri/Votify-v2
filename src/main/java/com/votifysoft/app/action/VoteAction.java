@@ -29,8 +29,20 @@ public class VoteAction extends BaseAction {
         System.out.println("Take note of this***** " + request.getParameter("topic"));
         String userId = String.valueOf(httpSession.getAttribute("userId"));
 
-        answersBean.registerVote(userId.concat(","), Integer.parseInt(request.getParameter("topic")));
-System.out.println("Method skipped!!");
+        String topicParameter = request.getParameter("topic");
+        int topicId = 0;
+
+        if (topicParameter != null) {
+            try {
+                topicId = Integer.parseInt(topicParameter);
+            } catch (NumberFormatException e) {
+                e.printStackTrace(); 
+            }
+        }
+
+        answersBean.registerVote(userId.concat(","), topicId);
+       
+
         response.sendRedirect("./active");
     }
 }

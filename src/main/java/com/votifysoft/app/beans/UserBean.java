@@ -24,7 +24,7 @@ public class UserBean extends GenericBean<User> implements UserBeanI {
 
     @Override
     public User addOrUpdate(User user) {
-        List<User> checkUser = list(new User());
+        List<User> checkUser = list(user);
         if (!checkUser.isEmpty()) {
             throw new RuntimeException("User already exists!");
         }

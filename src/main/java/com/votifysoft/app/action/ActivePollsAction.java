@@ -31,8 +31,7 @@ public class ActivePollsAction extends BaseAction {
         HttpSession session = req.getSession(true);
         
         try {
-           
-            renderPoll(req, resp, Polls.class,Answers.class, activePollsBean.fetchAllPolls(),activePollsBean.fetchAllPollChoices());
+            renderPoll(req, resp, Polls.class,Answers.class, activePollsBean.fetchAllPolls(),activePollsBean.fetchAllPollChoices(),sessionUserId);
         } catch (SQLException e) {
 
             e.printStackTrace();
