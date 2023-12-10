@@ -2,7 +2,6 @@ package com.votifysoft.app.beans;
 
 import java.sql.SQLException;
 import java.util.List;
-import javax.ejb.Remote;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

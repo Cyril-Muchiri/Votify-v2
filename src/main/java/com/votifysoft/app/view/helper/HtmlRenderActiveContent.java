@@ -7,7 +7,6 @@ import javax.persistence.EntityManager;
 
 import com.votifysoft.model.entity.Answers;
 import com.votifysoft.model.entity.Polls;
-import com.votifysoft.model.entity.User;
 
 public class HtmlRenderActiveContent {
 
@@ -25,11 +24,9 @@ public class HtmlRenderActiveContent {
         mainContentBuilder.append("<div class=\"mainContent\">");
 
         for (Polls poll : pollList) {
-            mainContentBuilder.append("<div class=\"topicDiv\" onclick=\"toggleForm('pollForm')\">")
-                    .append("<div><h4>").append(poll.getPoll_id()).append(".</h4></div>")
-                    .append("<div><h4>").append(poll.getTopicName()).append("</h4></div>")
-                    .append("</div>");
-
+            mainContentBuilder.append("<div class=\"topicDiv\">")
+                    .append("<div><h4>").append(poll.getPoll_id()).append(". ").append(poll.getTopicName())
+                    .append("</h4></div>");
             int topicId = poll.getPoll_id();
             String participantId = poll.getParticipants();
             int[] participantArrays = convertToIntArray(participantId);
@@ -40,16 +37,18 @@ public class HtmlRenderActiveContent {
             }
 
             int[] allParticipants = participantList.stream().mapToInt(Integer::intValue).toArray();
-            System.out.println("HJBHBHBB Take Note "+Arrays.toString(allParticipants));
+            System.out.println("HJBHBHBB Take Note " + Arrays.toString(allParticipants));
 
             for (Answers answer : answerList) {
                 int answerId = answer.getAnswer_id();
+                System.out.println("gfgred----> "+ answerId);
 
                 if (getAnswer(answer, topicId) != null) {
                     mainContentBuilder.append("<form action=\"./vote\" method=\"post\">")
-                            .append("<input type=\"radio\" id=\"").append(answerId)
-                            .append("\" name=\"topic\" value=\"").append(answerId).append("\">")
-                            .append("<label for=\" style=\"display: inline;\"").append(answerId).append("\">")
+                            .append("<input type=\"radio\" id=\"").append("answer").append(answerId)
+                            .append("\" name=\"topic").append(topicId).append("\" value=\"").append(answerId)
+                            .append("\">")
+                            .append("<label for=\"").append("answer").append(answerId).append("\">")
                             .append(getAnswer(answer, topicId)).append("</label>");
                 }
             }
@@ -62,15 +61,17 @@ public class HtmlRenderActiveContent {
                 mainContentBuilder.append("<button type=\"submit\">Submit Answer</button>");
             }
 
-            mainContentBuilder.append("</form>")
-                    .append("</div>")
+            mainContentBuilder.append("</div>")
                     .append("<div class=\"view-btn\" style=\"margin-top:5px\" id=\"view-btn\">")
                     .append("<button type=\"submit\">View Results</button>")
                     .append("</div>")
-                    .append("</div>");
+                    .append("</form>")
+                    .append("</div>"); 
+
+            mainContentBuilder.append("</div>");
         }
 
-        mainContentBuilder.append("</div></div>");
+        mainContentBuilder.append("</div>"); 
         return mainContentBuilder.toString();
     }
 
