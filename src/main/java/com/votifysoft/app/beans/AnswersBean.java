@@ -36,7 +36,7 @@ public class AnswersBean extends GenericBean<Answers> implements AnswersBeanI {
                 System.out.println("Answer.getChoice: " + answer.getChoice());
 
                 getDao().addOrUpdate(answer);
-                
+
             }
             return true;
         } catch (Exception e) {
@@ -46,57 +46,62 @@ public class AnswersBean extends GenericBean<Answers> implements AnswersBeanI {
     }
 
     @Transactional
-public void registerVote(String participant, int answerId) {
-    try {
-        Answers answer = em.find(Answers.class, answerId);
+    public void registerVote(String participant, int answerId) {
+        try {
+            Answers answer = em.find(Answers.class, answerId);
 
-        if (answer == null) {
-            System.out.println("Answer is null for answerId: " + answerId);
-            return; // or handle the null case appropriately
+            if (answer == null) {
+                System.out.println("Answer is null for answerId: " + answerId);
+                return;
+            }
+
+            Polls votedPoll = answer.getPoll();
+
+            if (votedPoll == null) {
+                System.out.println("Voted poll is null for answerId: " + answerId);
+                return;
+            }
+
+            int pollId = votedPoll.getPoll_id();
+            System.out.println("This is the pollId voted on " + pollId);
+
+            Polls existingPoll = em.find(Polls.class, pollId);
+
+            if (existingPoll == null) {
+                System.out.println("Existing poll is null for pollId: " + pollId);
+                return;
+            }
+
+            String currentParticipants = existingPoll.getParticipants();
+            String updatedParticipants = currentParticipants + participant;
+
+            System.out.println("Current participants ---->" + currentParticipants);
+
+            if (currentParticipants.contains("null")) {
+                System.out.println("No one has voted yet!!");
+                updatedParticipants = updatedParticipants.replace("null", "");
+            }
+            String jpqlUpdate = "UPDATE Polls p SET p.participants = :participants WHERE p.poll_id = :poll_id";
+            Query userQuery = em.createQuery(jpqlUpdate);
+            userQuery.setParameter("participants", updatedParticipants);
+            userQuery.setParameter("poll_id", pollId);
+
+            userQuery.executeUpdate();
+
+            String jpql = "UPDATE Answers SET votes = votes + 1 WHERE answer_id = :answerId";
+            Query query = em.createQuery(jpql);
+            query.setParameter("answerId", answerId);
+
+            int updatedCount = query.executeUpdate();
+
+            if (updatedCount > 0) {
+                System.out.println("Update successful.");
+            } else {
+                System.out.println("No records were updated for answerId: " + answerId);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-
-        Polls votedPoll = answer.getPoll();
-
-        if (votedPoll == null) {
-            System.out.println("Voted poll is null for answerId: " + answerId);
-            return; // or handle the null case appropriately
-        }
-
-        int pollId = votedPoll.getPoll_id();
-        System.out.println("This is the pollId voted on " + pollId);
-
-        Polls existingPoll = em.find(Polls.class, pollId);
-
-        if (existingPoll == null) {
-            System.out.println("Existing poll is null for pollId: " + pollId);
-            return; 
-        }
-
-        String currentParticipants = existingPoll.getParticipants();
-        String updatedParticipants = currentParticipants + participant;
-
-        String jpqlUpdate = "UPDATE Polls p SET p.participants = :participants WHERE p.poll_id = :poll_id";
-        Query userQuery = em.createQuery(jpqlUpdate);
-        userQuery.setParameter("participants", updatedParticipants);
-        userQuery.setParameter("poll_id", pollId);
-
-        userQuery.executeUpdate();
-
-        String jpql = "UPDATE Answers SET votes = votes + 1 WHERE answer_id = :answerId";
-        Query query = em.createQuery(jpql);
-        query.setParameter("answerId", answerId);
-
-        int updatedCount = query.executeUpdate();
-
-        if (updatedCount > 0) {
-            System.out.println("Update successful.");
-        } else {
-            System.out.println("No records were updated for answerId: " + answerId);
-        }
-    } catch (Exception e) {
-        e.printStackTrace();
     }
-}
-
 
 }

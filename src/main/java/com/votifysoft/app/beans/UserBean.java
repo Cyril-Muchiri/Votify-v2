@@ -8,8 +8,6 @@ import javax.persistence.PersistenceContext;
 
 import com.votifysoft.app.utils.EncryptPwd;
 import com.votifysoft.model.entity.User;
-
-import java.sql.SQLException;
 import java.util.List;
 
 @Stateless

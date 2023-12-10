@@ -28,7 +28,11 @@ public class VoteAction extends BaseAction {
 
         System.out.println("Take note of this***** " + request.getParameter("topic"));
         String userId = String.valueOf(httpSession.getAttribute("userId"));
+        if (userId.contains("null")) {
+            userId = userId.replace("null", "");
+        }
 
+        System.out.println("This user has voted --> " + userId);
         String topicParameter = request.getParameter("topic");
         int topicId = 0;
 
@@ -36,12 +40,11 @@ public class VoteAction extends BaseAction {
             try {
                 topicId = Integer.parseInt(topicParameter);
             } catch (NumberFormatException e) {
-                e.printStackTrace(); 
+                e.printStackTrace();
             }
         }
 
         answersBean.registerVote(userId.concat(","), topicId);
-       
 
         response.sendRedirect("./active");
     }

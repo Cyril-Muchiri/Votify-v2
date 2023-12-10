@@ -41,7 +41,7 @@ public class Polls implements Serializable {
     private Date createdAt;
 
     @Column(name = "participants")
-    private String participants;
+    private String participants="0,";
 
     @Transient
     private Date deadline;

@@ -1,6 +1,5 @@
 package com.votifysoft.app.beans;
 
-import java.io.Serializable;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.util.Date;

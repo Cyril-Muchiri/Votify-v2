@@ -41,13 +41,12 @@ public class HtmlRenderActiveContent {
 
             for (Answers answer : answerList) {
                 int answerId = answer.getAnswer_id();
-                System.out.println("gfgred----> "+ answerId);
+                System.out.println("gfgred----> " + answerId);
 
                 if (getAnswer(answer, topicId) != null) {
                     mainContentBuilder.append("<form action=\"./vote\" method=\"post\">")
-                            .append("<input type=\"radio\" id=\"").append("answer").append(answerId)
-                            .append("\" name=\"topic").append(topicId).append("\" value=\"").append(answerId)
-                            .append("\">")
+                            .append("<input type=\"radio\" id=\"").append(answerId)
+                            .append("\" name=\"topic\" value=\"").append(answerId).append("\">")
                             .append("<label for=\"").append("answer").append(answerId).append("\">")
                             .append(getAnswer(answer, topicId)).append("</label>");
                 }
@@ -66,12 +65,12 @@ public class HtmlRenderActiveContent {
                     .append("<button type=\"submit\">View Results</button>")
                     .append("</div>")
                     .append("</form>")
-                    .append("</div>"); 
+                    .append("</div>");
 
             mainContentBuilder.append("</div>");
         }
 
-        mainContentBuilder.append("</div>"); 
+        mainContentBuilder.append("</div>");
         return mainContentBuilder.toString();
     }
 

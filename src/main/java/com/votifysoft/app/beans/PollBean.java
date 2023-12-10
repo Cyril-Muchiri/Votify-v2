@@ -1,6 +1,5 @@
 package com.votifysoft.app.beans;
 
-import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -22,7 +21,6 @@ public class PollBean extends GenericBean<Polls> implements PollBeanI {
             System.out.println("Registering topic with ID: " + pollTopic.getPoll_id());
             getDao().addOrUpdate(pollTopic);
 
-            // entityManager.refresh(pollTopic);
             Integer generatedPollId = pollTopic.getPoll_id();
 
             return generatedPollId;

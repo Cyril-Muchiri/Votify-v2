@@ -8,8 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.StringUtils;
-
-import com.votifysoft.app.beans.AuthBean;
 import com.votifysoft.app.beans.AuthBeanI;
 import com.votifysoft.model.entity.User;
 
