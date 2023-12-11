@@ -17,7 +17,7 @@ import com.votifysoft.model.entity.User;
 @Path("/topics")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class PollRestApi {
+public class PollRestApi extends BaseRestApi {
 
     @EJB
     private PollBeanI topicBean;
@@ -42,14 +42,10 @@ public class PollRestApi {
             List<Answers> answersList = poll.getAnswers();
             answersBean.registerChoices(latestPoll, answersList);
 
-            return Response.status(Response.Status.CREATED)
-                    .entity("Topic registered successfully with ID: " + pollId)
-                    .build();
+            return respond("Topic registered successfully with ID: " + pollId, Response.Status.CREATED);
         } catch (Exception e) {
             e.printStackTrace();
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
-                    .entity("Failed to register the topic.")
-                    .build();
+            return respond("Failed to register the topic.", Response.Status.INTERNAL_SERVER_ERROR);
         }
     }
 
