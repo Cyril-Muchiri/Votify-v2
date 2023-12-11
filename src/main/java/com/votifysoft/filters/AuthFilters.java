@@ -22,7 +22,7 @@ public class AuthFilters implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse,
-         FilterChain filterChain) throws IOException, ServletException {
+            FilterChain filterChain) throws IOException, ServletException {
 
         HttpServletRequest httpRequest = (HttpServletRequest) servletRequest;
         HttpServletResponse httpResponse = (HttpServletResponse) servletResponse;
@@ -37,7 +37,8 @@ public class AuthFilters implements Filter {
             System.out.println("1.New Session");
             httpSession.invalidate();
 
-            if (servletPath.equals("/login") || servletPath.equals("/register") || servletPath.contains(".jsp") || servletPath.contains(".css") || servletPath.contains(".js")) {
+            if (servletPath.equals("/login") || servletPath.equals("/register") || servletPath.contains(".jsp")
+                    || servletPath.contains(".css") || servletPath.contains(".js") || servletPath.contains("/rest")) {
                 filterChain.doFilter(servletRequest, servletResponse);
 
             } else {
@@ -50,7 +51,7 @@ public class AuthFilters implements Filter {
             if (StringUtils.isNotBlank((String) httpSession.getAttribute("loggedInId"))) {
                 httpResponse.addHeader("AuthTime", DateFormat.getDateTimeInstance().format(new Date()));
                 filterChain.doFilter(servletRequest, servletResponse);
-            }else {
+            } else {
                 httpResponse.sendRedirect(httpRequest.getContextPath() + "/");
                 servletResponse.getWriter().flush();
 
