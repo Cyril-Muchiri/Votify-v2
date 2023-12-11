@@ -73,11 +73,6 @@ public class TopicCreatorAction extends BaseAction {
 
       Polls latestPoll=topicBean.getLatestPoll();
 
-      System.out.println("####### POll id" + pollId);
-        System.out.println("A big NUll");
-    
-    
-
       List<Answers> answersList = serializeChoices(choiceValues);
       answersBean.registerChoices(latestPoll, answersList);
       
