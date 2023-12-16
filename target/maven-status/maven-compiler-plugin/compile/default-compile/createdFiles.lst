@@ -22,7 +22,9 @@ com/votifysoft/model/entity/Entertainment.class
 com/votifysoft/model/entity/ActivePoll.class
 com/votifysoft/app/beans/AuthBeanI.class
 com/votifysoft/model/entity/HtmlFormField.class
+com/votifysoft/app/beans/AuditLogBean.class
 com/votifysoft/model/entity/HtmlFormFieldType.class
+com/votifysoft/app/utils/CloudinaryService.class
 com/votifysoft/app/beans/GenericBeanI.class
 com/votifysoft/event/SessionListener.class
 com/votifysoft/app/rest/api/PollRestApi.class
@@ -54,7 +56,6 @@ com/votifysoft/app/utils/VoteValidationI.class
 com/votifysoft/app/action/HelpAction.class
 com/votifysoft/app/beans/GenericBean.class
 com/votifysoft/model/entity/Vote.class
-com/votifysoft/app/utils/CloudinaryUploader.class
 com/votifysoft/app/rest/api/RestResponseWrapper.class
 com/votifysoft/model/entity/AuditLog.class
 com/votifysoft/app/beans/AnswersBean.class

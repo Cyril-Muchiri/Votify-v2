@@ -8,6 +8,8 @@ import javax.persistence.PersistenceContext;
 
 import com.votifysoft.app.utils.EncryptPwd;
 import com.votifysoft.model.entity.User;
+
+import java.sql.SQLException;
 import java.util.List;
 
 @Stateless
@@ -24,6 +26,8 @@ public class UserBean extends GenericBean<User> implements UserBeanI {
     public User addOrUpdate(User user) {
         List<User> checkUser = list(user);
         if (!checkUser.isEmpty()) {
+
+            System.out.println("This is the user email"+checkUser.get(0).getUserEmail());
             throw new RuntimeException("User already exists!");
         }
 

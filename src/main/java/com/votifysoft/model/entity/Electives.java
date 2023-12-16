@@ -6,14 +6,18 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.persistence.Transient;
 
+@Entity
+@Table(name = "electives")
 public class Electives implements Serializable {
 
     @Id
@@ -27,8 +31,8 @@ public class Electives implements Serializable {
     @JoinColumn(name = "creator_id", referencedColumnName = "userId")
     private User creator;
 
-    @OneToMany(mappedBy = "poll", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Answers> answers;
+    @OneToMany(mappedBy = "nominee", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Nominees> nominees;
 
     @Column
     private Date createdAt;
@@ -39,9 +43,9 @@ public class Electives implements Serializable {
     public Electives() {
     };
 
-    public Electives(String elective_title, List<Answers> answers, Date createdAt) {
+    public Electives(String elective_title, List<Nominees> nominees, Date createdAt) {
         this.elective_title = elective_title;
-        this.answers = answers;
+        this.nominees = nominees;
         this.createdAt = createdAt;
     }
   
@@ -70,12 +74,12 @@ public class Electives implements Serializable {
         this.deadline = deadline;
     }
 
-    public List<Answers> getAnswers() {
-        return answers;
+    public List<Nominees> getAnswers() {
+        return nominees;
     }
 
     public void setAnswers(List<Answers> answers) {
-        this.answers = answers;
+        this.nominees = nominees;
     }
 }
 

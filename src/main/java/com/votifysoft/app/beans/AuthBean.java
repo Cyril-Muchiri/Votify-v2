@@ -44,8 +44,10 @@ public class AuthBean extends GenericBean<User> implements AuthBeanI {
             AuditLog log = new AuditLog();
             log.setLogDetails("User logged in at " + DateFormat.getDateTimeInstance().format(new Date())
                     + ", " + users.get(0).getUserEmail());
+                    System.out.println("Logger ==-> "+ log.getLogDetails());
 
             logger.fire(log);
+            
 
             userResult = users.get(0);
         }

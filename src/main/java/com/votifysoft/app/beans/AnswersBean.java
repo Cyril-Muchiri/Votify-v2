@@ -25,7 +25,7 @@ public class AnswersBean extends GenericBean<Answers> implements AnswersBeanI {
 
     @Override
     public boolean registerChoices(Polls poll, List<Answers> topicChoices) {
-        System.out.println("GVGVFCRTDED!!");
+    
         try {
             for (Answers topicChoice : topicChoices) {
                 Answers answer = new Answers();
