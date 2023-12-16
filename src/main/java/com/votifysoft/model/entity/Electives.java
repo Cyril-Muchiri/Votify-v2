@@ -34,6 +34,9 @@ public class Electives implements Serializable {
     @OneToMany(mappedBy = "elective", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Nominees> nominees;
 
+    @Column(name = "participants")
+    private String participants="0,";
+
     @Column
     private Date createdAt;
 
@@ -80,6 +83,38 @@ public class Electives implements Serializable {
 
     public void setAnswers(List<Answers> answers) {
         this.nominees = nominees;
+    }
+
+    public int getElective_id() {
+        return elective_id;
+    }
+
+    public void setElective_id(int elective_id) {
+        this.elective_id = elective_id;
+    }
+
+    public String getElective_title() {
+        return elective_title;
+    }
+
+    public void setElective_title(String elective_title) {
+        this.elective_title = elective_title;
+    }
+
+    public List<Nominees> getNominees() {
+        return nominees;
+    }
+
+    public void setNominees(List<Nominees> nominees) {
+        this.nominees = nominees;
+    }
+
+    public String getParticipants() {
+        return participants;
+    }
+
+    public void setParticipants(String participants) {
+        this.participants = participants;
     }
 }
 

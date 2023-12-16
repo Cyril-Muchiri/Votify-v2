@@ -30,6 +30,10 @@ public class Nominees {
     @Column
     private int votes;
 
+    public Nominees(){
+        
+    }
+
     public Nominees(int nominee_id, Electives elective, String noineeName, String nomineePhoto, int votes) {
         this.nominee_id = nominee_id;
         this.elective = elective;
