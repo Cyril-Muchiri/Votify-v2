@@ -32,6 +32,11 @@ input {
     border-radius: 10px;
     -webkit-appearance: none;
 }
+input[type="file"] {
+    border: none;
+  display: flex;
+
+  }
 
 
 

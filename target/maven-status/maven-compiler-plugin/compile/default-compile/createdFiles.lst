@@ -1,4 +1,4 @@
-com/votifysoft/app/action/MessageAction.class
+com/votifysoft/app/beans/ElectionsBeanI.class
 com/votifysoft/app/action/LogoutAction.class
 com/votifysoft/app/beans/PollBean.class
 com/votifysoft/app/beans/ActivePollsBeanI.class
@@ -37,6 +37,7 @@ com/votifysoft/app/utils/EncryptPwd.class
 com/votifysoft/model/entity/BaseEntity.class
 com/votifysoft/model/entity/Answers.class
 com/votifysoft/app/rest/config/Rest.class
+com/votifysoft/app/beans/ElectionsBean.class
 com/votifysoft/app/action/HomeAction.class
 com/votifysoft/app/rest/api/BaseRestApi.class
 com/votifysoft/app/action/UserAction.class
@@ -52,10 +53,13 @@ com/votifysoft/app/utils/VoteValidation.class
 com/votifysoft/app/action/TopicCreatorAction.class
 com/votifysoft/app/beans/UserBean.class
 com/votifysoft/app/rest/api/RestAuthFilterApi.class
+com/votifysoft/app/beans/NominationBean.class
 com/votifysoft/app/utils/VoteValidationI.class
 com/votifysoft/app/action/HelpAction.class
 com/votifysoft/app/beans/GenericBean.class
+com/votifysoft/app/beans/MessageAction.class
 com/votifysoft/app/rest/api/RestResponseWrapper.class
+com/votifysoft/app/beans/NominationBeanI.class
 com/votifysoft/model/entity/AuditLog.class
 com/votifysoft/model/entity/Nominees.class
 com/votifysoft/app/beans/AnswersBean.class
