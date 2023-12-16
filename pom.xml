@@ -20,6 +20,21 @@
     <version>3.3.0</version>
 </dependency>
 
+<dependency>
+    <groupId>io.github.cdimascio</groupId>
+    <artifactId>java-dotenv</artifactId>
+    <version>5.2.1</version> 
+</dependency>
+
+
+<!-- https://mvnrepository.com/artifact/com.cloudinary/cloudinary-core -->
+<dependency>
+    <groupId>com.cloudinary</groupId>
+    <artifactId>cloudinary-core</artifactId>
+    <version>1.36.0</version>
+</dependency>
+
+
 <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-war-plugin -->
 <dependency>
     <groupId>org.apache.maven.plugins</groupId>
