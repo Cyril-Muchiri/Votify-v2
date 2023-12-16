@@ -8,8 +8,6 @@ import javax.ws.rs.core.Response;
 import com.votifysoft.app.beans.AnswersBeanI;
 
 @Path("/votes")
-@Produces(MediaType.APPLICATION_JSON)
-@Consumes(MediaType.APPLICATION_JSON)
 public class VoteRestApi {
 
     @EJB
@@ -17,8 +15,11 @@ public class VoteRestApi {
 
     @POST
     @Path("/submit")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
     public Response submitVote(@QueryParam("participant") String participant, @QueryParam("answerId") int answerId) {
         try {
+
             answersBean.registerVote(participant, answerId);
 
             return Response.status(Response.Status.OK)
