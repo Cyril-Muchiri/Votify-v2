@@ -81,14 +81,14 @@ public class NominationBean extends GenericBean<Nominees> implements NominationB
                 System.out.println("No one has voted yet!!");
                 updatedParticipants = updatedParticipants.replace("null", "");
             }
-            String jpqlUpdate = "UPDATE electives p SET p.participants = :participants WHERE p.elective_id = :elective_id";
+            String jpqlUpdate = "UPDATE electives e SET e.participants = :participants WHERE e.elective_id = :elective_id";
             Query userQuery = em.createQuery(jpqlUpdate);
             userQuery.setParameter("participants", updatedParticipants);
             userQuery.setParameter("elective_id", electiveId);
 
             userQuery.executeUpdate();
 
-            String jpql = "UPDATE Answers SET votes = votes + 1 WHERE nominee_id = :nomineeId";
+            String jpql = "UPDATE nominees SET votes = votes + 1 WHERE nominee_id = :nomineeId";
             Query query = em.createQuery(jpql);
             query.setParameter("nominee_id", nomineeId);
 
@@ -97,7 +97,7 @@ public class NominationBean extends GenericBean<Nominees> implements NominationB
             if (updatedCount > 0) {
                 System.out.println("Update successful.");
             } else {
-                System.out.println("No records were updated for answerId: " + nomineeId);
+                System.out.println("No records were updated for nomineeID: " + nomineeId);
             }
         } catch (Exception e) {
             e.printStackTrace();
