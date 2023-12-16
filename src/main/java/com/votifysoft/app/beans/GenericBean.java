@@ -1,5 +1,6 @@
 package com.votifysoft.app.beans;
 
+import java.sql.SQLException;
 import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -23,7 +24,7 @@ public class GenericBean<T> implements GenericBeanI<T> {
     }
 
     @Override
-    public T addOrUpdate(T entity) {
+    public T addOrUpdate(T entity) throws SQLException {
         genericDao.setEm(em);
         return genericDao.addOrUpdate(entity);
     }

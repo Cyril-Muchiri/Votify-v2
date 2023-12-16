@@ -31,7 +31,7 @@ public class Electives implements Serializable {
     @JoinColumn(name = "creator_id", referencedColumnName = "userId")
     private User creator;
 
-    @OneToMany(mappedBy = "nominee", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "elective", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Nominees> nominees;
 
     @Column

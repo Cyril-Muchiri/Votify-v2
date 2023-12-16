@@ -20,7 +20,7 @@ import com.votifysoft.model.entity.Answers;
 import com.votifysoft.model.entity.Polls;
 import com.votifysoft.model.entity.User;
 
-@WebServlet("/topics")
+@WebServlet("/nominations")
 public class NominationsCreatorAction extends BaseAction {
 
   @EJB

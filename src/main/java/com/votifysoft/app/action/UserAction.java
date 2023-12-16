@@ -11,38 +11,63 @@ import com.votifysoft.app.beans.UserBeanI;
 import com.votifysoft.model.entity.User;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.Map;
 
- @WebServlet("/register")
+@WebServlet("/register")
 public class UserAction extends BaseAction {
 
     @EJB
     private UserBeanI userBean;
-
-   public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    try {
-        Map<String, String[]> paramMap = req.getParameterMap();
-        paramMap.forEach((key, value) -> System.out.println(key + ": " + Arrays.toString(value)));
-
-        User user = serializeForm(User.class, paramMap);
-        System.out.println("Serialized User: " + user.getUserName());
-        System.out.println("Serialized User: " + user.getUserEmail());
-
-        userBean.addOrUpdate(user);
-    } catch (Exception ex) {
-        ex.printStackTrace();
+    public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        try {
+            Map<String, String[]> paramMap = req.getParameterMap();
+            paramMap.forEach((key, value) -> System.out.println(key + ": " + Arrays.toString(value)));
+    
+            User user = serializeForm(User.class, paramMap);
+            System.out.println("Serialized User: " + user.getUserName());
+            System.out.println("Serialized User: " + user.getUserEmail());
+    
+            userBean.addOrUpdate(user);
+    
+            // Optionally, provide a success message or redirect to a success page
+            resp.sendRedirect("./");
+    
+        } catch (SQLException sqlex) {
+            sqlex.printStackTrace();
+    
+            // Check if it's a duplicate entry violation
+            if (isDuplicateEntryViolation(sqlex)) {
+                req.setAttribute("errorMessage", "Email is already registered.");
+            } else {
+                req.setAttribute("errorMessage", "Registration failed due to a database error.");
+            }
+    
+            req.getRequestDispatcher("app/registrationFailed.jsp").forward(req, resp);
+    
+        } catch (Exception ex) {
+            ex.printStackTrace();
+    
+            // Handle other exceptions if needed
+            req.setAttribute("errorMessage", "Registration failed due to an unexpected error.");
+            req.getRequestDispatcher("app/registrationFailed.jsp").forward(req, resp);
+    
+        }
     }
+    
+    // Helper method to check if the SQLException is a duplicate entry violation
+    private boolean isDuplicateEntryViolation(SQLException sqlex) {
+        return sqlex.getErrorCode() == 1062; // MySQL error code for duplicate entry violation
+    }
+    
 
-    resp.sendRedirect("./");
-}
-
-    public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException{
+    public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         RequestDispatcher dispatcher = req.getRequestDispatcher("/register.jsp");
         try {
             dispatcher.forward(req, resp);
         } catch (ServletException e) {
-        
+
             e.printStackTrace();
         }
     }

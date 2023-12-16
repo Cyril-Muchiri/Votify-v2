@@ -22,27 +22,31 @@ public class UserBean extends GenericBean<User> implements UserBeanI {
     @PersistenceContext
     private EntityManager em;
 
+    User userResult = null;
+
     @Override
-    public User addOrUpdate(User user) {
+    public User addOrUpdate(User user) throws SQLException {
+
         List<User> checkUser = list(user);
         if (!checkUser.isEmpty()) {
-
-            System.out.println("This is the user email"+checkUser.get(0).getUserEmail());
-            throw new RuntimeException("User already exists!");
+            userResult = null;
+            // System.out.println("This is the user email" + user.getUserEmail());
+            throw new SQLException("User with email " + user.getUserEmail() + " already exists.");
+            
         }
 
         try {
             user.setPassword(encryptText.encrypt(user.getPassword()));
-        } catch (Exception ex) {
+            userResult = getDao().addOrUpdate(user);
+        }catch (Exception ex) {
             throw new RuntimeException(ex.getMessage());
         }
-        return getDao().addOrUpdate(user);
+        return userResult;
     }
-
 
     @SuppressWarnings("unchecked")
     public User getUserById(int userId) {
-        String sql = "SELECT * FROM users WHERE userId = :userId"; 
+        String sql = "SELECT * FROM users WHERE userId = :userId";
 
         List<User> userList = em.createNativeQuery(sql, User.class)
                 .setParameter("userId", userId)

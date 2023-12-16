@@ -31,7 +31,7 @@ com/votifysoft/app/rest/api/PollRestApi.class
 com/votifysoft/app/beans/DashBoardBeanI.class
 com/votifysoft/app/action/VoteAction.class
 com/votifysoft/app/beans/PollBeanI.class
-com/votifysoft/model/entity/DashBoard.class
+com/votifysoft/app/action/PollCreatorAction.class
 com/votifysoft/app/beans/ActivePollsBean.class
 com/votifysoft/app/utils/EncryptPwd.class
 com/votifysoft/model/entity/BaseEntity.class
@@ -55,7 +55,7 @@ com/votifysoft/app/rest/api/RestAuthFilterApi.class
 com/votifysoft/app/utils/VoteValidationI.class
 com/votifysoft/app/action/HelpAction.class
 com/votifysoft/app/beans/GenericBean.class
-com/votifysoft/model/entity/Vote.class
 com/votifysoft/app/rest/api/RestResponseWrapper.class
 com/votifysoft/model/entity/AuditLog.class
+com/votifysoft/model/entity/Nominees.class
 com/votifysoft/app/beans/AnswersBean.class
