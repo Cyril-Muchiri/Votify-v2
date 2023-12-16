@@ -66,6 +66,19 @@
     <!--Container Main start-->
     <div class="height-100 bg-light">
 
+                <%
+   String userName = (String) session.getAttribute("userName");
+   if (userName != null) {
+%>
+   <h4>Welcome <%= userName %></h4>
+<%
+   } else {
+%>
+   <h4>Welcome Guest</h4>
+<%
+   }
+%>
+
         <div>
             <div class="container mt-5">
                 <div class="row d-flex justify-content-center align-items-center">
