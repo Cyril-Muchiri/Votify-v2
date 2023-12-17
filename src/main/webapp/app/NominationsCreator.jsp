@@ -82,7 +82,7 @@
             <div class="container mt-5">
                 <div class="row d-flex justify-content-center align-items-center">
                     <div class="col-md-8">
-                        <form id="regForm" action="./nominations" method="post">
+                        <form id="regForm" action="./nominations" method="post" enctype="multipart/form-data">
                             <h1 id="register">Poll Form</h1>
                             <div class="all-steps" id="all-steps">
                                 <span class="step"><i class="fa fa-check"></i></span>

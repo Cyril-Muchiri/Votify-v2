@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -18,6 +19,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.votifysoft.app.view.helper.HtmlRenderActiveContent;
 import com.votifysoft.model.entity.Answers;
+import com.votifysoft.model.entity.Nominees;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.ConvertUtils;
@@ -71,8 +73,40 @@ public class BaseAction extends HttpServlet {
         return answersList;
     }
 
+    protected List<Nominees> serializeNominees(List<String[]> choiceValues) {
+        List<Nominees> nomineeList = new ArrayList<>();
+
+        for (String[] choice : choiceValues) {
+            String nomineeName = choice[0].trim();
+            Nominees nominee = new Nominees();
+            
+            if (!isNumeric(nomineeName)) {
+                nominee.setNomineeName(nomineeName);
+                 nomineeList.add(nominee);
+            }
+
+           
+        }
+
+        return nomineeList;
+    }
+
+    protected <T> List<T> serialize(List<String[]> values, Function<String[], T> converter) {
+        List<T> resultList = new ArrayList<>();
+
+        for (String[] value : values) {
+            T convertedValue = converter.apply(value);
+
+            if (convertedValue != null) {
+                resultList.add(convertedValue);
+            }
+        }
+
+        return resultList;
+    }
+
     public void renderPoll(HttpServletRequest request, HttpServletResponse response,
-            Class<?> poll, Class<?> answer, List<?> pollList, List<?> answerList,int activeUserId)
+            Class<?> poll, Class<?> answer, List<?> pollList, List<?> answerList, int activeUserId)
             throws ServletException, IOException {
 
         String actionParam = StringUtils.trimToEmpty(request.getParameter("action"));

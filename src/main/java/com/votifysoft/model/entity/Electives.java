@@ -16,6 +16,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 @Entity
 @Table(name = "electives")
 public class Electives implements Serializable {
@@ -37,7 +39,8 @@ public class Electives implements Serializable {
     @Column(name = "participants")
     private String participants="0,";
 
-    @Column
+   @CreationTimestamp
+    @Column(name = "createdAt", updatable = false)
     private Date createdAt;
 
     @Transient

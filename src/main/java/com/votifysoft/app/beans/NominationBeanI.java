@@ -7,7 +7,7 @@ import com.votifysoft.model.entity.Nominees;
 
 public interface NominationBeanI  extends GenericBeanI<Nominees>{
 
-    public boolean registerNominee(Electives elective, List<Nominees> nomineeList);
+    public boolean registerNominee(Electives elective, List<Nominees> nomineeList,List<String>photoPaths);
 
      public void registerVote(String elective,int nomineeId);
     

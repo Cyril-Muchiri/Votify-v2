@@ -1,5 +1,6 @@
 package com.votifysoft.app.beans;
 
+import java.util.Iterator;
 import java.util.List;
 
 import javax.ejb.Remote;
@@ -24,16 +25,25 @@ public class NominationBean extends GenericBean<Nominees> implements NominationB
     }
 
     @Override
-    public boolean registerNominee(Electives elective, List<Nominees> nomineeList) {
-    
+    public boolean registerNominee(Electives elective, List<Nominees> nomineeList,List<String>photopaths) {
+
         try {
+            Iterator<String> photoPathIterator = photopaths.iterator();
+
             for (Nominees nomineeChoice : nomineeList) {
                 Nominees nominee = new Nominees();
                 System.out.println("Poll_IDDDD_" + elective.getElective_id());
                 nominee.setElective(elective);
-                nominee.setNoineeName(nomineeChoice.getNoineeName());
+                nominee.setNomineeName(nomineeChoice.getNomineeName());
+
+                if (photoPathIterator.hasNext()) {
+                    String photoPath = photoPathIterator.next();
+                    nominee.setNomineePhoto(photoPath);
+                }
+                nominee.setNomineePhoto(nomineeChoice.getNomineePhoto());
                 System.out.println("1st choice: " + nomineeChoice);
-                System.out.println("Answer.getChoice: " + nominee.getNoineeName());
+                System.out.println("Answer.getChoice: " + nominee.getNomineeName());
+                System.out.println("This is the nominee photo: "+nominee.getNomineePhoto());
 
                 getDao().addOrUpdate(nominee);
 
@@ -81,6 +91,7 @@ public class NominationBean extends GenericBean<Nominees> implements NominationB
                 System.out.println("No one has voted yet!!");
                 updatedParticipants = updatedParticipants.replace("null", "");
             }
+            // take account of participants for a specific poll/election
             String jpqlUpdate = "UPDATE electives e SET e.participants = :participants WHERE e.elective_id = :elective_id";
             Query userQuery = em.createQuery(jpqlUpdate);
             userQuery.setParameter("participants", updatedParticipants);

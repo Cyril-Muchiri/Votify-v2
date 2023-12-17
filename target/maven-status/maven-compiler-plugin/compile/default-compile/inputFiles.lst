@@ -1,66 +1,68 @@
-/media/chief/New Volume1/systech Material/class projects/Votify-v2/src/main/java/com/votifysoft/app/beans/GenericBean.java
-/media/chief/New Volume1/systech Material/class projects/Votify-v2/src/main/java/com/votifysoft/app/beans/NominationBean.java
-/media/chief/New Volume1/systech Material/class projects/Votify-v2/src/main/java/com/votifysoft/app/utils/EncryptPwd.java
-/media/chief/New Volume1/systech Material/class projects/Votify-v2/src/main/java/com/votifysoft/app/action/LogoutAction.java
-/media/chief/New Volume1/systech Material/class projects/Votify-v2/src/main/java/com/votifysoft/app/action/UserAction.java
-/media/chief/New Volume1/systech Material/class projects/Votify-v2/src/main/java/com/votifysoft/app/utils/VoteValidationI.java
-/media/chief/New Volume1/systech Material/class projects/Votify-v2/src/main/java/com/votifysoft/model/entity/PollType.java
-/media/chief/New Volume1/systech Material/class projects/Votify-v2/src/main/java/com/votifysoft/app/beans/UserBeanI.java
-/media/chief/New Volume1/systech Material/class projects/Votify-v2/src/main/java/com/votifysoft/app/beans/CheckLicenseBean.java
-/media/chief/New Volume1/systech Material/class projects/Votify-v2/src/main/java/com/votifysoft/event/SessionListener.java
-/media/chief/New Volume1/systech Material/class projects/Votify-v2/src/main/java/com/votifysoft/app/beans/AuthBean.java
-/media/chief/New Volume1/systech Material/class projects/Votify-v2/src/main/java/com/votifysoft/model/entity/HtmlFormFieldType.java
-/media/chief/New Volume1/systech Material/class projects/Votify-v2/src/main/java/com/votifysoft/app/rest/api/AnswersRestApi.java
-/media/chief/New Volume1/systech Material/class projects/Votify-v2/src/main/java/com/votifysoft/model/entity/Nominees.java
-/media/chief/New Volume1/systech Material/class projects/Votify-v2/src/main/java/com/votifysoft/app/action/NominationsCreatorAction.java
-/media/chief/New Volume1/systech Material/class projects/Votify-v2/src/main/java/com/votifysoft/app/beans/ActivePollsBeanI.java
-/media/chief/New Volume1/systech Material/class projects/Votify-v2/src/main/java/com/votifysoft/app/beans/DashBoardBeanI.java
-/media/chief/New Volume1/systech Material/class projects/Votify-v2/src/main/java/com/votifysoft/app/beans/AuthBeanI.java
-/media/chief/New Volume1/systech Material/class projects/Votify-v2/src/main/java/com/votifysoft/app/rest/config/Rest.java
-/media/chief/New Volume1/systech Material/class projects/Votify-v2/src/main/java/com/votifysoft/app/rest/api/RestResponseWrapper.java
-/media/chief/New Volume1/systech Material/class projects/Votify-v2/src/main/java/com/votifysoft/app/action/AboutAction.java
-/media/chief/New Volume1/systech Material/class projects/Votify-v2/src/main/java/com/votifysoft/app/beans/UserBean.java
-/media/chief/New Volume1/systech Material/class projects/Votify-v2/src/main/java/com/votifysoft/app/view/helper/HtmlDiv.java
-/media/chief/New Volume1/systech Material/class projects/Votify-v2/src/main/java/com/votifysoft/app/action/BaseAction.java
-/media/chief/New Volume1/systech Material/class projects/Votify-v2/src/main/java/com/votifysoft/app/rest/api/VoteRestApi.java
-/media/chief/New Volume1/systech Material/class projects/Votify-v2/src/main/java/com/votifysoft/model/entity/AuditLog.java
-/media/chief/New Volume1/systech Material/class projects/Votify-v2/src/main/java/com/votifysoft/model/entity/Answers.java
-/media/chief/New Volume1/systech Material/class projects/Votify-v2/src/main/java/com/votifysoft/app/beans/CreatePollBeanI.java
-/media/chief/New Volume1/systech Material/class projects/Votify-v2/src/main/java/com/votifysoft/app/rest/api/PollRestApi.java
-/media/chief/New Volume1/systech Material/class projects/Votify-v2/src/main/java/com/votifysoft/app/action/VoteAction.java
-/media/chief/New Volume1/systech Material/class projects/Votify-v2/src/main/java/com/votifysoft/app/beans/ActivePollsBean.java
-/media/chief/New Volume1/systech Material/class projects/Votify-v2/src/main/java/com/votifysoft/app/beans/NominationBeanI.java
-/media/chief/New Volume1/systech Material/class projects/Votify-v2/src/main/java/com/votifysoft/app/beans/PollBean.java
-/media/chief/New Volume1/systech Material/class projects/Votify-v2/src/main/java/com/votifysoft/app/action/TopicCreatorAction.java
-/media/chief/New Volume1/systech Material/class projects/Votify-v2/src/main/java/com/votifysoft/model/entity/Polls.java
-/media/chief/New Volume1/systech Material/class projects/Votify-v2/src/main/java/com/votifysoft/app/beans/PollBeanI.java
-/media/chief/New Volume1/systech Material/class projects/Votify-v2/src/main/java/com/votifysoft/app/view/helper/HtmlRenderActiveContent.java
-/media/chief/New Volume1/systech Material/class projects/Votify-v2/src/main/java/com/votifysoft/app/rest/api/BaseRestApi.java
-/media/chief/New Volume1/systech Material/class projects/Votify-v2/src/main/java/com/votifysoft/app/action/ActivePollsAction.java
-/media/chief/New Volume1/systech Material/class projects/Votify-v2/src/main/java/com/votifysoft/app/action/HelpAction.java
-/media/chief/New Volume1/systech Material/class projects/Votify-v2/src/main/java/com/votifysoft/app/beans/ElectionsBeanI.java
-/media/chief/New Volume1/systech Material/class projects/Votify-v2/src/main/java/com/votifysoft/filters/AuthFilters.java
-/media/chief/New Volume1/systech Material/class projects/Votify-v2/src/main/java/com/votifysoft/app/action/DashboardAction.java
-/media/chief/New Volume1/systech Material/class projects/Votify-v2/src/main/java/com/votifysoft/app/beans/ElectionsBean.java
-/media/chief/New Volume1/systech Material/class projects/Votify-v2/src/main/java/com/votifysoft/model/entity/Topic.java
-/media/chief/New Volume1/systech Material/class projects/Votify-v2/src/main/java/com/votifysoft/app/beans/DashBoardBean.java
-/media/chief/New Volume1/systech Material/class projects/Votify-v2/src/main/java/com/votifysoft/app/dao/GenericDaoI.java
-/media/chief/New Volume1/systech Material/class projects/Votify-v2/src/main/java/com/votifysoft/app/action/LoginAction.java
-/media/chief/New Volume1/systech Material/class projects/Votify-v2/src/main/java/com/votifysoft/app/utils/CloudinaryService.java
-/media/chief/New Volume1/systech Material/class projects/Votify-v2/src/main/java/com/votifysoft/model/entity/Entertainment.java
-/media/chief/New Volume1/systech Material/class projects/Votify-v2/src/main/java/com/votifysoft/model/entity/HtmlFormField.java
-/media/chief/New Volume1/systech Material/class projects/Votify-v2/src/main/java/com/votifysoft/app/utils/VoteValidation.java
-/media/chief/New Volume1/systech Material/class projects/Votify-v2/src/main/java/com/votifysoft/model/entity/User.java
-/media/chief/New Volume1/systech Material/class projects/Votify-v2/src/main/java/com/votifysoft/app/action/HomeAction.java
-/media/chief/New Volume1/systech Material/class projects/Votify-v2/src/main/java/com/votifysoft/app/beans/AuditLogBean.java
-/media/chief/New Volume1/systech Material/class projects/Votify-v2/src/main/java/com/votifysoft/app/beans/MessageAction.java
-/media/chief/New Volume1/systech Material/class projects/Votify-v2/src/main/java/com/votifysoft/app/beans/GenericBeanI.java
-/media/chief/New Volume1/systech Material/class projects/Votify-v2/src/main/java/com/votifysoft/app/beans/AnswersBeanI.java
-/media/chief/New Volume1/systech Material/class projects/Votify-v2/src/main/java/com/votifysoft/app/beans/AnswersBean.java
-/media/chief/New Volume1/systech Material/class projects/Votify-v2/src/main/java/com/votifysoft/app/action/PollCreatorAction.java
-/media/chief/New Volume1/systech Material/class projects/Votify-v2/src/main/java/com/votifysoft/app/utils/EncryptSha256.java
-/media/chief/New Volume1/systech Material/class projects/Votify-v2/src/main/java/com/votifysoft/model/entity/Electives.java
-/media/chief/New Volume1/systech Material/class projects/Votify-v2/src/main/java/com/votifysoft/model/entity/ActivePoll.java
-/media/chief/New Volume1/systech Material/class projects/Votify-v2/src/main/java/com/votifysoft/model/entity/BaseEntity.java
-/media/chief/New Volume1/systech Material/class projects/Votify-v2/src/main/java/com/votifysoft/app/rest/api/RestAuthFilterApi.java
-/media/chief/New Volume1/systech Material/class projects/Votify-v2/src/main/java/com/votifysoft/app/dao/GenericDao.java
+/home/chief/Votify-v2/src/main/java/com/votifysoft/app/action/NominationsCreatorAction.java
+/home/chief/Votify-v2/src/main/java/com/votifysoft/app/action/HelpAction.java
+/home/chief/Votify-v2/src/main/java/com/votifysoft/app/utils/EncryptSha256.java
+/home/chief/Votify-v2/src/main/java/com/votifysoft/model/entity/Electives.java
+/home/chief/Votify-v2/src/main/java/com/votifysoft/app/view/helper/HtmlRenderActiveContent.java
+/home/chief/Votify-v2/src/main/java/com/votifysoft/app/utils/EncryptPwd.java
+/home/chief/Votify-v2/src/main/java/com/votifysoft/app/beans/CreatePollBeanI.java
+/home/chief/Votify-v2/src/main/java/com/votifysoft/app/rest/api/BaseRestApi.java
+/home/chief/Votify-v2/src/main/java/com/votifysoft/app/action/HomeAction.java
+/home/chief/Votify-v2/src/main/java/com/votifysoft/app/beans/ActivePollsBeanI.java
+/home/chief/Votify-v2/src/main/java/com/votifysoft/model/entity/BaseEntity.java
+/home/chief/Votify-v2/src/main/java/com/votifysoft/app/rest/api/PollRestApi.java
+/home/chief/Votify-v2/src/main/java/com/votifysoft/app/action/DashboardAction.java
+/home/chief/Votify-v2/src/main/java/com/votifysoft/app/rest/api/RestResponseWrapper.java
+/home/chief/Votify-v2/src/main/java/com/votifysoft/app/rest/config/Rest.java
+/home/chief/Votify-v2/src/main/java/com/votifysoft/app/beans/DashBoardBeanI.java
+/home/chief/Votify-v2/src/main/java/com/votifysoft/event/SessionListener.java
+/home/chief/Votify-v2/src/main/java/com/votifysoft/app/beans/AnswersBeanI.java
+/home/chief/Votify-v2/src/main/java/com/votifysoft/app/beans/CheckLicenseBean.java
+/home/chief/Votify-v2/src/main/java/com/votifysoft/app/dao/GenericDao.java
+/home/chief/Votify-v2/src/main/java/com/votifysoft/app/action/LoginAction.java
+/home/chief/Votify-v2/src/main/java/com/votifysoft/app/action/FieldMapper.java
+/home/chief/Votify-v2/src/main/java/com/votifysoft/model/entity/Answers.java
+/home/chief/Votify-v2/src/main/java/com/votifysoft/app/action/BaseAction.java
+/home/chief/Votify-v2/src/main/java/com/votifysoft/model/entity/AuditLog.java
+/home/chief/Votify-v2/src/main/java/com/votifysoft/app/action/UserAction.java
+/home/chief/Votify-v2/src/main/java/com/votifysoft/app/beans/AuthBean.java
+/home/chief/Votify-v2/src/main/java/com/votifysoft/app/beans/ElectiveBean.java
+/home/chief/Votify-v2/src/main/java/com/votifysoft/app/dao/GenericDaoI.java
+/home/chief/Votify-v2/src/main/java/com/votifysoft/app/action/VoteAction.java
+/home/chief/Votify-v2/src/main/java/com/votifysoft/app/beans/AuditLogBean.java
+/home/chief/Votify-v2/src/main/java/com/votifysoft/model/entity/HtmlFormFieldType.java
+/home/chief/Votify-v2/src/main/java/com/votifysoft/model/entity/Topic.java
+/home/chief/Votify-v2/src/main/java/com/votifysoft/app/beans/GenericBeanI.java
+/home/chief/Votify-v2/src/main/java/com/votifysoft/app/utils/FileUploadUtils.java
+/home/chief/Votify-v2/src/main/java/com/votifysoft/app/beans/NominationBean.java
+/home/chief/Votify-v2/src/main/java/com/votifysoft/app/action/LogoutAction.java
+/home/chief/Votify-v2/src/main/java/com/votifysoft/app/beans/PollBeanI.java
+/home/chief/Votify-v2/src/main/java/com/votifysoft/model/entity/Polls.java
+/home/chief/Votify-v2/src/main/java/com/votifysoft/app/view/helper/HtmlDiv.java
+/home/chief/Votify-v2/src/main/java/com/votifysoft/model/entity/ActivePoll.java
+/home/chief/Votify-v2/src/main/java/com/votifysoft/app/beans/AuthBeanI.java
+/home/chief/Votify-v2/src/main/java/com/votifysoft/app/beans/MessageAction.java
+/home/chief/Votify-v2/src/main/java/com/votifysoft/model/entity/HtmlFormField.java
+/home/chief/Votify-v2/src/main/java/com/votifysoft/app/beans/PollBean.java
+/home/chief/Votify-v2/src/main/java/com/votifysoft/model/entity/Entertainment.java
+/home/chief/Votify-v2/src/main/java/com/votifysoft/app/beans/GenericBean.java
+/home/chief/Votify-v2/src/main/java/com/votifysoft/app/utils/VoteValidation.java
+/home/chief/Votify-v2/src/main/java/com/votifysoft/app/beans/UserBean.java
+/home/chief/Votify-v2/src/main/java/com/votifysoft/app/action/PollCreatorAction.java
+/home/chief/Votify-v2/src/main/java/com/votifysoft/model/entity/Nominees.java
+/home/chief/Votify-v2/src/main/java/com/votifysoft/app/utils/VoteValidationI.java
+/home/chief/Votify-v2/src/main/java/com/votifysoft/app/beans/UserBeanI.java
+/home/chief/Votify-v2/src/main/java/com/votifysoft/app/beans/NominationBeanI.java
+/home/chief/Votify-v2/src/main/java/com/votifysoft/filters/AuthFilters.java
+/home/chief/Votify-v2/src/main/java/com/votifysoft/app/beans/ActivePollsBean.java
+/home/chief/Votify-v2/src/main/java/com/votifysoft/model/entity/PollType.java
+/home/chief/Votify-v2/src/main/java/com/votifysoft/app/rest/api/RestAuthFilterApi.java
+/home/chief/Votify-v2/src/main/java/com/votifysoft/app/utils/CloudinaryService.java
+/home/chief/Votify-v2/src/main/java/com/votifysoft/app/rest/api/VoteRestApi.java
+/home/chief/Votify-v2/src/main/java/com/votifysoft/app/action/AboutAction.java
+/home/chief/Votify-v2/src/main/java/com/votifysoft/app/beans/AnswersBean.java
+/home/chief/Votify-v2/src/main/java/com/votifysoft/model/entity/User.java
+/home/chief/Votify-v2/src/main/java/com/votifysoft/app/beans/DashBoardBean.java
+/home/chief/Votify-v2/src/main/java/com/votifysoft/app/action/ActivePollsAction.java
+/home/chief/Votify-v2/src/main/java/com/votifysoft/app/beans/ElectiveBeanI.java
+/home/chief/Votify-v2/src/main/java/com/votifysoft/app/rest/api/AnswersRestApi.java
+/home/chief/Votify-v2/src/main/java/com/votifysoft/app/action/TopicCreatorAction.java

@@ -1,11 +1,15 @@
 package com.votifysoft.app.beans;
 
+import javax.ejb.Remote;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import com.votifysoft.model.entity.Electives;
 
 
+@Stateless
+@Remote
 public class ElectiveBean extends GenericBean<Electives> implements ElectiveBeanI {
 
     @PersistenceContext
@@ -31,7 +35,7 @@ public class ElectiveBean extends GenericBean<Electives> implements ElectiveBean
     @Override
     public Electives getLatestElective() {
         try {
-            String jpql = "SELECT e FROM electives e ORDER BY e.createdAt DESC";
+            String jpql = "SELECT e FROM Electives e ORDER BY e.createdAt DESC";
 
             TypedQuery<Electives> query = entityManager.createQuery(jpql, Electives.class);
             query.setMaxResults(1);

@@ -33,7 +33,7 @@ public class LoginAction extends BaseAction {
 
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        User loginUser = serializeForm(User.class, req.getParameterMap());
+        User loginUser = (User) serializeForm(User.class, req.getParameterMap());
 
         try {
             System.out.println("This is the userEmail: "+ loginUser.getUserEmail());

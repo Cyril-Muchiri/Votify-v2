@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "nominee")
-public class Nominees {
+public class Nominees extends BaseEntity {
 
      @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
@@ -22,7 +22,7 @@ public class Nominees {
     private Electives elective;
 
     @Column
-    private String noineeName;
+    private String nomineeName;
 
     @Column
     private String nomineePhoto;
@@ -34,10 +34,10 @@ public class Nominees {
         
     }
 
-    public Nominees(int nominee_id, Electives elective, String noineeName, String nomineePhoto, int votes) {
+    public Nominees(int nominee_id, Electives elective, String nomineeName, String nomineePhoto, int votes) {
         this.nominee_id = nominee_id;
         this.elective = elective;
-        this.noineeName = noineeName;
+        this.nomineeName = nomineeName;
         this.nomineePhoto = nomineePhoto;
         this.votes = votes;
     }
@@ -58,12 +58,12 @@ public class Nominees {
         this.elective = elective;
     }
 
-    public String getNoineeName() {
-        return noineeName;
+    public String getNomineeName() {
+        return nomineeName;
     }
 
-    public void setNoineeName(String noineeName) {
-        this.noineeName = noineeName;
+    public void setNomineeName(String nomineeName) {
+        this.nomineeName = nomineeName;
     }
 
     public String getNomineePhoto() {
@@ -84,7 +84,7 @@ public class Nominees {
 
     @Override
     public String toString() {
-        return "Nominees [elective=" + elective + ", noineeName=" + noineeName + ", votes=" + votes + "]";
+        return "Nominees [elective=" + elective + ", noineeName=" + nomineeName + ", votes=" + votes + "]";
     }
 
     

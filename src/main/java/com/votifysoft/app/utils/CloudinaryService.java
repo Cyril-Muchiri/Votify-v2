@@ -1,53 +1,47 @@
 package com.votifysoft.app.utils;
-   
-import com.cloudinary.Cloudinary;
-import com.cloudinary.utils.ObjectUtils;
 
+import com.cloudinary.*;
+import com.cloudinary.utils.ObjectUtils;
 import io.github.cdimascio.dotenv.Dotenv;
+
+import java.util.Map;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 import java.util.Map;
 
 public class CloudinaryService {
 
-    Dotenv dotenv=Dotenv.configure().load();
+    private static final Dotenv dotenv = Dotenv.configure().load();
 
-    public void uploadImage() {
-        // Retrieve Cloudinary credentials from environment variables
-        String cloudName = dotenv.get("CLOUDINARY_CLOUD_NAME");
-        String apiKey = dotenv.get("CLOUDINARY_API_KEY");
-        String apiSecret = dotenv.get("CLOUDINARY_API_SECRET");
-
-        Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap(
-                "cloud_name", cloudName,
-                "api_key", apiKey,
-                "api_secret", apiSecret
-        ));
-
+    public static String uploadImage(File imageFile) {
+        Cloudinary cloudinary = new Cloudinary(dotenv.get("CLOUDINARY_URL"));
+        cloudinary.config.secure = true;
+        System.out.println(cloudinary.config.cloudName);
         try {
-              // Image path is a local file path
-                File imageFile = new File("");
 
-                // Upload the local image to Cloudinary
-                Map<String, Object> uploadResult = cloudinary.uploader().upload(imageFile, ObjectUtils.emptyMap());
+            // Upload the image
+            Map params1 = ObjectUtils.asMap(
+                    "use_filename", true,
+                    "unique_filename", false,
+                    "overwrite", true);
 
-                // Get the image URL from the Cloudinary response
-                String cloudinaryImageUrl = (String) uploadResult.get("secure_url");
-
-                // Save the cloudinaryImageUrl to your database or use it as needed
-                System.out.println("Image uploaded successfully. URL: " + cloudinaryImageUrl);
+            System.out.println("Take note of diiissss ==>>>>"+
+                    cloudinary.uploader().upload(
+                            imageFile, params1));
             
+
+            
+            return"image uploaded";
+
         } catch (IOException e) {
             e.printStackTrace();
+            // Handle the exception, e.g., log or respond to the user
+            return null;
         }
     }
 
-    public void downloadImage(){
-
+    public static void downloadImage() {
+        // Add implementation as needed
     }
 }
-
-    
-
