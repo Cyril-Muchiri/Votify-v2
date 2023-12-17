@@ -55,6 +55,10 @@ public class NominationsCreatorAction extends BaseAction {
                     .map(Map.Entry::getValue)
                     .collect(Collectors.toList());
 
+            Map<String, String[]> electiveNameParameters = paramMap.entrySet().stream()
+                    .filter(entry -> entry.getKey().equals("topicName") || entry.getKey().equals("Deadline"))
+                    .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+
             // Process file field (photo upload)
             List<String> photoPaths = new ArrayList<>();
             for (Part part : req.getParts()) {
@@ -65,29 +69,30 @@ public class NominationsCreatorAction extends BaseAction {
                     photoPaths.add(photoPath);
                 }
             }
-            if (photoPaths.isEmpty()|| photoPaths.size()==0) {
+            if (photoPaths.isEmpty() || photoPaths.size() == 0) {
                 System.out.println("PhotoPaths is empty!!!!");
             }
 
             for (String stringPath : photoPaths) {
-                System.out.println("This is the string path==>>>   --"+stringPath);
+                System.out.println("This is the string path==>>>   --" + stringPath);
             }
 
-            Electives elective = serializeForm(Electives.class, paramMap);
+            Electives elective = serializeForm(Electives.class, electiveNameParameters);
             User creator = userBeanI.getUserById((int) req.getSession(false).getAttribute("userId"));
             elective.setCreator(creator);
-            int electiveId = eBeanI.registerElective(elective);
+            
+            eBeanI.registerElective(elective);
 
             Electives latestElective = eBeanI.getLatestElective();
 
             List<Nominees> nomineeList = serializeNominees(choiceValues);
 
             for (Nominees iterable_element : nomineeList) {
-                System.out.println("Take noti of this====>>>>"+iterable_element.toString());
+                System.out.println("Take noti of this====>>>>" + iterable_element.toString());
             }
 
             // Register nominees with their photos
-            nBeanI.registerNominee(latestElective, nomineeList,photoPaths);
+            nBeanI.registerNominee(latestElective, nomineeList, photoPaths);
 
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -98,16 +103,16 @@ public class NominationsCreatorAction extends BaseAction {
 
     // Helper method to extract file name from a Part
     // private String getFileName(Part part) {
-    //     String contentDisposition = part.getHeader("content-disposition");
-    //     String[] tokens = contentDisposition.split(";");
-    //     for (String token : tokens) {
-    //         if (token.trim().startsWith("filename")) {
-    //             return token.substring(token.indexOf('=') + 1).trim().replace("\"", "");
-    //         }
-    //     }
-    //     return "";
+    // String contentDisposition = part.getHeader("content-disposition");
+    // String[] tokens = contentDisposition.split(";");
+    // for (String token : tokens) {
+    // if (token.trim().startsWith("filename")) {
+    // return token.substring(token.indexOf('=') + 1).trim().replace("\"", "");
+    // }
+    // }
+    // return "";
     // }
 
     // Helper method to extract file name from a Part
-    
+
 }
