@@ -51,14 +51,14 @@ public class NominationBean extends GenericBean<Nominees> implements NominationB
             Nominees nominee = em.find(Nominees.class, nomineeId);
 
             if (nominee == null) {
-                System.out.println("Answer is null for answerId: " + nomineeId);
+                System.out.println("nominee is null for Id: " + nomineeId);
                 return;
             }
 
             Electives votedElective = nominee.getElective();
 
             if (votedElective == null) {
-                System.out.println("Voted elective is null for answerId: " + nomineeId);
+                System.out.println("Voted elective is null for nomineeId: " + nomineeId);
                 return;
             }
 
