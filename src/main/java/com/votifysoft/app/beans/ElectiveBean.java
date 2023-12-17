@@ -19,7 +19,7 @@ public class ElectiveBean extends GenericBean<Electives> implements ElectiveBean
     public Integer registerElective(Electives elective) {
 
         try {
-            System.out.println("Registering elective with ID: " + elective.getElective_id());
+            System.out.println("Registering elective with title : " + elective.getElective_title());
             getDao().addOrUpdate(elective);
 
             Integer generatedPollId = elective.getElective_id();

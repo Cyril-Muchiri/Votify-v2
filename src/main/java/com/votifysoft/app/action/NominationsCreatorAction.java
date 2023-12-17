@@ -80,7 +80,11 @@ public class NominationsCreatorAction extends BaseAction {
             Electives elective = serializeForm(Electives.class, electiveNameParameters);
             User creator = userBeanI.getUserById((int) req.getSession(false).getAttribute("userId"));
             elective.setCreator(creator);
-            
+
+            if (elective.getElective_title().isBlank()||elective.getElective_title().isEmpty()) {
+                System.out.println("No elective tittle exists!!!");
+            }
+
             eBeanI.registerElective(elective);
 
             Electives latestElective = eBeanI.getLatestElective();
