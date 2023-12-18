@@ -28,19 +28,18 @@ public class NominationBean extends GenericBean<Nominees> implements NominationB
     public boolean registerNominee(Electives elective, List<Nominees> nomineeList,List<String>photopaths) {
 
         try {
-            Iterator<String> photoPathIterator = photopaths.iterator();
+           
 
+            int i=0;
             for (Nominees nomineeChoice : nomineeList) {
                 Nominees nominee = new Nominees();
                 System.out.println("Poll_IDDDD_" + elective.getElective_id());
                 nominee.setElective(elective);
                 nominee.setNomineeName(nomineeChoice.getNomineeName());
 
-                if (photoPathIterator.hasNext()) {
-                    String photoPath = photoPathIterator.next();
-                    nominee.setNomineePhoto(photoPath);
-                }
-                nominee.setNomineePhoto(nomineeChoice.getNomineePhoto());
+    
+                nominee.setNomineePhoto(photopaths.get(i));
+                i++;
                 System.out.println("1st choice: " + nomineeChoice);
                 System.out.println("Answer.getChoice: " + nominee.getNomineeName());
                 System.out.println("This is the nominee photo: "+nominee.getNomineePhoto());

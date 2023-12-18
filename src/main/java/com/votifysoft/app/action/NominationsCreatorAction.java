@@ -2,7 +2,6 @@ package com.votifysoft.app.action;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -25,7 +24,7 @@ import com.votifysoft.model.entity.Nominees;
 import com.votifysoft.model.entity.User;
 
 @WebServlet("/nominations")
-@MultipartConfig(location = "/home/chief/Votify-v2/src/main/resources/artifacts", maxFileSize = 1024 * 1024 * 8, // 1 MB
+@MultipartConfig(location = "/home/chief/Votify-v2/artifacts", maxFileSize = 1024 * 1024 * 8, // 1 MB
         maxRequestSize = 1024 * 1024 * 10, // 10 MB
         fileSizeThreshold = 1024 * 1024 // 1 MB
 )
@@ -51,40 +50,42 @@ public class NominationsCreatorAction extends BaseAction {
             Map<String, String[]> paramMap = req.getParameterMap();
 
             List<String[]> choiceValues = paramMap.entrySet().stream()
-                    .filter(entry -> entry.getKey().contains("choice"))
+                    .filter(entry -> entry.getKey().contains("nominee"))
                     .map(Map.Entry::getValue)
                     .collect(Collectors.toList());
 
             Map<String, String[]> electiveNameParameters = paramMap.entrySet().stream()
-                    .filter(entry -> entry.getKey().equals("topicName") || entry.getKey().equals("Deadline"))
+                    .filter(entry -> entry.getKey().equals("electiveTitle") || entry.getKey().equals("Deadline"))
                     .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 
             // Process file field (photo upload)
             List<String> photoPaths = new ArrayList<>();
             for (Part part : req.getParts()) {
-                if (true) {
-                    String imageName = FileUploadUtils.getFileName(part);
-                    String photoPath = "/home/chief/Votify-v2/src/main/resources/artifacts/" + imageName;
+                // Check if the part represents a file by examining the submitted file name
+                String imageName = FileUploadUtils.getFileName(part);
+                if (!imageName.isEmpty()) {
+                    String photoPath = "/home/chief/Votify-v2/artifacts/" + imageName;
+            
+                    System.out.println("this is the image name " + imageName);
                     part.write(photoPath);
                     photoPaths.add(photoPath);
                 }
             }
-            if (photoPaths.isEmpty() || photoPaths.size() == 0) {
+            if (photoPaths.isEmpty()) {
                 System.out.println("PhotoPaths is empty!!!!");
-            }
-
-            for (String stringPath : photoPaths) {
-                System.out.println("This is the string path==>>>   --" + stringPath);
+            } else {
+                for (String stringPath : photoPaths) {
+                    System.out.println("This is the string path==>>>   --" + stringPath);
+                }
             }
 
             Electives elective = serializeForm(Electives.class, electiveNameParameters);
             User creator = userBeanI.getUserById((int) req.getSession(false).getAttribute("userId"));
             elective.setCreator(creator);
 
-            if (elective.getElective_title().isBlank()||elective.getElective_title().isEmpty()) {
-                System.out.println("No elective tittle exists!!!");
+            if (elective != null && (elective.getElectiveTitle().isBlank() || elective.getElectiveTitle().isEmpty())) {
+                System.out.println("No elective title exists!!!");
             }
-
             eBeanI.registerElective(elective);
 
             Electives latestElective = eBeanI.getLatestElective();
@@ -104,19 +105,5 @@ public class NominationsCreatorAction extends BaseAction {
 
         resp.sendRedirect("./home");
     }
-
-    // Helper method to extract file name from a Part
-    // private String getFileName(Part part) {
-    // String contentDisposition = part.getHeader("content-disposition");
-    // String[] tokens = contentDisposition.split(";");
-    // for (String token : tokens) {
-    // if (token.trim().startsWith("filename")) {
-    // return token.substring(token.indexOf('=') + 1).trim().replace("\"", "");
-    // }
-    // }
-    // return "";
-    // }
-
-    // Helper method to extract file name from a Part
 
 }

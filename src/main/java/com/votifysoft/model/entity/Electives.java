@@ -27,7 +27,7 @@ public class Electives implements Serializable {
     private int elective_id;
 
     @Column
-    private String elective_title;
+    private String electiveTitle;
 
     @ManyToOne
     @JoinColumn(name = "creator_id", referencedColumnName = "userId")
@@ -49,8 +49,8 @@ public class Electives implements Serializable {
     public Electives() {
     };
 
-    public Electives(String elective_title, List<Nominees> nominees, Date createdAt) {
-        this.elective_title = elective_title;
+    public Electives(String electiveTitle, List<Nominees> nominees, Date createdAt) {
+        this.electiveTitle = electiveTitle;
         this.nominees = nominees;
         this.createdAt = createdAt;
     }
@@ -96,12 +96,12 @@ public class Electives implements Serializable {
         this.elective_id = elective_id;
     }
 
-    public String getElective_title() {
-        return elective_title;
+    public String getElectiveTitle() {
+        return electiveTitle;
     }
 
-    public void setElective_title(String elective_title) {
-        this.elective_title = elective_title;
+    public void setElectiveTitle(String elective_title) {
+        this.electiveTitle = elective_title;
     }
 
     public List<Nominees> getNominees() {

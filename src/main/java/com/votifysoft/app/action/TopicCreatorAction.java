@@ -53,23 +53,11 @@ public class TopicCreatorAction extends BaseAction {
           .filter(entry -> entry.getKey().equals("topicName") || entry.getKey().equals("Deadline"))
           .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 
-      String ownerIdKey = "creator_id";
-
-      System.out.println("THIS IS THE OWNERS ID==" + req.getSession(false).getAttribute("userId"));
-      topicNameParameters.put(ownerIdKey,
-          new String[] { String.valueOf(req.getSession(false).getAttribute("userId")) });
-
-      for (String[] values : choiceValues) {
-        System.out.println("Choice Parameter: " + Arrays.toString(values));
-      }
-
-      topicNameParameters
-          .forEach((key, value) -> System.out.println("Parameter: " + key + ": " + Arrays.toString(value)));
-
       Polls poll = serializeForm(Polls.class, topicNameParameters);
       User creator = userBeanI.getUserById((int)(req.getSession(false).getAttribute("userId")));
       poll.setCreator(creator);
-      int pollId=topicBean.registerTopic(poll);
+      
+      topicBean.registerTopic(poll);
 
       Polls latestPoll=topicBean.getLatestPoll();
 

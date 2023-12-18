@@ -91,7 +91,7 @@
                             </div>
                             <div class="tab">
                                 <h6>What's the Title of your Nominations?</h6>
-                                <p><input placeholder="Title..." oninput="this.className = ''" name="topicName"></p>
+                                <p><input placeholder="Title..." oninput="this.className = ''" name="electiveTitle"></p>
                             </div>
                             <div class="tab">
                                 <h6>How many number of Nominees?</h6>
@@ -195,7 +195,7 @@
 
             var nameInput = document.createElement("input");
             nameInput.type = "text";
-            nameInput.name = "choice" + i;
+            nameInput.name = "nominee" + i;
 
             var imageLabel = document.createElement("label");
             imageLabel.textContent = "Upload a photo ";
