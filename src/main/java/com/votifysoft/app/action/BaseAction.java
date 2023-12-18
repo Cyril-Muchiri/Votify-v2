@@ -17,9 +17,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.lang3.StringUtils;
 
-import com.votifysoft.app.view.helper.HtmlRenderActiveContent;
+import com.votifysoft.app.view.helper.HtmlRenderActiveElections;
+import com.votifysoft.app.view.helper.HtmlRenderActivePolls;
 import com.votifysoft.model.entity.Answers;
 import com.votifysoft.model.entity.Nominees;
+import com.votifysoft.model.entity.Polls;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.ConvertUtils;
@@ -79,41 +81,33 @@ public class BaseAction extends HttpServlet {
         for (String[] choice : choiceValues) {
             String nomineeName = choice[0].trim();
             Nominees nominee = new Nominees();
-            
+
             if (!isNumeric(nomineeName)) {
                 nominee.setNomineeName(nomineeName);
-                 nomineeList.add(nominee);
+                nomineeList.add(nominee);
             }
 
-           
         }
 
         return nomineeList;
     }
 
-    protected <T> List<T> serialize(List<String[]> values, Function<String[], T> converter) {
-        List<T> resultList = new ArrayList<>();
-
-        for (String[] value : values) {
-            T convertedValue = converter.apply(value);
-
-            if (convertedValue != null) {
-                resultList.add(convertedValue);
-            }
-        }
-
-        return resultList;
-    }
-
     public void renderPoll(HttpServletRequest request, HttpServletResponse response,
-            Class<?> poll, Class<?> answer, List<?> pollList, List<?> answerList, int activeUserId)
+            Class<?> clazzA, Class<?> clazzB, List<?> lizztA, List<?> lizztB, int activeUserId)
             throws ServletException, IOException {
 
         String actionParam = StringUtils.trimToEmpty(request.getParameter("action"));
         System.out.println("Action Parameter: " + actionParam);
 
-        HtmlRenderActiveContent renderContent = new HtmlRenderActiveContent(entityManager);
-        String content = renderContent.renderMainContentDiv(activeUserId);
+        HtmlRenderActivePolls renderContent = new HtmlRenderActivePolls(entityManager);
+        HtmlRenderActiveElections renderElections = new HtmlRenderActiveElections();
+
+        String content = "";
+        if (Polls.class.isAssignableFrom(clazzA) && Answers.class.isAssignableFrom(clazzB)) {
+            content = renderContent.renderMainContentDiv(activeUserId);
+        } else {
+            content = renderElections.renderElections(activeUserId);
+        }
 
         if ("add".equals(actionParam)) {
             request.setAttribute("content", content);

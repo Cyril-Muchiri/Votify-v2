@@ -1,10 +1,15 @@
 com/votifysoft/app/beans/ElectiveBean.class
 com/votifysoft/app/action/LogoutAction.class
+com/votifysoft/app/action/ElectiveAction.class
+com/votifysoft/app/view/helper/HtmlMenu.class
 com/votifysoft/app/beans/PollBean.class
 com/votifysoft/app/beans/ActivePollsBeanI.class
 com/votifysoft/app/rest/api/AnswersRestApi.class
 com/votifysoft/app/action/FieldMapper.class
 com/votifysoft/app/action/BaseAction.class
+com/votifysoft/app/beans/ActiveElectivesBean.class
+com/votifysoft/app/view/helper/HtmlRenderActivePolls.class
+com/votifysoft/app/view/helper/MenuLinkStatus.class
 com/votifysoft/app/action/NominationsCreatorAction.class
 com/votifysoft/app/beans/AnswersBeanI.class
 com/votifysoft/app/dao/GenericDaoI.class
@@ -24,6 +29,7 @@ com/votifysoft/app/utils/FileUploadUtils.class
 com/votifysoft/model/entity/ActivePoll.class
 com/votifysoft/app/beans/AuthBeanI.class
 com/votifysoft/app/beans/ElectiveBeanI.class
+com/votifysoft/app/beans/ActiveElectivesBeanI.class
 com/votifysoft/model/entity/HtmlFormField.class
 com/votifysoft/app/beans/AuditLogBean.class
 com/votifysoft/model/entity/HtmlFormFieldType.class
@@ -45,8 +51,9 @@ com/votifysoft/app/rest/api/BaseRestApi.class
 com/votifysoft/app/action/UserAction.class
 com/votifysoft/app/beans/DashBoardBean.class
 com/votifysoft/app/action/LoginAction.class
-com/votifysoft/app/view/helper/HtmlRenderActiveContent.class
 com/votifysoft/app/beans/CreatePollBeanI.class
+com/votifysoft/app/view/helper/MenuLink.class
+com/votifysoft/app/view/helper/HtmlRenderActiveElections.class
 com/votifysoft/app/beans/UserBeanI.class
 com/votifysoft/filters/AuthFilters.class
 com/votifysoft/app/action/ActivePollsAction.class
@@ -57,6 +64,7 @@ com/votifysoft/app/rest/api/RestAuthFilterApi.class
 com/votifysoft/app/beans/UserBean.class
 com/votifysoft/app/beans/NominationBean.class
 com/votifysoft/app/utils/VoteValidationI.class
+com/votifysoft/app/view/helper/HtmlMenuToolbar.class
 com/votifysoft/app/action/HelpAction.class
 com/votifysoft/app/beans/GenericBean.class
 com/votifysoft/app/beans/MessageAction.class

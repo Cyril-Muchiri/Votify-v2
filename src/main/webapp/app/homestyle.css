@@ -26,6 +26,33 @@
     flex-direction: column;
     
 }
+.top-navbar{
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(88,94,96,1) 52%);
+    overflow: hidden;
+    width: 70vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+
+}
+
+.nav-item {
+    width: 35vw;
+    border-style: solid;
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 18px;
+    transition: background 0.3s ease;
+}
+
+.nav-item:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
 
 /* dropdown */
 

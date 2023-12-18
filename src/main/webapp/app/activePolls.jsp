@@ -71,10 +71,20 @@
         <%
             }
         %>
+     
+        <div>
+        <div class="top-navbar">
+               <div>
+                <a href="./active" class="nav-item">Active Polls</a>
+            </div>
+                <div>
+                <a href="./showElectives" class="nav-item">View Electives</a>
+                </div>
+                    </div>
 
         <div>
               ${requestScope.content}
-
+        </div>
         </div>
     </div>
     <!--Container Main end-->
