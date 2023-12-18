@@ -1,7 +1,6 @@
 package com.votifysoft.app.action;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -64,7 +63,6 @@ public class TopicCreatorAction extends BaseAction {
       List<Answers> answersList = serializeChoices(choiceValues);
       answersBean.registerChoices(latestPoll, answersList);
       
-
     } catch (Exception ex) {
       ex.printStackTrace();
     }

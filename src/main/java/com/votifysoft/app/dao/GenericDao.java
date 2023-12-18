@@ -6,12 +6,9 @@ import com.votifysoft.model.entity.User;
 
 import javax.persistence.Column;
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
-import javax.transaction.Transactional;
 
 import java.lang.reflect.Field;
-import java.sql.PreparedStatement;
 import java.util.*;
 
 public class GenericDao<T> implements GenericDaoI<T> {

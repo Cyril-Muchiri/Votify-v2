@@ -1,6 +1,5 @@
 package com.votifysoft.app.beans;
 
-import java.util.Iterator;
 import java.util.List;
 
 import javax.ejb.Remote;
@@ -28,8 +27,6 @@ public class NominationBean extends GenericBean<Nominees> implements NominationB
     public boolean registerNominee(Electives elective, List<Nominees> nomineeList,List<String>photopaths) {
 
         try {
-           
-
             int i=0;
             for (Nominees nomineeChoice : nomineeList) {
                 Nominees nominee = new Nominees();
@@ -41,7 +38,7 @@ public class NominationBean extends GenericBean<Nominees> implements NominationB
                 nominee.setNomineePhoto(photopaths.get(i));
                 i++;
                 System.out.println("1st choice: " + nomineeChoice);
-                System.out.println("Answer.getChoice: " + nominee.getNomineeName());
+                System.out.println("nominee.getChoice: " + nominee.getNomineeName());
                 System.out.println("This is the nominee photo: "+nominee.getNomineePhoto());
 
                 getDao().addOrUpdate(nominee);
@@ -91,16 +88,16 @@ public class NominationBean extends GenericBean<Nominees> implements NominationB
                 updatedParticipants = updatedParticipants.replace("null", "");
             }
             // take account of participants for a specific poll/election
-            String jpqlUpdate = "UPDATE electives e SET e.participants = :participants WHERE e.elective_id = :elective_id";
+            String jpqlUpdate = "UPDATE Electives e SET e.participants = :participants WHERE e.elective_id = :elective_id";
             Query userQuery = em.createQuery(jpqlUpdate);
             userQuery.setParameter("participants", updatedParticipants);
             userQuery.setParameter("elective_id", electiveId);
 
             userQuery.executeUpdate();
 
-            String jpql = "UPDATE nominees SET votes = votes + 1 WHERE nominee_id = :nomineeId";
+            String jpql = "UPDATE Nominees SET votes = votes + 1 WHERE nominee_id = :nomineeId";
             Query query = em.createQuery(jpql);
-            query.setParameter("nominee_id", nomineeId);
+            query.setParameter("nomineeId", nomineeId);
 
             int updatedCount = query.executeUpdate();
 

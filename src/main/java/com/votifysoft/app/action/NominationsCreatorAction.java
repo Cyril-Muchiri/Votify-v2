@@ -24,7 +24,7 @@ import com.votifysoft.model.entity.Nominees;
 import com.votifysoft.model.entity.User;
 
 @WebServlet("/nominations")
-@MultipartConfig(location = "/home/chief/Votify-v2/artifacts", maxFileSize = 1024 * 1024 * 8, // 1 MB
+@MultipartConfig(location = "/home/chief/Votify-v2/src/main/webapp/app/artifacts", maxFileSize = 1024 * 1024 * 8, // 1 MB
         maxRequestSize = 1024 * 1024 * 10, // 10 MB
         fileSizeThreshold = 1024 * 1024 // 1 MB
 )
@@ -64,11 +64,14 @@ public class NominationsCreatorAction extends BaseAction {
                 // Check if the part represents a file by examining the submitted file name
                 String imageName = FileUploadUtils.getFileName(part);
                 if (!imageName.isEmpty()) {
-                    String photoPath = "/home/chief/Votify-v2/artifacts/" + imageName;
+                    String photoPath = "/home/chief/Votify-v2/src/main/webapp/app/artifacts/" + imageName;
             
                     System.out.println("this is the image name " + imageName);
                     part.write(photoPath);
-                    photoPaths.add(photoPath);
+
+                    //save the relative path for easier retrieval
+
+                    photoPaths.add(imageName);
                 }
             }
             if (photoPaths.isEmpty()) {

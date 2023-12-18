@@ -43,10 +43,7 @@
                         <i class="bx bx-message-square-detail nav_icon"></i>
                         <span class="nav_name">Messages</span>
                     </a>
-                    <a href="./help" class="nav_link">
-                        <i class="bi bi-patch-question" style="font-size: 23px;"></i>
-                        <span class="nav_name">Help</span>
-                    </a>
+                
                     <a href="./about" class="nav_link">
                         <i class="bx bx-user nav_icon"></i>
                         <span class="nav_name">About us</span>
@@ -83,7 +80,7 @@
                   <div class="card">
                     <a href="./topics">
                     <div class="card__side card__side--front card__side--front-1">
-                      <div class="card__description"><span>#Topics</span></div>
+                      <div class="card__description"><span># Polls</span></div>
                     </div>
                     <div class="card__side card__side--back card__side--back-1">
                       <!-- <div class="card__description"><svg width="24" height="24" viewBox="0 0 24 24">
@@ -98,7 +95,7 @@
                   <div class="card">
                     <a href="./nominations">
                     <div class="card__side card__side--front card__side--front-2">
-                      <div class="card__description"><span>#Participants</span></div>
+                      <div class="card__description"><span># Elections</span></div>
                     </div>
                     <div class="card__side card__side--back card__side--back-2">
                       <!-- <div class="card__description"><svg width="24" height="24" viewBox="0 0 24 24">

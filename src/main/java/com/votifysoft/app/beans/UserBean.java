@@ -55,4 +55,10 @@ public class UserBean extends GenericBean<User> implements UserBeanI {
         return userList.isEmpty() ? null : userList.get(0);
     }
 
+    public int getAllUsers(){
+        String sql="SELECT * FROM users";
+        List<User> userList=em.createNativeQuery(sql,User.class).getResultList();
+        return userList.size();
+    }
+
 }

@@ -54,11 +54,11 @@ public class HtmlRenderActivePolls {
 
             mainContentBuilder.append("<div class=\"buttonDiv\">")
                     .append("<div class=\"submit-btn\" style=\"margin-top:5px\" id=\"submit-btn\">");
-            if (Arrays.toString(allParticipants).contains(userId.toString())) {
-                mainContentBuilder.append("<button type=\"submit\" disabled>Submit Answer</button>");
-            } else {
-                mainContentBuilder.append("<button type=\"submit\">Submit Answer</button>");
-            }
+                    if (Arrays.toString(allParticipants).contains(userId.toString())) {
+                        mainContentBuilder.append("<button type=\"submit\" disabled>Submit Answer</button>");
+                    } else {
+                        mainContentBuilder.append("<button type=\"submit\">Submit Answer</button>");
+                    }
 
             mainContentBuilder.append("</div>")
                     .append("<div class=\"view-btn\" style=\"margin-top:5px\" id=\"view-btn\">")

@@ -9,4 +9,6 @@ public interface UserBeanI extends GenericBeanI<User>{
     public User addOrUpdate(User user) throws SQLException;
 
     public User getUserById(int userId);
+
+    public int getAllUsers();
 }

@@ -41,10 +41,6 @@
                         <i class="bx bx-message-square-detail nav_icon"></i>
                         <span class="nav_name">Messages</span>
                     </a>
-                    <a href="./help" class="nav_link">
-                        <i class="bi bi-patch-question" style="font-size: 23px;"></i>
-                        <span class="nav_name">Help</span>
-                    </a>
                     <a href="./about" class="nav_link">
                         <i class="bx bx-user nav_icon"></i>
                         <span class="nav_name">About us</span>

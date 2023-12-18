@@ -30,14 +30,11 @@ public class UserAction extends BaseAction {
             System.out.println("Serialized User: " + user.getUserEmail());
     
             userBean.addOrUpdate(user);
-    
-            // Optionally, provide a success message or redirect to a success page
             resp.sendRedirect("./");
     
         } catch (SQLException sqlex) {
             sqlex.printStackTrace();
     
-            // Check if it's a duplicate entry violation
             if (isDuplicateEntryViolation(sqlex)) {
                 req.setAttribute("errorMessage", "Email is already registered.");
             } else {
@@ -49,7 +46,6 @@ public class UserAction extends BaseAction {
         } catch (Exception ex) {
             ex.printStackTrace();
     
-            // Handle other exceptions if needed
             req.setAttribute("errorMessage", "Registration failed due to an unexpected error.");
             req.getRequestDispatcher("app/registrationFailed.jsp").forward(req, resp);
     

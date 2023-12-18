@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Function;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -86,7 +85,6 @@ public class BaseAction extends HttpServlet {
                 nominee.setNomineeName(nomineeName);
                 nomineeList.add(nominee);
             }
-
         }
 
         return nomineeList;
@@ -100,7 +98,7 @@ public class BaseAction extends HttpServlet {
         System.out.println("Action Parameter: " + actionParam);
 
         HtmlRenderActivePolls renderContent = new HtmlRenderActivePolls(entityManager);
-        HtmlRenderActiveElections renderElections = new HtmlRenderActiveElections();
+        HtmlRenderActiveElections renderElections = new HtmlRenderActiveElections(entityManager);
 
         String content = "";
         if (Polls.class.isAssignableFrom(clazzA) && Answers.class.isAssignableFrom(clazzB)) {

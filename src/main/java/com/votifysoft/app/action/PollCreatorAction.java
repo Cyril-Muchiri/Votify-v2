@@ -16,7 +16,6 @@ public class PollCreatorAction extends BaseAction {
         session.setAttribute("content", "<h1>This is the Create content.</h1>");
         System.out.println("%%%%%%%"+ session.getAttribute("content"));
         req.getRequestDispatcher("app/createPoll.jsp").forward(req, resp);
-      
      
     }
 

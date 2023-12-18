@@ -1,9 +1,11 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page isELIgnored="false" %>
 <!DOCTYPE html>
 <html>
 <head>
+
+    <link rel="stylesheet" href="app/css/elective.css">
     <link rel="stylesheet" href="app/homestyle.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"/>
@@ -41,10 +43,7 @@
                         <i class="bx bx-message-square-detail nav_icon"></i>
                         <span class="nav_name">Messages</span>
                     </a>
-                    <a href="./help" class="nav_link">
-                        <i class="bi bi-patch-question" style="font-size: 23px;"></i>
-                        <span class="nav_name">Help</span>
-                    </a>
+                  
                     <a href="./about" class="nav_link">
                         <i class="bx bx-user nav_icon"></i>
                         <span class="nav_name">About us</span>
@@ -59,6 +58,7 @@
     </div>
     <!--Container Main start-->
     <div class="height-100 bg-light">
+       <div>
         <%
             String userName = (String) session.getAttribute("userName");
             if (userName != null) {
@@ -71,6 +71,7 @@
         <%
             }
         %>
+        </div>
      
         <div>
         <div class="top-navbar">
@@ -82,8 +83,8 @@
                 </div>
                     </div>
 
-        <div>
-              ${requestScope.content}
+        <div class="allContent">
+        <c:out value="${requestScope.content}" escapeXml="false"  />
         </div>
         </div>
     </div>

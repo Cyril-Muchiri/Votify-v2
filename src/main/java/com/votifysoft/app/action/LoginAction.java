@@ -8,7 +8,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.StringUtils;
+
+import com.votifysoft.app.beans.ActiveElectivesBeanI;
+import com.votifysoft.app.beans.ActivePollsBeanI;
 import com.votifysoft.app.beans.AuthBeanI;
+import com.votifysoft.app.beans.UserBeanI;
 import com.votifysoft.model.entity.User;
 
 import java.io.IOException;
@@ -20,7 +24,7 @@ public class LoginAction extends BaseAction {
     @EJB
     AuthBeanI authBean;
 
-    public  String LoggedInUser;
+    public String LoggedInUser;
 
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession httpSession = req.getSession();
@@ -36,7 +40,7 @@ public class LoginAction extends BaseAction {
         User loginUser = (User) serializeForm(User.class, req.getParameterMap());
 
         try {
-            System.out.println("This is the userEmail: "+ loginUser.getUserEmail());
+            System.out.println("This is the userEmail: " + loginUser.getUserEmail());
             User userDetails = authBean.authenticate(loginUser);
 
             if (userDetails != null && StringUtils.isNotBlank(userDetails.getUserEmail())) {
@@ -44,13 +48,16 @@ public class LoginAction extends BaseAction {
 
                 httpSession.setAttribute("loggedInId", new Date().getTime() + "");
 
+
+                // httpSession.setAttribute("totalUsers", loginUser);
+                System.out.println("This is the totalnominees==>>> "+httpSession.getAttribute("totalNominees"));
+
                 httpSession.setAttribute("userId", userDetails.getUserId());
                 httpSession.setAttribute("userName", userDetails.getUserName());
-                sessionUserId=(Integer)httpSession.getAttribute("userId");
-                System.out.println("TAKE NOTE OF THIS "+sessionUserId);
+                sessionUserId = (Integer) httpSession.getAttribute("userId");
+                System.out.println("TAKE NOTE OF THIS " + sessionUserId);
 
                 resp.sendRedirect("./home");
-
 
             } else {
                 req.getRequestDispatcher("app/actionFailed.jsp").forward(req, resp);

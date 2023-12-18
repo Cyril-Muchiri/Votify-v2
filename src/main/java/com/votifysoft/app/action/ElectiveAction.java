@@ -23,7 +23,6 @@ public class ElectiveAction extends BaseAction {
     @EJB
     ActiveElectivesBeanI activeElectives;
 
-
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
             renderPoll(req, resp, Electives.class,Nominees.class, activeElectives.fetchAllElectives(),activeElectives.fetchAllNominees(),sessionUserId);
