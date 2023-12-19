@@ -1,22 +1,24 @@
 package com.votifysoft.app.rest.api;
 
+import javax.ejb.EJB;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
-import com.votifysoft.app.beans.NominationBean;
+
+import com.votifysoft.app.beans.NominationBeanI;
 import com.votifysoft.model.entity.Electives;
 import com.votifysoft.model.entity.Nominees;
 
 @Path("/nomination")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class NominationsRestApi {
+public class NominationsRestApi extends BaseRestApi{
 
-    @Inject
-    private NominationBean nominationBean;
+    @EJB
+    private NominationBeanI nominationBean;
 
     @GET
     @Path("/fetchChoices")

@@ -1,10 +1,10 @@
 package com.votifysoft.app.rest.api;
 
-import javax.inject.Inject;
+import javax.ejb.EJB;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
-import com.votifysoft.app.beans.ElectiveBean;
+import com.votifysoft.app.beans.ElectiveBeanI;
 import com.votifysoft.model.entity.Electives;
 
 @Path("/electives")
@@ -12,8 +12,8 @@ import com.votifysoft.model.entity.Electives;
 @Consumes(MediaType.APPLICATION_JSON)
 public class ElectiveRestApi {
 
-    @Inject
-    private ElectiveBean electiveBean;
+    @EJB
+    private ElectiveBeanI electiveBean;
 
     @POST
     @Path("/register-elective")

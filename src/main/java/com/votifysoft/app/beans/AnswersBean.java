@@ -25,7 +25,7 @@ public class AnswersBean extends GenericBean<Answers> implements AnswersBeanI {
 
     @Override
     public boolean registerChoices(Polls poll, List<Answers> topicChoices) {
-    
+
         try {
             for (Answers topicChoice : topicChoices) {
                 Answers answer = new Answers();
@@ -81,15 +81,18 @@ public class AnswersBean extends GenericBean<Answers> implements AnswersBeanI {
                 System.out.println("No one has voted yet!!");
                 updatedParticipants = updatedParticipants.replace("null", "");
             }
-            String jpqlUpdate = "UPDATE Polls p SET p.participants = :participants WHERE p.poll_id = :poll_id";
-            Query userQuery = em.createQuery(jpqlUpdate);
+
+            // Update participants
+            String nativeUpdate = "UPDATE Polls SET participants = :participants WHERE poll_id = :poll_id";
+            Query userQuery = em.createNativeQuery(nativeUpdate);
             userQuery.setParameter("participants", updatedParticipants);
             userQuery.setParameter("poll_id", pollId);
 
             userQuery.executeUpdate();
-
-            String jpql = "UPDATE Answers SET votes = votes + 1 WHERE answer_id = :answerId";
-            Query query = em.createQuery(jpql);
+            
+            // update votes
+            String nativeQuery = "UPDATE Answers SET votes = votes + 1 WHERE answer_id = :answerId";
+            Query query = em.createNativeQuery(nativeQuery);
             query.setParameter("answerId", answerId);
 
             int updatedCount = query.executeUpdate();

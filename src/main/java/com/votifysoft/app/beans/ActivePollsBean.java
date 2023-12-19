@@ -5,7 +5,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
+import javax.persistence.Query;
 import com.votifysoft.model.entity.Answers;
 import com.votifysoft.model.entity.Polls;
 
@@ -16,19 +16,19 @@ public class ActivePollsBean extends GenericBean<Polls> implements ActivePollsBe
     EntityManager eManager;
 
     public List<Polls> fetchAllPolls() throws SQLException {
-        System.out.println("method being for topics executed!!");
-        String jpql = "SELECT p FROM Polls p";
-        TypedQuery<Polls> query = eManager.createQuery(jpql, Polls.class);
+        System.out.println("Method for fetching polls executed!!");
+
+        String nativeQuery = "SELECT * FROM polls";
+        Query query = eManager.createNativeQuery(nativeQuery, Polls.class);
 
         return query.getResultList();
     }
 
     public List<Answers> fetchAllPollChoices() throws SQLException {
-        System.out.println("method being for answers executed!!");
-        String jpql = "SELECT a FROM Answers a";
-        TypedQuery<Answers> query = eManager.createQuery(jpql, Answers.class);
+        System.out.println("Method for fetching answers executed!!");
+        String nativeQuery = "SELECT * FROM answers";
+        Query query = eManager.createNativeQuery(nativeQuery, Answers.class);
 
         return query.getResultList();
     }
-
 }

@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,6 +18,8 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import org.hibernate.annotations.CreationTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "electives")
@@ -33,7 +36,8 @@ public class Electives implements Serializable {
     @JoinColumn(name = "creator_id", referencedColumnName = "userId")
     private User creator;
 
-    @OneToMany(mappedBy = "elective", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "elective", cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.EAGER)
+    @JsonManagedReference
     private List<Nominees> nominees;
 
     @Column(name = "participants")
@@ -78,14 +82,6 @@ public class Electives implements Serializable {
 
     public void setDeadline(Date deadline) {
         this.deadline = deadline;
-    }
-
-    public List<Nominees> getAnswers() {
-        return nominees;
-    }
-
-    public void setAnswers(List<Answers> answers) {
-        this.nominees = nominees;
     }
 
     public int getElective_id() {

@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name = "answers")
 public class Answers implements Serializable {
@@ -21,6 +23,7 @@ public class Answers implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "poll_id", referencedColumnName = "poll_id")
+    @JsonBackReference
     private Polls poll;
 
     @Column

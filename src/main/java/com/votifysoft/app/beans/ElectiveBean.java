@@ -7,7 +7,6 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import com.votifysoft.model.entity.Electives;
 
-
 @Stateless
 @Remote
 public class ElectiveBean extends GenericBean<Electives> implements ElectiveBeanI {
@@ -19,7 +18,7 @@ public class ElectiveBean extends GenericBean<Electives> implements ElectiveBean
     public Integer registerElective(Electives elective) {
 
         try {
-            System.out.println("Registering elective with title : " + elective.getElectiveTitle());
+            System.out.println("Registering elective with title: " + elective.getElectiveTitle());
             getDao().addOrUpdate(elective);
 
             Integer generatedPollId = elective.getElective_id();
@@ -29,7 +28,6 @@ public class ElectiveBean extends GenericBean<Electives> implements ElectiveBean
             e.printStackTrace();
             return null;
         }
-
     }
 
     @Override

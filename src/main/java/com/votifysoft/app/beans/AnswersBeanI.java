@@ -11,4 +11,6 @@ public interface AnswersBeanI extends GenericBeanI<Answers> {
 
      public void registerVote(String poll,int choiceId);
 
+     public boolean fetchChoices();
+
 }

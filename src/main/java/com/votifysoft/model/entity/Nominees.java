@@ -9,6 +9,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name = "nominee")
 public class Nominees extends BaseEntity {
@@ -19,6 +21,7 @@ public class Nominees extends BaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "elective_id", referencedColumnName = "elective_id")
+    @JsonBackReference
     private Electives elective;
 
     @Column

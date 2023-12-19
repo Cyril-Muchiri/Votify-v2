@@ -9,10 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.votifysoft.app.beans.ActiveElectivesBeanI;
-import com.votifysoft.app.beans.ActivePollsBeanI;
 import com.votifysoft.app.beans.AuthBeanI;
-import com.votifysoft.app.beans.UserBeanI;
 import com.votifysoft.model.entity.User;
 
 import java.io.IOException;
