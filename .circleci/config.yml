@@ -29,7 +29,7 @@ version: 2.1
 executors:
   docker-publisher:
     environment:
-      IMAGE_NAME: mackie86/ecommerce
+      IMAGE_NAME: cyrilmuchiri/votify-v2
     docker:
       - image: cimg/openjdk:17.0.9-node
     
@@ -45,7 +45,7 @@ jobs:
       - run:
           name: Build Docker Image
           command: |
-            docker build -t $IMAGE_NAME:latest .
+            docker build -t $IMAGE_NAME:ultimate .
       - run:
           name: Archive Docker Image
           command: docker save -o image.tar $IMAGE_NAME
@@ -97,13 +97,13 @@ workflows:
       - build:
           filters:
             branches:
-              only: master
+              only: main
       - publish-latest:
           requires:
             - build
           filters:
             branches:
-              only: master
+              only: main
   build-tags:
     jobs:
       - build:
