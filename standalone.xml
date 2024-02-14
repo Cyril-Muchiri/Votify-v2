@@ -134,40 +134,25 @@
                         <password>sa</password>
                     </security>
                 </datasource>
-                <datasource jndi-name="java:/VotifyDS" pool-name="VotifyDS">
-                    <connection-url>jdbc:mysql://localhost:3306/votify</connection-url>
-                    <driver-class>com.mysql.cj.jdbc.Driver</driver-class>
-                    <driver>mysql</driver>
-                    <security>
-                        <user-name>root</user-name>
-                        <password>lafamilia</password>
-                    </security>
-                    <validation>
-                        <valid-connection-checker class-name="org.jboss.jca.adapters.jdbc.extensions.mysql.MySQLValidConnectionChecker"/>
-                        <validate-on-match>true</validate-on-match>
-                        <exception-sorter class-name="org.jboss.jca.adapters.jdbc.extensions.mysql.MySQLExceptionSorter"/>
-                    </validation>
-                </datasource>
-                <datasource jndi-name="java:/MySqlDS" pool-name="MySqlDS">
+                <datasource jndi-name="java:jboss/datasources/votify" pool-name="votify" enabled="true" use-java-context="true">
                     <connection-url>jdbc:mysql://mysqld:3306/votify</connection-url>
-                    <driver-class>com.mysql.cj.jdbc.Driver</driver-class>
                     <driver>mysql</driver>
+                    <pool>
+                        <min-pool-size>5</min-pool-size>
+                        <max-pool-size>20</max-pool-size>
+                        <prefill>true</prefill>
+                    </pool>
                     <security>
                         <user-name>root</user-name>
-                        <password>lafamilia</password>
+                        <password>root</password>
                     </security>
-                    <validation>
-                        <valid-connection-checker class-name="org.jboss.jca.adapters.jdbc.extensions.mysql.MySQLValidConnectionChecker"/>
-                        <validate-on-match>true</validate-on-match>
-                        <exception-sorter class-name="org.jboss.jca.adapters.jdbc.extensions.mysql.MySQLExceptionSorter"/>
-                    </validation>
                 </datasource>
+
                 <drivers>
                     <driver name="h2" module="com.h2database.h2">
                         <xa-datasource-class>org.h2.jdbcx.JdbcDataSource</xa-datasource-class>
                     </driver>
                     <driver name="mysql" module="com.mysql">
-                        <driver-class>com.mysql.cj.jdbc.Driver</driver-class>
                         <xa-datasource-class>com.mysql.cj.jdbc.MysqlXADataSource</xa-datasource-class>
                     </driver>
                 </drivers>
@@ -541,4 +526,6 @@
             <remote-destination host="${jboss.mail.server.host:localhost}" port="${jboss.mail.server.port:25}"/>
         </outbound-socket-binding>
     </socket-binding-group>
+    <deployments>
+    </deployments>
 </server>

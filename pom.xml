@@ -9,8 +9,8 @@
   <url>http://maven.apache.org</url>
 
     <properties>
-    <maven.compiler.source>11</maven.compiler.source>
-    <maven.compiler.target>11</maven.compiler.target>
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
   </properties>
 
   <dependencies>
@@ -19,13 +19,26 @@
     <artifactId>maven-jar-plugin</artifactId>
     <version>3.3.0</version>
 </dependency>
+<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
+<dependency>
+    <groupId>org.seleniumhq.selenium</groupId>
+    <artifactId>selenium-java</artifactId>
+    <version>4.17.0</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
+<dependency>
+    <groupId>org.junit.jupiter</groupId>
+    <artifactId>junit-jupiter-api</artifactId>
+    <version>5.10.1</version>
+    <scope>test</scope>
+</dependency>
 
 <dependency>
     <groupId>io.github.cdimascio</groupId>
     <artifactId>java-dotenv</artifactId>
     <version>5.2.1</version> 
 </dependency>
-
 
 <!-- https://mvnrepository.com/artifact/com.cloudinary/cloudinary-core -->
 <dependency>
@@ -56,13 +69,12 @@
     <version>8.0.1</version>
     <scope>provided</scope>
 </dependency>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
-    </dependency>
-
+<!-- https://mvnrepository.com/artifact/org.wildfly.core/wildfly-server -->
+<dependency>
+    <groupId>org.wildfly.core</groupId>
+    <artifactId>wildfly-server</artifactId>
+    <version>23.0.0.Final</version>
+</dependency>
     <dependency>
       <groupId>commons-beanutils</groupId>
       <artifactId>commons-beanutils</artifactId>
@@ -81,10 +93,18 @@
       <scope>provided</scope>
     </dependency>
 
+    <!-- https://mvnrepository.com/artifact/com.mysql/mysql-connector-j -->
+<!-- <dependency>
+    <groupId>com.mysql</groupId>
+    <artifactId>mysql-connector-j</artifactId>
+    <version>8.2.0</version>
+</dependency> -->
+
+
     <dependency>
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
-      <version>8.0.33</version>
+      <version>8.0.28</version>
     </dependency>
 
      <dependency>
@@ -99,13 +119,13 @@
     <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-war-plugin</artifactId>
-            <version>3.3.1</version>
+            <version>3.4.0</version>
         </plugin>
         <plugin>
-        <groupId>org.wildfly.plugins</groupId>
-        <artifactId>wildfly-maven-plugin</artifactId>
-        <version>4.2.0.Final</version>
-      </plugin>
+                <groupId>org.wildfly.plugins</groupId>
+                <artifactId>wildfly-maven-plugin</artifactId>
+                <version>4.2.2.Final</version>
+            </plugin>
     </plugins>
   </build>
 </project>
