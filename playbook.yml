@@ -1,0 +1,27 @@
+---
+- name: Deploy Docker containers
+  hosts: your_vm_instance
+  become: yes
+  tasks:
+    - name: Pull Docker image from Docker Hub
+      docker_image:
+        name: cyrilmuchiri/votify-v2:latest
+        source: pull
+
+    - name: Stop existing containers
+      docker_container:
+        name: your_container_name
+        state: stopped
+
+    - name: Remove existing containers
+      docker_container:
+        name: your_container_name
+        state: absent
+
+    - name: Run new Docker container
+      docker_container:
+        name: your_container_name
+        image: cyrilmuchiri/votify-v2:latest
+        ports:
+          - "8080:8080"
+        restart_policy: always

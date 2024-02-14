@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: votify-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: votify-app
+  template:
+    metadata:
+      labels:
+        app: votify-app
+    spec:
+      containers:
+      - name: votify-app
+        image: cyrilmuchiri/votify-v2:ultimate
+        env:
+        - name: MYSQL_HOST
+          value: votify-db
+        - name: MYSQL_PORT
+          value: "3306"
+        - name: MYSQL_USER
+          value: "root"
+        - name: MYSQL_PASSWORD
+          value: "root"
+        - name: MYSQL_DATABASE
+          value: "votify"
+        ports:
+        - containerPort: 8080
