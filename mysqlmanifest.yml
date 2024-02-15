@@ -1,25 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: votify-db
+  name: mysqldb
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: mysqld
+      app: mysqldb
   template:
     metadata:
       labels:
-        app: mysqld
+        app: mysqldb
     spec:
       containers:
-      - name: mysqld
+      - name: mysqldb
         image: mysql:latest
         env:
         - name: MYSQL_ROOT_PASSWORD
-          value: "root"
+          value: root
         - name: MYSQL_DATABASE
-          value: "votify"
+          value: votify
         ports:
         - containerPort: 3306
         volumeMounts:
