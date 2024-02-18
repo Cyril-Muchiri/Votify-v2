@@ -1,27 +1,58 @@
 ---
 - name: Deploy Docker containers
-  hosts: your_vm_instance
+  hosts: web
   become: yes
   tasks:
-    - name: Pull Docker image from Docker Hub
-      docker_image:
-        name: cyrilmuchiri/votify-v2:latest
-        source: pull
 
-    - name: Stop existing containers
-      docker_container:
-        name: your_container_name
-        state: stopped
+    - name: Create the working directory
+      file:
+        path: /home/chief/votify-v2
+        state: directory
 
-    - name: Remove existing containers
-      docker_container:
-        name: your_container_name
-        state: absent
+    - name: Copy Docker Compose file 
+      copy:
+        src: docker-compose.yml 
+        dest: /home/chief/votify-v2/docker-compose.yml  
+        # remote_src: yes
 
-    - name: Run new Docker container
-      docker_container:
-        name: your_container_name
-        image: cyrilmuchiri/votify-v2:latest
-        ports:
-          - "8080:8080"
-        restart_policy: always
+    - name: Check if Docker is installed
+      command: docker --version
+      register: docker_installed
+      ignore_errors: true
+
+    - name: Install Docker
+      apt:
+        name: docker.io
+        state: present
+      when: docker_installed.rc != 0
+
+    - name: Check if Docker Compose is installed
+      command: docker-compose --version
+      register: docker_compose_installed
+      ignore_errors: true
+
+    - name: Install Docker Compose
+      apt:
+        name: docker-compose
+        state: present
+      when: docker_compose_installed.rc != 0
+
+    - name: Run Docker Compose
+      command: nohup docker-compose -f docker-compose.yml up -d
+      args:
+        chdir: /home/chief/votify-v2
+
+- name: Complete Workflow
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: Send an email once complete
+      mail:
+        host: smtp.gmail.com
+        port: 587
+        username: shantyzit@gmail.com
+        password: ******
+        to: cyrilmuchiri11@gmail.com
+        subject: "Workflow completed successfully"
+        body: "The Ansible playbook has completed successfully."
+

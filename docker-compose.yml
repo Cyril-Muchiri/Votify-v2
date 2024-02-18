@@ -12,7 +12,7 @@
         - mysql-data:/var/lib/mysql
 
     votify-app:
-      image: votify-v2:ultimate
+      image: cyrilmuchiri/votify-v2:ultimate
       ports:
         - "8080:8080"
       depends_on:
