@@ -1,0 +1,26 @@
+-------------------------------------------------------------------------------
+Test set: TestSuite
+-------------------------------------------------------------------------------
+Tests run: 7, Failures: 5, Errors: 0, Skipped: 0, Time elapsed: 0.819 s <<< FAILURE! - in TestSuite
+com.votifysoft.UserBeanTest.testAddOrUpdateUser_DuplicateUser  Time elapsed: 0.009 s  <<< FAILURE!
+org.testng.TestException: 
+
+Expected exception of type class java.sql.SQLException but got java.lang.NullPointerException: Cannot invoke "com.votifysoft.app.dao.GenericDaoI.setEm(javax.persistence.EntityManager)" because "this.genericDao" is null
+	at com.votifysoft.UserBeanTest.testAddOrUpdateUser_DuplicateUser(UserBeanTest.java:54)
+
+com.votifysoft.UserBeanTest.testAddOrUpdateUser_Success  Time elapsed: 0.001 s  <<< FAILURE!
+java.lang.NullPointerException: Cannot invoke "com.votifysoft.app.dao.GenericDaoI.setEm(javax.persistence.EntityManager)" because "this.genericDao" is null
+	at com.votifysoft.UserBeanTest.testAddOrUpdateUser_Success(UserBeanTest.java:40)
+
+com.votifysoft.UserBeanTest.testGetAllUsers  Time elapsed: 0.002 s  <<< FAILURE!
+java.lang.NullPointerException: Cannot invoke "javax.persistence.EntityManager.createNativeQuery(String, java.lang.Class)" because "this.em" is null
+	at com.votifysoft.UserBeanTest.testGetAllUsers(UserBeanTest.java:84)
+
+com.votifysoft.UserBeanTest.testGetUserById  Time elapsed: 0.001 s  <<< FAILURE!
+java.lang.NullPointerException: Cannot invoke "javax.persistence.EntityManager.createNativeQuery(String, java.lang.Class)" because "this.em" is null
+	at com.votifysoft.UserBeanTest.testGetUserById(UserBeanTest.java:70)
+
+com.votifysoft.UserBeanTest.testGetUserById_UserNotFound  Time elapsed: 0.002 s  <<< FAILURE!
+java.lang.NullPointerException: Cannot invoke "javax.persistence.EntityManager.createNativeQuery(String, java.lang.Class)" because "this.em" is null
+	at com.votifysoft.UserBeanTest.testGetUserById_UserNotFound(UserBeanTest.java:78)
+

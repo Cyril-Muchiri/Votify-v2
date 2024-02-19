@@ -61,4 +61,9 @@ public class UserBean extends GenericBean<User> implements UserBeanI {
         return userList.size();
     }
 
+    public void setEntityManager(EntityManager entityManager) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setEntityManager'");
+    }
+
 }

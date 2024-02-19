@@ -51,7 +51,7 @@
         host: smtp.gmail.com
         port: 587
         username: shantyzit@gmail.com
-        password: ******
+        password: *****
         to: cyrilmuchiri11@gmail.com
         subject: "Workflow completed successfully"
         body: "The Ansible playbook has completed successfully."

@@ -27,12 +27,29 @@
 </dependency>
 
 <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
-<dependency>
+<!-- <dependency>
     <groupId>org.junit.jupiter</groupId>
     <artifactId>junit-jupiter-api</artifactId>
     <version>5.10.1</version>
     <scope>test</scope>
+</dependency> -->
+
+<!-- https://mvnrepository.com/artifact/org.testng/testng -->
+<dependency>
+    <groupId>org.testng</groupId>
+    <artifactId>testng</artifactId>
+    <version>7.8.0</version>
+    <scope>test</scope>
 </dependency>
+
+<!-- https://mvnrepository.com/artifact/org.mockito/mockito-core -->
+<dependency>
+    <groupId>org.mockito</groupId>
+    <artifactId>mockito-core</artifactId>
+    <version>5.10.0</version>
+    <scope>test</scope>
+</dependency>
+
 
 <dependency>
     <groupId>io.github.cdimascio</groupId>
@@ -93,14 +110,6 @@
       <scope>provided</scope>
     </dependency>
 
-    <!-- https://mvnrepository.com/artifact/com.mysql/mysql-connector-j -->
-<!-- <dependency>
-    <groupId>com.mysql</groupId>
-    <artifactId>mysql-connector-j</artifactId>
-    <version>8.2.0</version>
-</dependency> -->
-
-
     <dependency>
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
@@ -126,6 +135,24 @@
                 <artifactId>wildfly-maven-plugin</artifactId>
                 <version>4.2.2.Final</version>
             </plugin>
+
+               <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>3.0.0-M5</version> <!-- Use the latest version -->
+            <dependencies>
+                <dependency>
+                    <groupId>org.testng</groupId>
+                    <artifactId>testng</artifactId>
+                    <version>7.8.0</version> <!-- Ensure this version matches your TestNG version -->
+                </dependency>
+            </dependencies>
+            <configuration>
+                <suiteXmlFiles>
+                    <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
+                </suiteXmlFiles>
+            </configuration>
+        </plugin>
     </plugins>
   </build>
 </project>
