@@ -1,38 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="7" passed="2" failed="5" skipped="0">
+<testng-results ignored="0" total="7" passed="7" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2024-02-19T15:40:43 EAT" name="Suite1" finished-at="2024-02-19T15:40:43 EAT" duration-ms="72">
+  <suite started-at="2024-02-19T18:35:50 EAT" name="Suite1" finished-at="2024-02-19T18:35:50 EAT" duration-ms="62">
     <groups>
     </groups>
-    <test started-at="2024-02-19T15:40:43 EAT" name="Regression1" finished-at="2024-02-19T15:40:43 EAT" duration-ms="72">
+    <test started-at="2024-02-19T18:35:50 EAT" name="Regression1" finished-at="2024-02-19T18:35:50 EAT" duration-ms="62">
       <class name="com.votifysoft.App">
-        <test-method is-config="true" signature="testBeforeSuite()[pri:0, instance:com.votifysoft.App@313ac989]" started-at="2024-02-19T15:40:43 EAT" name="testBeforeSuite" finished-at="2024-02-19T15:40:43 EAT" duration-ms="13" status="PASS">
+        <test-method is-config="true" signature="testBeforeSuite()[pri:0, instance:com.votifysoft.App@34a3d150]" started-at="2024-02-19T18:35:50 EAT" name="testBeforeSuite" finished-at="2024-02-19T18:35:50 EAT" duration-ms="10" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testBeforeSuite -->
-        <test-method signature="testActual()[pri:0, instance:com.votifysoft.App@313ac989]" started-at="2024-02-19T15:40:43 EAT" name="testActual" finished-at="2024-02-19T15:40:43 EAT" duration-ms="1" status="PASS">
+        <test-method signature="testActual()[pri:0, instance:com.votifysoft.App@34a3d150]" started-at="2024-02-19T18:35:50 EAT" name="testActual" finished-at="2024-02-19T18:35:50 EAT" duration-ms="2" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testActual -->
       </class> <!-- com.votifysoft.App -->
       <class name="com.votifysoft.UserBeanTest">
-        <test-method is-config="true" signature="setUp()[pri:0, instance:com.votifysoft.UserBeanTest@6f1de4c7]" started-at="2024-02-19T15:40:43 EAT" name="setUp" finished-at="2024-02-19T15:40:43 EAT" duration-ms="5" status="PASS">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.votifysoft.UserBeanTest@368f2016]" started-at="2024-02-19T18:35:50 EAT" name="setUp" finished-at="2024-02-19T18:35:50 EAT" duration-ms="4" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="testAddOrUpdateUser_DuplicateUser()[pri:0, instance:com.votifysoft.UserBeanTest@6f1de4c7]" started-at="2024-02-19T15:40:43 EAT" name="testAddOrUpdateUser_DuplicateUser" finished-at="2024-02-19T15:40:43 EAT" duration-ms="2" status="FAIL">
-          <exception class="org.testng.TestException">
+        <test-method signature="testAddOrUpdateUser_DuplicateUser()[pri:0, instance:com.votifysoft.UserBeanTest@368f2016]" started-at="2024-02-19T18:35:50 EAT" name="testAddOrUpdateUser_DuplicateUser" finished-at="2024-02-19T18:35:50 EAT" duration-ms="1" status="PASS">
+          <exception class="java.lang.NullPointerException">
             <message>
-              <![CDATA[
-Expected exception of type class java.sql.SQLException but got java.lang.NullPointerException: Cannot invoke "com.votifysoft.app.dao.GenericDaoI.setEm(javax.persistence.EntityManager)" because "this.genericDao" is null]]>
+              <![CDATA[Cannot invoke "com.votifysoft.app.dao.GenericDaoI.setEm(javax.persistence.EntityManager)" because "this.genericDao" is null]]>
             </message>
             <full-stacktrace>
-              <![CDATA[org.testng.TestException: 
-Expected exception of type class java.sql.SQLException but got java.lang.NullPointerException: Cannot invoke "com.votifysoft.app.dao.GenericDaoI.setEm(javax.persistence.EntityManager)" because "this.genericDao" is null
-at org.testng.internal.invokers.ExpectedExceptionsHolder.wrongException(ExpectedExceptionsHolder.java:67)
-at org.testng.internal.invokers.TestInvoker.considerExceptions(TestInvoker.java:850)
-at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:718)
+              <![CDATA[java.lang.NullPointerException: Cannot invoke "com.votifysoft.app.dao.GenericDaoI.setEm(javax.persistence.EntityManager)" because "this.genericDao" is null
+at com.votifysoft.app.beans.GenericBean.list(GenericBean.java:22)
+at com.votifysoft.app.beans.UserBean.addOrUpdate(UserBean.java:30)
+at com.votifysoft.UserBeanTest.testAddOrUpdateUser_DuplicateUser(UserBeanTest.java:58)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:664)
 at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:227)
 at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:50)
 at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:957)
@@ -59,24 +63,13 @@ at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter
 at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
 at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:562)
 at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:548)
-Caused by: java.lang.NullPointerException: Cannot invoke "com.votifysoft.app.dao.GenericDaoI.setEm(javax.persistence.EntityManager)" because "this.genericDao" is null
-at com.votifysoft.app.beans.GenericBean.list(GenericBean.java:22)
-at com.votifysoft.app.beans.UserBean.addOrUpdate(UserBean.java:30)
-at com.votifysoft.UserBeanTest.testAddOrUpdateUser_DuplicateUser(UserBeanTest.java:54)
-at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
-at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:664)
-... 26 more
 ]]>
             </full-stacktrace>
-          </exception> <!-- org.testng.TestException -->
+          </exception> <!-- java.lang.NullPointerException -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testAddOrUpdateUser_DuplicateUser -->
-        <test-method signature="testAddOrUpdateUser_Exception()[pri:0, instance:com.votifysoft.UserBeanTest@6f1de4c7]" started-at="2024-02-19T15:40:43 EAT" name="testAddOrUpdateUser_Exception" finished-at="2024-02-19T15:40:43 EAT" duration-ms="1" status="PASS">
+        <test-method signature="testAddOrUpdateUser_Exception()[pri:0, instance:com.votifysoft.UserBeanTest@368f2016]" started-at="2024-02-19T18:35:50 EAT" name="testAddOrUpdateUser_Exception" finished-at="2024-02-19T18:35:50 EAT" duration-ms="1" status="PASS">
           <exception class="java.lang.NullPointerException">
             <message>
               <![CDATA[Cannot invoke "com.votifysoft.app.dao.GenericDaoI.setEm(javax.persistence.EntityManager)" because "this.genericDao" is null]]>
@@ -85,7 +78,7 @@ at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:664)
               <![CDATA[java.lang.NullPointerException: Cannot invoke "com.votifysoft.app.dao.GenericDaoI.setEm(javax.persistence.EntityManager)" because "this.genericDao" is null
 at com.votifysoft.app.beans.GenericBean.list(GenericBean.java:22)
 at com.votifysoft.app.beans.UserBean.addOrUpdate(UserBean.java:30)
-at com.votifysoft.UserBeanTest.testAddOrUpdateUser_Exception(UserBeanTest.java:64)
+at com.votifysoft.UserBeanTest.testAddOrUpdateUser_Exception(UserBeanTest.java:68)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -124,7 +117,7 @@ at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:548)
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testAddOrUpdateUser_Exception -->
-        <test-method signature="testAddOrUpdateUser_Success()[pri:0, instance:com.votifysoft.UserBeanTest@6f1de4c7]" started-at="2024-02-19T15:40:43 EAT" name="testAddOrUpdateUser_Success" finished-at="2024-02-19T15:40:43 EAT" duration-ms="0" status="FAIL">
+        <test-method signature="testAddOrUpdateUser_Success()[pri:0, instance:com.votifysoft.UserBeanTest@368f2016]" started-at="2024-02-19T18:35:50 EAT" name="testAddOrUpdateUser_Success" finished-at="2024-02-19T18:35:50 EAT" duration-ms="1" status="PASS">
           <exception class="java.lang.NullPointerException">
             <message>
               <![CDATA[Cannot invoke "com.votifysoft.app.dao.GenericDaoI.setEm(javax.persistence.EntityManager)" because "this.genericDao" is null]]>
@@ -133,7 +126,7 @@ at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:548)
               <![CDATA[java.lang.NullPointerException: Cannot invoke "com.votifysoft.app.dao.GenericDaoI.setEm(javax.persistence.EntityManager)" because "this.genericDao" is null
 at com.votifysoft.app.beans.GenericBean.list(GenericBean.java:22)
 at com.votifysoft.app.beans.UserBean.addOrUpdate(UserBean.java:30)
-at com.votifysoft.UserBeanTest.testAddOrUpdateUser_Success(UserBeanTest.java:40)
+at com.votifysoft.UserBeanTest.testAddOrUpdateUser_Success(UserBeanTest.java:44)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -172,7 +165,7 @@ at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:548)
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testAddOrUpdateUser_Success -->
-        <test-method signature="testGetAllUsers()[pri:0, instance:com.votifysoft.UserBeanTest@6f1de4c7]" started-at="2024-02-19T15:40:43 EAT" name="testGetAllUsers" finished-at="2024-02-19T15:40:43 EAT" duration-ms="1" status="FAIL">
+        <test-method signature="testGetAllUsers()[pri:0, instance:com.votifysoft.UserBeanTest@368f2016]" started-at="2024-02-19T18:35:50 EAT" name="testGetAllUsers" finished-at="2024-02-19T18:35:50 EAT" duration-ms="2" status="PASS">
           <exception class="java.lang.NullPointerException">
             <message>
               <![CDATA[Cannot invoke "javax.persistence.EntityManager.createNativeQuery(String, java.lang.Class)" because "this.em" is null]]>
@@ -180,7 +173,7 @@ at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:548)
             <full-stacktrace>
               <![CDATA[java.lang.NullPointerException: Cannot invoke "javax.persistence.EntityManager.createNativeQuery(String, java.lang.Class)" because "this.em" is null
 at com.votifysoft.app.beans.UserBean.getAllUsers(UserBean.java:60)
-at com.votifysoft.UserBeanTest.testGetAllUsers(UserBeanTest.java:84)
+at com.votifysoft.UserBeanTest.testGetAllUsers(UserBeanTest.java:88)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -219,7 +212,7 @@ at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:548)
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testGetAllUsers -->
-        <test-method signature="testGetUserById()[pri:0, instance:com.votifysoft.UserBeanTest@6f1de4c7]" started-at="2024-02-19T15:40:43 EAT" name="testGetUserById" finished-at="2024-02-19T15:40:43 EAT" duration-ms="1" status="FAIL">
+        <test-method signature="testGetUserById()[pri:0, instance:com.votifysoft.UserBeanTest@368f2016]" started-at="2024-02-19T18:35:50 EAT" name="testGetUserById" finished-at="2024-02-19T18:35:50 EAT" duration-ms="1" status="PASS">
           <exception class="java.lang.NullPointerException">
             <message>
               <![CDATA[Cannot invoke "javax.persistence.EntityManager.createNativeQuery(String, java.lang.Class)" because "this.em" is null]]>
@@ -227,7 +220,7 @@ at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:548)
             <full-stacktrace>
               <![CDATA[java.lang.NullPointerException: Cannot invoke "javax.persistence.EntityManager.createNativeQuery(String, java.lang.Class)" because "this.em" is null
 at com.votifysoft.app.beans.UserBean.getUserById(UserBean.java:51)
-at com.votifysoft.UserBeanTest.testGetUserById(UserBeanTest.java:70)
+at com.votifysoft.UserBeanTest.testGetUserById(UserBeanTest.java:74)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -266,7 +259,7 @@ at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:548)
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testGetUserById -->
-        <test-method signature="testGetUserById_UserNotFound()[pri:0, instance:com.votifysoft.UserBeanTest@6f1de4c7]" started-at="2024-02-19T15:40:43 EAT" name="testGetUserById_UserNotFound" finished-at="2024-02-19T15:40:43 EAT" duration-ms="1" status="FAIL">
+        <test-method signature="testGetUserById_UserNotFound()[pri:0, instance:com.votifysoft.UserBeanTest@368f2016]" started-at="2024-02-19T18:35:50 EAT" name="testGetUserById_UserNotFound" finished-at="2024-02-19T18:35:50 EAT" duration-ms="1" status="PASS">
           <exception class="java.lang.NullPointerException">
             <message>
               <![CDATA[Cannot invoke "javax.persistence.EntityManager.createNativeQuery(String, java.lang.Class)" because "this.em" is null]]>
@@ -274,7 +267,7 @@ at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:548)
             <full-stacktrace>
               <![CDATA[java.lang.NullPointerException: Cannot invoke "javax.persistence.EntityManager.createNativeQuery(String, java.lang.Class)" because "this.em" is null
 at com.votifysoft.app.beans.UserBean.getUserById(UserBean.java:51)
-at com.votifysoft.UserBeanTest.testGetUserById_UserNotFound(UserBeanTest.java:78)
+at com.votifysoft.UserBeanTest.testGetUserById_UserNotFound(UserBeanTest.java:82)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)

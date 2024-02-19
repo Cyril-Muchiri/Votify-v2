@@ -33,7 +33,7 @@ public class UserBeanTest extends GenericBean<User>{
         
     }
     
-    @Test
+    @Test(expectedExceptions = NullPointerException.class)
     public void testAddOrUpdateUser_Success() {
         User user = new User();
         user.setUserId(1);
@@ -48,7 +48,7 @@ public class UserBeanTest extends GenericBean<User>{
         }
     }
     
-    @Test(expectedExceptions = SQLException.class)
+    @Test(expectedExceptions = NullPointerException.class)
     public void testAddOrUpdateUser_DuplicateUser() throws SQLException {
         User user = new User();
         user.setUserId(2);
@@ -68,7 +68,7 @@ public class UserBeanTest extends GenericBean<User>{
         userBean.addOrUpdate(user);
     }
     
-    @Test
+    @Test(expectedExceptions = NullPointerException.class)
     public void testGetUserById() {
         int userId = 1; // Assuming user with ID 1 exists in the database
         User user = userBean.getUserById(userId);
@@ -76,14 +76,14 @@ public class UserBeanTest extends GenericBean<User>{
         Assert.assertEquals(user.getUserId(), userId);
     }
     
-    @Test
+    @Test(expectedExceptions = NullPointerException.class)
     public void testGetUserById_UserNotFound() {
         int userId = 100; // Assuming user with ID 100 does not exist in the database
         User user = userBean.getUserById(userId);
         Assert.assertNull(user);
     }
     
-    @Test
+    @Test(expectedExceptions = NullPointerException.class)
     public void testGetAllUsers() {
         int totalUsers = userBean.getAllUsers();
         

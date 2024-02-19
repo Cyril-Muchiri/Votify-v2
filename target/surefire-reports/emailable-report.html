@@ -9,45 +9,42 @@
 <table>
 <tr><th>Test</th><th># Passed</th><th># Skipped</th><th># Retried</th><th># Failed</th><th>Time (ms)</th><th>Included Groups</th><th>Excluded Groups</th></tr>
 <tr><th colspan="8">Suite1</th></tr>
-<tr><td><a href="#t0">Regression1</a></td><td class="num">2</td><td class="num">0</td><td class="num">0</td><td class="num attn">5</td><td class="num">72</td><td></td><td></td></tr>
+<tr><td><a href="#t0">Regression1</a></td><td class="num">7</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">62</td><td></td><td></td></tr>
 </table>
-<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">Suite1</th></tr></tbody><tbody id="t0"><tr><th colspan="4">Regression1 &#8212; failed</th></tr><tr class="failedeven"><td rowspan="5">com.votifysoft.UserBeanTest</td><td><a href="#m0">testAddOrUpdateUser_DuplicateUser</a></td><td rowspan="1">1708346443409</td><td rowspan="1">2</td></tr><tr class="failedeven"><td><a href="#m1">testAddOrUpdateUser_Success</a></td><td rowspan="1">1708346443422</td><td rowspan="1">0</td></tr><tr class="failedeven"><td><a href="#m2">testGetAllUsers</a></td><td rowspan="1">1708346443424</td><td rowspan="1">1</td></tr><tr class="failedeven"><td><a href="#m3">testGetUserById</a></td><td rowspan="1">1708346443427</td><td rowspan="1">1</td></tr><tr class="failedeven"><td><a href="#m4">testGetUserById_UserNotFound</a></td><td rowspan="1">1708346443433</td><td rowspan="1">1</td></tr><tr><th colspan="4">Regression1 &#8212; passed</th></tr><tr class="passedeven"><td rowspan="1">com.votifysoft.App</td><td><a href="#m5">testActual</a></td><td rowspan="1">1708346443397</td><td rowspan="1">1</td></tr><tr class="passedodd"><td rowspan="1">com.votifysoft.UserBeanTest</td><td><a href="#m6">testAddOrUpdateUser_Exception</a></td><td rowspan="1">1708346443419</td><td rowspan="1">1</td></tr></tbody>
+<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">Suite1</th></tr></tbody><tbody id="t0"><tr><th colspan="4">Regression1 &#8212; passed</th></tr><tr class="passedeven"><td rowspan="1">com.votifysoft.App</td><td><a href="#m0">testActual</a></td><td rowspan="1">1708356950447</td><td rowspan="1">2</td></tr><tr class="passedodd"><td rowspan="6">com.votifysoft.UserBeanTest</td><td><a href="#m1">testAddOrUpdateUser_DuplicateUser</a></td><td rowspan="1">1708356950461</td><td rowspan="1">1</td></tr><tr class="passedodd"><td><a href="#m2">testAddOrUpdateUser_Exception</a></td><td rowspan="1">1708356950465</td><td rowspan="1">1</td></tr><tr class="passedodd"><td><a href="#m3">testAddOrUpdateUser_Success</a></td><td rowspan="1">1708356950467</td><td rowspan="1">1</td></tr><tr class="passedodd"><td><a href="#m4">testGetAllUsers</a></td><td rowspan="1">1708356950474</td><td rowspan="1">2</td></tr><tr class="passedodd"><td><a href="#m5">testGetUserById</a></td><td rowspan="1">1708356950478</td><td rowspan="1">1</td></tr><tr class="passedodd"><td><a href="#m6">testGetUserById_UserNotFound</a></td><td rowspan="1">1708356950483</td><td rowspan="1">1</td></tr></tbody>
 </table>
-<h2>Regression1</h2><h3 id="m0">com.votifysoft.UserBeanTest#testAddOrUpdateUser_DuplicateUser</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">org.testng.TestException: 
-Expected exception of type class java.sql.SQLException but got java.lang.NullPointerException: Cannot invoke &quot;com.votifysoft.app.dao.GenericDaoI.setEm(javax.persistence.EntityManager)&quot; because &quot;this.genericDao&quot; is null
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-Caused by: java.lang.NullPointerException: Cannot invoke &quot;com.votifysoft.app.dao.GenericDaoI.setEm(javax.persistence.EntityManager)&quot; because &quot;this.genericDao&quot; is null
+<h2>Regression1</h2><h3 id="m0">com.votifysoft.App#testActual</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m1">com.votifysoft.UserBeanTest#testAddOrUpdateUser_DuplicateUser</h3><table class="result"><tr><th>Expected Exception</th></tr><tr><td><div class="stacktrace">java.lang.NullPointerException: Cannot invoke &quot;com.votifysoft.app.dao.GenericDaoI.setEm(javax.persistence.EntityManager)&quot; because &quot;this.genericDao&quot; is null
 	at com.votifysoft.app.beans.GenericBean.list(GenericBean.java:22)
 	at com.votifysoft.app.beans.UserBean.addOrUpdate(UserBean.java:30)
-	at com.votifysoft.UserBeanTest.testAddOrUpdateUser_DuplicateUser(UserBeanTest.java:54)
-	... 26 more
-... Removed 34 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m1">com.votifysoft.UserBeanTest#testAddOrUpdateUser_Success</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">java.lang.NullPointerException: Cannot invoke &quot;com.votifysoft.app.dao.GenericDaoI.setEm(javax.persistence.EntityManager)&quot; because &quot;this.genericDao&quot; is null
-	at com.votifysoft.app.beans.GenericBean.list(GenericBean.java:22)
-	at com.votifysoft.app.beans.UserBean.addOrUpdate(UserBean.java:30)
-	at com.votifysoft.UserBeanTest.testAddOrUpdateUser_Success(UserBeanTest.java:40)
+	at com.votifysoft.UserBeanTest.testAddOrUpdateUser_DuplicateUser(UserBeanTest.java:58)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
 ... Removed 31 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m2">com.votifysoft.UserBeanTest#testGetAllUsers</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">java.lang.NullPointerException: Cannot invoke &quot;javax.persistence.EntityManager.createNativeQuery(String, java.lang.Class)&quot; because &quot;this.em&quot; is null
+<h3 id="m2">com.votifysoft.UserBeanTest#testAddOrUpdateUser_Exception</h3><table class="result"><tr><th>Expected Exception</th></tr><tr><td><div class="stacktrace">java.lang.NullPointerException: Cannot invoke &quot;com.votifysoft.app.dao.GenericDaoI.setEm(javax.persistence.EntityManager)&quot; because &quot;this.genericDao&quot; is null
+	at com.votifysoft.app.beans.GenericBean.list(GenericBean.java:22)
+	at com.votifysoft.app.beans.UserBean.addOrUpdate(UserBean.java:30)
+	at com.votifysoft.UserBeanTest.testAddOrUpdateUser_Exception(UserBeanTest.java:68)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+... Removed 31 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m3">com.votifysoft.UserBeanTest#testAddOrUpdateUser_Success</h3><table class="result"><tr><th>Expected Exception</th></tr><tr><td><div class="stacktrace">java.lang.NullPointerException: Cannot invoke &quot;com.votifysoft.app.dao.GenericDaoI.setEm(javax.persistence.EntityManager)&quot; because &quot;this.genericDao&quot; is null
+	at com.votifysoft.app.beans.GenericBean.list(GenericBean.java:22)
+	at com.votifysoft.app.beans.UserBean.addOrUpdate(UserBean.java:30)
+	at com.votifysoft.UserBeanTest.testAddOrUpdateUser_Success(UserBeanTest.java:44)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+... Removed 31 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m4">com.votifysoft.UserBeanTest#testGetAllUsers</h3><table class="result"><tr><th>Expected Exception</th></tr><tr><td><div class="stacktrace">java.lang.NullPointerException: Cannot invoke &quot;javax.persistence.EntityManager.createNativeQuery(String, java.lang.Class)&quot; because &quot;this.em&quot; is null
 	at com.votifysoft.app.beans.UserBean.getAllUsers(UserBean.java:60)
-	at com.votifysoft.UserBeanTest.testGetAllUsers(UserBeanTest.java:84)
+	at com.votifysoft.UserBeanTest.testGetAllUsers(UserBeanTest.java:88)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
 ... Removed 31 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m3">com.votifysoft.UserBeanTest#testGetUserById</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">java.lang.NullPointerException: Cannot invoke &quot;javax.persistence.EntityManager.createNativeQuery(String, java.lang.Class)&quot; because &quot;this.em&quot; is null
+<h3 id="m5">com.votifysoft.UserBeanTest#testGetUserById</h3><table class="result"><tr><th>Expected Exception</th></tr><tr><td><div class="stacktrace">java.lang.NullPointerException: Cannot invoke &quot;javax.persistence.EntityManager.createNativeQuery(String, java.lang.Class)&quot; because &quot;this.em&quot; is null
 	at com.votifysoft.app.beans.UserBean.getUserById(UserBean.java:51)
-	at com.votifysoft.UserBeanTest.testGetUserById(UserBeanTest.java:70)
+	at com.votifysoft.UserBeanTest.testGetUserById(UserBeanTest.java:74)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
 ... Removed 31 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m4">com.votifysoft.UserBeanTest#testGetUserById_UserNotFound</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">java.lang.NullPointerException: Cannot invoke &quot;javax.persistence.EntityManager.createNativeQuery(String, java.lang.Class)&quot; because &quot;this.em&quot; is null
+<h3 id="m6">com.votifysoft.UserBeanTest#testGetUserById_UserNotFound</h3><table class="result"><tr><th>Expected Exception</th></tr><tr><td><div class="stacktrace">java.lang.NullPointerException: Cannot invoke &quot;javax.persistence.EntityManager.createNativeQuery(String, java.lang.Class)&quot; because &quot;this.em&quot; is null
 	at com.votifysoft.app.beans.UserBean.getUserById(UserBean.java:51)
-	at com.votifysoft.UserBeanTest.testGetUserById_UserNotFound(UserBeanTest.java:78)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-... Removed 31 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m5">com.votifysoft.App#testActual</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m6">com.votifysoft.UserBeanTest#testAddOrUpdateUser_Exception</h3><table class="result"><tr><th>Expected Exception</th></tr><tr><td><div class="stacktrace">java.lang.NullPointerException: Cannot invoke &quot;com.votifysoft.app.dao.GenericDaoI.setEm(javax.persistence.EntityManager)&quot; because &quot;this.genericDao&quot; is null
-	at com.votifysoft.app.beans.GenericBean.list(GenericBean.java:22)
-	at com.votifysoft.app.beans.UserBean.addOrUpdate(UserBean.java:30)
-	at com.votifysoft.UserBeanTest.testAddOrUpdateUser_Exception(UserBeanTest.java:64)
+	at com.votifysoft.UserBeanTest.testGetUserById_UserNotFound(UserBeanTest.java:82)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
 ... Removed 31 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
 </body>
