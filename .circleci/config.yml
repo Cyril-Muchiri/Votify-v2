@@ -168,24 +168,23 @@ jobs:
             docker push $IMAGE_NAME:ultimate
             docker push $IMAGE_NAME:$IMAGE_TAG
 
- deploy:
-  docker:
-    - image: circleci/python:3.8
-  steps:
-    - checkout
-    - run:
-        name: Install Ansible
-        command: |
-          sudo apt update
-          sudo apt install -y ansible
-    - add_ssh_keys:
-        fingerprints:
-          - "${SSH_FINGERPRINT}"
-    - run:
-        name: Deploy with Ansible
-        command: |
-          ansible-playbook -i inventory.ini playbook.yml
-
+  deploy:
+    docker:
+      - image: circleci/python:3.8
+    steps:
+      - checkout
+      - run:
+          name: Install Ansible
+          command: |
+            sudo apt update
+            sudo apt install -y ansible
+      - add_ssh_keys:
+          fingerprints:
+            - "${SSH_FINGERPRINT}"
+      - run:
+          name: Deploy with Ansible
+          command: |
+            ansible-playbook -i inventory.ini playbook.yml
 
 workflows:
   version: 2
