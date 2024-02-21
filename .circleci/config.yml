@@ -180,7 +180,7 @@ jobs:
             sudo apt install -y ansible
       - add_ssh_keys:
           fingerprints:
-            - "${SSH_FINGERPRINT}"
+            - SHA256:E9G7LXUfeVlgIqXaQ9cQuQ9wMCwn2qxo7Ke6ZgYfL5o
       - run:
           name: Deploy with Ansible
           command: |
