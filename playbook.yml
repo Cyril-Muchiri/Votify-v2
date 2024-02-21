@@ -1,9 +1,7 @@
----
 - name: Deploy Docker containers
   hosts: web
   become: yes
   tasks:
-
     - name: Create the working directory
       file:
         path: /home/chief/votify-v2
@@ -20,39 +18,30 @@
       register: docker_installed
       ignore_errors: true
 
-    - name: Install Docker
-      apt:
-        name: docker.io
+    - name: Add Docker GPG apt Key
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
         state: present
-      when: docker_installed.rc != 0
+      become: true
 
-    - name: Check if Docker Compose is installed
-      command: docker-compose --version
-      register: docker_compose_installed
-      ignore_errors: true
-
-    - name: Install Docker Compose
-      apt:
-        name: docker-compose
+    - name: Add Docker Repository
+      apt_repository:
+        repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable
         state: present
-      when: docker_compose_installed.rc != 0
+      become: true
+
+    - name: Install Docker and Docker-Compose
+      apt:
+        pkg:
+          - docker
+          - docker-ce
+          - docker-compose
+        state: latest
+        update_cache: yes
+      become: true
 
     - name: Run Docker Compose
       command: nohup docker-compose -f docker-compose.yml up -d
       args:
         chdir: /home/chief/votify-v2
-
-- name: Complete Workflow
-  hosts: localhost
-  connection: local
-  tasks:
-    - name: Send an email once complete
-      mail:
-        host: smtp.gmail.com
-        port: 587
-        username: shantyzit@gmail.com
-        password: *****
-        to: cyrilmuchiri11@gmail.com
-        subject: "Workflow completed successfully"
-        body: "The Ansible playbook has completed successfully."
 
