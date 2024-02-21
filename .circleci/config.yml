@@ -84,7 +84,7 @@ jobs:
       - run:
           name: Deploy with Ansible
           command: |
-            ansible-playbook -i inventory.ini playbook.yml
+            ansible-playbook -i inventory.ini staging-playbook.yml
 
 workflows:
   version: 2
