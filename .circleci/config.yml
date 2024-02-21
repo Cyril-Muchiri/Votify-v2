@@ -20,7 +20,7 @@ jobs:
       - run:
           name: Build Docker Image
           command: |
-            docker build -t $IMAGE_NAME:staging -f staging-Dockerfile
+            docker build -t $IMAGE_NAME:staging -f staging-Dockerfile .
       - run:
           name: Archive Docker Image
           command: docker save -o image.tar $IMAGE_NAME
