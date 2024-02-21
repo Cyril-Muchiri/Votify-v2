@@ -184,7 +184,7 @@ jobs:
       - run:
           name: Deploy with Ansible
           command: |
-             echo "StrictHostKeyChecking no" >> ~/.ssh/config 
+             echo "yes" | ssh -o StrictHostKeyChecking=no chief@34.173.54.57
              ansible-playbook -i inventory.ini playbook.yml
 
 workflows:
