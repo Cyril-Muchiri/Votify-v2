@@ -135,7 +135,7 @@
                     </security>
                 </datasource>
                 <datasource jndi-name="java:jboss/datasources/votify" pool-name="votify" enabled="true" use-java-context="true">
-                    <connection-url>jdbc:mysql://mysqld:3306/votify</connection-url>
+                    <connection-url>jdbc:mysql://mysqld:3307/votify</connection-url>
                     <driver>mysql</driver>
                     <pool>
                         <min-pool-size>5</min-pool-size>
@@ -516,7 +516,7 @@
     </interfaces>
     <socket-binding-group name="standard-sockets" default-interface="public" port-offset="${jboss.socket.binding.port-offset:0}">
         <socket-binding name="ajp" port="${jboss.ajp.port:8009}"/>
-        <socket-binding name="http" port="${jboss.http.port:8080}"/>
+        <socket-binding name="http" port="${jboss.http.port:8081}"/>
         <socket-binding name="https" port="${jboss.https.port:8443}"/>
         <socket-binding name="management-http" interface="management" port="${jboss.management.http.port:9990}"/>
         <socket-binding name="management-https" interface="management" port="${jboss.management.https.port:9993}"/>
