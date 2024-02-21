@@ -20,7 +20,7 @@ jobs:
       - run:
           name: Build Docker Image
           command: |
-            docker build -t $IMAGE_NAME:ultimate .
+            docker build -t $IMAGE_NAME:staging -f staging-Dockerfile
       - run:
           name: Archive Docker Image
           command: docker save -o image.tar $IMAGE_NAME
@@ -44,8 +44,8 @@ jobs:
           command: |
             echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
             IMAGE_TAG="0.0.${CIRCLE_BUILD_NUM}"
-            docker tag $IMAGE_NAME:ultimate $IMAGE_NAME:$IMAGE_TAG
-            docker push $IMAGE_NAME:ultimate
+            docker tag $IMAGE_NAME:staging $IMAGE_NAME:$IMAGE_TAG
+            docker push $IMAGE_NAME:staging
             docker push $IMAGE_NAME:$IMAGE_TAG
 
   publish-tag:
@@ -63,8 +63,8 @@ jobs:
           command: |
             echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
             IMAGE_TAG=${CIRCLE_TAG/v/''}
-            docker tag $IMAGE_NAME:ultimate $IMAGE_NAME:$IMAGE_TAG
-            docker push $IMAGE_NAME:ultimate
+            docker tag $IMAGE_NAME:staging $IMAGE_NAME:$IMAGE_TAG
+            docker push $IMAGE_NAME:staging
             docker push $IMAGE_NAME:$IMAGE_TAG
 
   deploy:
@@ -93,19 +93,19 @@ workflows:
       - build:
           filters:
             branches:
-              only: main
+              only: staging
       - publish-latest:
           requires:
             - build
           filters:
             branches:
-              only: main
+              only: staging
       - deploy:
           requires:
             - build
           filters:
             branches:
-              only: main
+              only: staging
               
 
   build-tags:

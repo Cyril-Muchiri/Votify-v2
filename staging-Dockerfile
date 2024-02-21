@@ -22,6 +22,6 @@ COPY --from=build /app/module.xml /opt/jboss/wildfly/modules/system/layers/base/
 COPY --from=build /app/mysql-connector-j-8.2.0.jar /opt/jboss/wildfly/modules/system/layers/base/com/mysql/main/
 
 
-EXPOSE 8080
+EXPOSE 8081
 
 CMD ["/opt/jboss/wildfly/bin/standalone.sh", "-b", "0.0.0.0"]

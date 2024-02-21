@@ -3,7 +3,7 @@
   services:
     mysqld:
       image: mysql:latest
-      container_name: votify-db
+      container_name: votify-staging-db
       restart: always
       environment:
         MYSQL_ROOT_PASSWORD: root
@@ -12,14 +12,14 @@
         - mysql-data:/var/lib/mysql
 
     votify-app:
-      image: cyrilmuchiri/votify-v2:ultimate
+      image: cyrilmuchiri/votify-v2:staging
       ports:
-        - "8080:8080"
+        - "8081:8081"
       depends_on:
         - mysqld
       environment:
         MYSQL_HOST: mysqld
-        MYSQL_PORT: 3306
+        MYSQL_PORT: 3307
         MYSQL_USER: root
         MYSQL_PASSWORD: root
         MYSQL_DATABASE: votify
