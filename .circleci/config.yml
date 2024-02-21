@@ -2,7 +2,7 @@ version: 2.1
 executors:
   docker-publisher:
     environment:
-      IMAGE_NAME: cyrilmuchiri/votify-v2
+      IMAGE_NAME: cyrilmuchiri/votify-staging
     docker:
       - image: cimg/openjdk:17.0.9-node
 
@@ -20,7 +20,7 @@ jobs:
       - run:
           name: Build Docker Image
           command: |
-            docker build -t $IMAGE_NAME:ultimate .
+            docker build -t $IMAGE_NAME:staging -f staging-Dockerfile .
       - run:
           name: Archive Docker Image
           command: docker save -o image.tar $IMAGE_NAME
@@ -44,9 +44,9 @@ jobs:
           command: |
             echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
             IMAGE_TAG="0.0.${CIRCLE_BUILD_NUM}"
-            docker tag $IMAGE_NAME:ultimate $IMAGE_NAME:$IMAGE_TAG
-            docker push $IMAGE_NAME:ultimate
-            docker push $IMAGE_NAME:$IMAGE_TAG
+            docker tag $IMAGE_NAME:staging $IMAGE_NAME:staging
+            docker push $IMAGE_NAME:staging
+            docker push $IMAGE_NAME:staging
 
   publish-tag:
     executor: docker-publisher
@@ -63,9 +63,9 @@ jobs:
           command: |
             echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
             IMAGE_TAG=${CIRCLE_TAG/v/''}
-            docker tag $IMAGE_NAME:ultimate $IMAGE_NAME:$IMAGE_TAG
-            docker push $IMAGE_NAME:ultimate
-            docker push $IMAGE_NAME:$IMAGE_TAG
+            docker tag $IMAGE_NAME:staging $IMAGE_NAME:staging
+            docker push $IMAGE_NAME:staging
+            docker push $IMAGE_NAME:staging
 
   deploy:
     docker:
@@ -84,7 +84,7 @@ jobs:
       - run:
           name: Deploy with Ansible
           command: |
-            ansible-playbook -i inventory.ini playbook.yml
+            ansible-playbook -i inventory.ini staging-playbook.yml
 
 workflows:
   version: 2
@@ -93,19 +93,19 @@ workflows:
       - build:
           filters:
             branches:
-              only: main
+              only: staging
       - publish-latest:
           requires:
             - build
           filters:
             branches:
-              only: main
+              only: staging
       - deploy:
           requires:
             - build
           filters:
             branches:
-              only: main
+              only: staging
               
 
   build-tags:

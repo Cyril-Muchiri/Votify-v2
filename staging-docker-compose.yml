@@ -1,0 +1,32 @@
+  version: '3'
+
+  services:
+    mysqld:
+      image: mysql:latest
+      container_name: votify-staging-db
+      restart: always
+      environment:
+        MYSQL_ROOT_PASSWORD: root
+        MYSQL_DATABASE: votify
+
+      ports:
+      - "3307:3306"   
+      volumes:
+        - mysql-data:/var/lib/mysql
+
+    votify-app:
+      container_name: votify-app-staging
+      image: cyrilmuchiri/votify-staging:staging
+      ports:
+        - "8081:8080"
+      depends_on:
+        - mysqld
+      environment:
+        MYSQL_HOST: mysqld
+        MYSQL_PORT: 3307
+        MYSQL_USER: root
+        MYSQL_PASSWORD: root
+        MYSQL_DATABASE: votify
+
+  volumes:
+    mysql-data:

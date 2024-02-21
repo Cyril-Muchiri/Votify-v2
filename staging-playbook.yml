@@ -9,8 +9,8 @@
 
     - name: Copy Docker Compose file 
       copy:
-        src: docker-compose.yml 
-        dest: /home/chief/votify-v2/docker-compose.yml  
+        src: staging-docker-compose.yml 
+        dest: /home/chief/votify-v2/staging-docker-compose.yml  
         # remote_src: yes
 
     - name: Check if Docker is installed
@@ -41,6 +41,7 @@
       become: true
 
     - name: Run Docker Compose
-      command: nohup docker-compose -f docker-compose.yml up -d
+      command: nohup docker-compose -f staging-docker-compose.yml up -d
       args:
         chdir: /home/chief/votify-v2
+
