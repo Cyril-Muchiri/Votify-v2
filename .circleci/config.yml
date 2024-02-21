@@ -80,7 +80,7 @@ jobs:
       - run:
           name: Add host key to known_hosts
           command: |
-            echo "yes" | ssh-keyscan -H 34.173.54.57 >> ~/.ssh/known_hosts
+            echo "yes" | ssh-keyscan chief@34.173.54.57 >> ~/.ssh/known_hosts
       - add_ssh_keys:
           fingerprints:
             - "${SSH_FINGERPRINT}"
