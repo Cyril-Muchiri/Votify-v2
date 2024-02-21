@@ -14,7 +14,7 @@ jobs:
       - run:
           name: Run Maven Tests
           command: mvn test
-     
+
       - setup_remote_docker:
           docker_layer_caching: true
       - run:
@@ -80,7 +80,9 @@ jobs:
       - run:
           name: Add host key to known_hosts
           command: |
-            echo "yes" | ssh-keyscan chief@34.173.54.57 >> ~/.ssh/known_hosts
+            mkdir -p ~/.ssh
+            touch ~/.ssh/known_hosts
+            ssh-keyscan -H 34.173.54.57 >> ~/.ssh/known_hosts
       - add_ssh_keys:
           fingerprints:
             - "${SSH_FINGERPRINT}"
@@ -88,7 +90,6 @@ jobs:
           name: Deploy with Ansible
           command: |
             ansible-playbook -i inventory.ini playbook.yml
-
 
 workflows:
   version: 2
