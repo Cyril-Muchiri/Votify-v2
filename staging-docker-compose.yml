@@ -1,32 +1,67 @@
-  version: '3'
+  # version: '3'
 
-  services:
-    mysqld:
-      image: mysql:latest
-      container_name: votify-staging-db
-      restart: always
-      environment:
-        MYSQL_ROOT_PASSWORD: root
-        MYSQL_DATABASE: votifystaging
+  # services:
+  #   mysqld:
+  #     image: mysql:latest
+  #     container_name: votify-staging-db
+  #     restart: always
+  #     environment:
+  #       MYSQL_ROOT_PASSWORD: root
+  #       MYSQL_DATABASE: votifystaging
 
-      # ports:
-      # - "3306:3306"   
-      volumes:
-        - mysql-data:/var/lib/mysql
+  #     # ports:
+  #     # - "3306:3306"   
+  #     volumes:
+  #       - mysql-data:/var/lib/mysql
 
-    votify-app-staging:
-      container_name: votify-app-staging
-      image: cyrilmuchiri/votify-staging:staging
-      ports:
-        - "8082:8081"
-      depends_on:
-        - mysqld
-      environment:
-        MYSQL_HOST: mysqld
-        MYSQL_PORT: 3306
-        MYSQL_USER: root
-        MYSQL_PASSWORD: root
-        MYSQL_DATABASE: votifystaging
-      restart: always
-  volumes:
-    mysql-data:
+  #   votify-app-staging:
+  #     container_name: votify-app-staging
+  #     image: cyrilmuchiri/votify-staging:staging
+  #     ports:
+  #       - "8082:8081"
+  #     depends_on:
+  #       - mysqld
+  #     environment:
+  #       MYSQL_HOST: mysqld
+  #       MYSQL_PORT: 3306
+  #       MYSQL_USER: root
+  #       MYSQL_PASSWORD: root
+  #       MYSQL_DATABASE: votifystaging
+  #     restart: always
+  # volumes:
+  #   mysql-data:
+
+  # docker-compose.staging.yml
+version: '3'
+
+services:
+  mysql:
+    image: mysql:latest
+    container_name: votify-staging-mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: votify_staging
+    volumes:
+      - votify-staging-mysql-data:/var/lib/mysql
+
+  votify-app:
+    image: cyrilmuchiri/votify-staging:staging
+    container_name: votify-staging-app
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_PORT: 3306
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+      MYSQL_DATABASE: votify_staging
+
+volumes:
+  votify-staging-mysql-data:
+
+networks:
+  default:
+    name: votify-staging-network
