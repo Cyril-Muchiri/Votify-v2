@@ -16,7 +16,7 @@
     votify-app:
       image: cyrilmuchiri/votify-v2:ultimate
       ports:
-        - "8080:8080"
+        - "8181:8080"
       depends_on:
         - mysqld
       environment:
