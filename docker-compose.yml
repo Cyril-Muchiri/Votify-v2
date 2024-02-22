@@ -31,5 +31,5 @@
   volumes:
     mysql-data:
   networks:
-    votify-staging-network:
+    votify-main-network:
       driver: bridge  
