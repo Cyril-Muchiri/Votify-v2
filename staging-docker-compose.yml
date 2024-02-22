@@ -14,7 +14,7 @@
       volumes:
         - mysql-data:/var/lib/mysql
 
-    votify-app:
+    votify-app-staging:
       container_name: votify-app-staging
       image: cyrilmuchiri/votify-staging:staging
       ports:
