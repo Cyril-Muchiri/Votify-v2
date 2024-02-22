@@ -40,6 +40,8 @@ services:
       MYSQL_DATABASE: votify
     volumes:
       - votify-production-mysql-data:/var/lib/mysql
+    networks:
+      - votify-production-network
 
   votify-app:
     image: cyrilmuchiri/votify-v2:ultimate
@@ -54,10 +56,12 @@ services:
       MYSQL_USER: root
       MYSQL_PASSWORD: root
       MYSQL_DATABASE: votify
+    networks:
+      - votify-production-network
 
 volumes:
   votify-production-mysql-data:
 
 networks:
-  default:
+  votify-production-network:
     name: votify-production-network
