@@ -4,7 +4,7 @@
     mysqld:
       image: mysql:latest
       container_name: votify-staging-db
-      # restart: always
+      restart: always
       environment:
         MYSQL_ROOT_PASSWORD: root
         MYSQL_DATABASE: votifystaging
