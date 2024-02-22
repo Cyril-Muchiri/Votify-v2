@@ -88,19 +88,19 @@ workflows:
       - build:
           filters:
             branches:
-              only: main
+              only: staging
       - publish-latest:
           requires:
             - build
           filters:
             branches:
-              only: main
+              only: staging
       - deploy:
           requires:
             - build
           filters:
             branches:
-              only: main
+              only: staging
   build-tags:
     jobs:
       - build:
