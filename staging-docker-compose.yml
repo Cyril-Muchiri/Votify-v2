@@ -49,7 +49,7 @@ services:
     networks:
       - votify-staging-network
 
-  votify-app:
+  votify-staging:
     image: cyrilmuchiri/votify-staging:latest
     container_name: votify-staging-app
     ports:
