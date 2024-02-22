@@ -134,8 +134,8 @@
                         <password>sa</password>
                     </security>
                 </datasource>
-                <datasource jndi-name="java:jboss/datasources/votify" pool-name="votify" enabled="true" use-java-context="true">
-                    <connection-url>jdbc:mysql://mysqld:3306/votify</connection-url>
+                <!-- <datasource jndi-name="java:jboss/datasources/votify" pool-name="votify" enabled="true" use-java-context="true">
+                    <connection-url>jdbc:mysql://mysql:3306/votify</connection-url>
                     <driver>mysql</driver>
                     <pool>
                         <min-pool-size>5</min-pool-size>
@@ -146,7 +146,7 @@
                         <user-name>root</user-name>
                         <password>root</password>
                     </security>
-                </datasource>
+                </datasource> -->
 
                  <datasource jndi-name="java:jboss/datasources/votifystaging" pool-name="votifys" enabled="true" use-java-context="true">
                     <connection-url>jdbc:mysql://mysql:3306/votify_staging</connection-url>
