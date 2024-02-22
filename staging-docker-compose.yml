@@ -48,7 +48,7 @@ services:
       - votify-staging-network
 
   votify-app:
-    image: cyrilmuchiri/votify-staging:staging
+    image: cyrilmuchiri/votify-staging:latest
     container_name: votify-staging-app
     ports:
       - "8080:8080"
