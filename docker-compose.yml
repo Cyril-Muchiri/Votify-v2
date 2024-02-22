@@ -1,28 +1,63 @@
-  version: '3'
+  # version: '3'
 
-  services:
-    mysqld:
-      image: mysql:latest
-      container_name: votify-db
-      # restart: always
-      environment:
-        MYSQL_ROOT_PASSWORD: root
-        MYSQL_DATABASE: votify
-      volumes:
-        - mysql-data:/var/lib/mysql
+  # services:
+  #   mysqld:
+  #     image: mysql:latest
+  #     container_name: votify-db
+  #     # restart: always
+  #     environment:
+  #       MYSQL_ROOT_PASSWORD: root
+  #       MYSQL_DATABASE: votify
+  #     volumes:
+  #       - mysql-data:/var/lib/mysql
 
-    votify-app:
-      image: cyrilmuchiri/votify-v2:ultimate
-      ports:
-        - "8080:8080"
-      depends_on:
-        - mysqld
-      environment:
-        MYSQL_HOST: mysqld
-        MYSQL_PORT: 3306
-        MYSQL_USER: root
-        MYSQL_PASSWORD: root
-        MYSQL_DATABASE: votify
+  #   votify-app:
+  #     image: cyrilmuchiri/votify-v2:ultimate
+  #     ports:
+  #       - "8080:8080"
+  #     depends_on:
+  #       - mysqld
+  #     environment:
+  #       MYSQL_HOST: mysqld
+  #       MYSQL_PORT: 3306
+  #       MYSQL_USER: root
+  #       MYSQL_PASSWORD: root
+  #       MYSQL_DATABASE: votify
 
-  volumes:
-    mysql-data:
+  # volumes:
+  #   mysql-data:
+
+  # docker-compose.production.yml
+version: '3'
+
+services:
+  mysql:
+    image: mysql:latest
+    container_name: votify-production-mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: votify
+    volumes:
+      - votify-production-mysql-data:/var/lib/mysql
+
+  votify-app:
+    image: cyrilmuchiri/votify-v2:ultimate
+    container_name: votify-production-app
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_PORT: 3306
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+      MYSQL_DATABASE: votify
+
+volumes:
+  votify-production-mysql-data:
+
+networks:
+  default:
+    name: votify-production-network
