@@ -44,6 +44,8 @@ services:
       MYSQL_DATABASE: votify_staging
     volumes:
       - votify-staging-mysql-data:/var/lib/mysql
+    networks:
+      - votify-staging-network
 
   votify-app:
     image: cyrilmuchiri/votify-staging:staging
@@ -58,10 +60,12 @@ services:
       MYSQL_USER: root
       MYSQL_PASSWORD: root
       MYSQL_DATABASE: votify_staging
+    networks:
+      - votify-staging-network
 
 volumes:
   votify-staging-mysql-data:
 
 networks:
-  default:
+  votify-staging-network:
     name: votify-staging-network
