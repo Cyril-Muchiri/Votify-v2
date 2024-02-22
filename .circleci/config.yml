@@ -79,7 +79,7 @@ jobs:
       - run:
           name: Deploy with Ansible
           command: |
-            ansible-playbook -i inventory.ini staging-docker-compose.yml
+            ansible-playbook -i inventory.ini staging-playbook.yml
 
 workflows:
   version: 2
