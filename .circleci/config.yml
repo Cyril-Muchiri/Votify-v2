@@ -102,7 +102,7 @@ workflows:
               only: staging
       - deploy:
           requires:
-            - build
+            - publish-latest   # Wait for publishing to complete
           filters:
             branches:
               only: staging
@@ -126,9 +126,10 @@ workflows:
               ignore: /.*/
       - deploy:
           requires:
-            - build
+            - publish-tag   # Wait for publishing to complete
           filters:
             tags:
               only: /^v.*/
             branches:
               ignore: /.*/
+
