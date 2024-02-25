@@ -8,12 +8,8 @@
       environment:
         MYSQL_ROOT_PASSWORD: root
         MYSQL_DATABASE: votify
-      # ports:
-      #   - "3310:3310"
       volumes:
         - mysql-data:/var/lib/mysql
-      networks:
-        - votify-main-network   
 
     votify-app:
       image: cyrilmuchiri/votify-v2:ultimate
@@ -27,11 +23,6 @@
         MYSQL_USER: root
         MYSQL_PASSWORD: root
         MYSQL_DATABASE: votify
-      networks:
-        - votify-main-network  
 
   volumes:
     mysql-data:
-  networks:
-    votify-main-network:
-      driver: bridge  
