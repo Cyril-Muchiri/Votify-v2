@@ -2,7 +2,6 @@
 ```mermaid
 %%{init: {"theme": "default", "themeVariables": { "fontSize": 50 }}}%%
 graph TD;
-style graph width:600px, graph height:400px;
     A[Create Environments] --> B[Set up Java Dependencies];
     B --> C[Configure Wildfly];
     B --> D[Install TestNG];
