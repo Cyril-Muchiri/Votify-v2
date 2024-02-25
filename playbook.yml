@@ -41,6 +41,6 @@
       become: true
 
     - name: Run Docker Compose
-      command: nohup docker-compose -f docker-compose.yml up 
+      command: nohup docker-compose -f docker-compose.yml up -d
       args:
         chdir: /home/chief/votify-v2
