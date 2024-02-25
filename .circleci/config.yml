@@ -40,13 +40,14 @@ jobs:
           name: Load archived Docker
           command: docker load -i /tmp/workspace/image.tar
       - run:
-          name: Publish Docker Image to Docker Hub
+          name: Tag Docker Image as Latest
+          command: |
+            docker tag $IMAGE_NAME:ultimate $IMAGE_NAME:latest
+      - run:
+          name: Push Docker Image to Docker Hub (Latest)
           command: |
             echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
-            IMAGE_TAG="0.0.${CIRCLE_BUILD_NUM}"
-            docker tag $IMAGE_NAME:ultimate $IMAGE_NAME:$IMAGE_TAG
-            docker push $IMAGE_NAME:ultimate
-            docker push $IMAGE_NAME:$IMAGE_TAG
+            docker push $IMAGE_NAME:latest
 
   publish-tag:
     executor: docker-publisher
@@ -59,12 +60,11 @@ jobs:
           name: Load archived Docker
           command: docker load -i /tmp/workspace/image.tar
       - run:
-          name: Publish Docker Image to Docker Hub
+          name: Publish Docker Image to Docker Hub (Tag)
           command: |
             echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
             IMAGE_TAG=${CIRCLE_TAG/v/''}
             docker tag $IMAGE_NAME:ultimate $IMAGE_NAME:$IMAGE_TAG
-            docker push $IMAGE_NAME:ultimate
             docker push $IMAGE_NAME:$IMAGE_TAG
 
   deploy:
@@ -106,6 +106,7 @@ workflows:
           filters:
             branches:
               only: main
+
               
 
   # build-tags:
