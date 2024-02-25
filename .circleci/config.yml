@@ -7,6 +7,28 @@ executors:
       - image: cimg/openjdk:17.0.9-node
 
 jobs:
+  build:
+    executor: docker-publisher
+    steps:
+      - checkout
+      - run:
+          name: Run Maven Tests
+          command: mvn test
+
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - run:
+          name: Build Docker Image
+          command: |
+            docker build -t $IMAGE_NAME:ultimate .
+      - run:
+          name: Archive Docker Image
+          command: docker save -o image.tar $IMAGE_NAME
+      - persist_to_workspace:
+          root: .
+          paths:
+            - ./image.tar
+
   publish-latest:
     executor: docker-publisher
     steps:
@@ -66,12 +88,47 @@ jobs:
 
 workflows:
   version: 2
-  publish-and-deploy:
+  build-main:
     jobs:
-      - publish-latest
-      - publish-tag:
+      - build:
+          filters:
+            branches:
+              only: main
+      - publish-latest:
           requires:
-            - publish-latest
+            - build
+          filters:
+            branches:
+              only: main
       - deploy:
           requires:
-            - publish-tag
+            - build
+          filters:
+            branches:
+              only: main
+              
+
+  build-tags:
+    jobs:
+      - build:
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              ignore: /.*/
+      - publish-tag:
+          requires:
+            - build
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              ignore: /.*/
+      - deploy:
+          requires:
+            - build
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              ignore: /.*/
