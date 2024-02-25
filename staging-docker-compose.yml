@@ -41,7 +41,7 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: votify
+      MYSQL_DATABASE: votify_staging
     ports:
       - "3307:3306"   
     volumes:
@@ -61,7 +61,7 @@ services:
       MYSQL_PORT: 3307
       MYSQL_USER: root
       MYSQL_PASSWORD: root
-      MYSQL_DATABASE: votify
+      MYSQL_DATABASE: votify_staging
     networks:
       - votify-staging-network  
 

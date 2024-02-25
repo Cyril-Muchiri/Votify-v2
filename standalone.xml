@@ -149,7 +149,7 @@
                 </datasource> -->
 
                  <datasource jndi-name="java:jboss/datasources/votifystaging" pool-name="votifys" enabled="true" use-java-context="true">
-                    <connection-url>jdbc:mysql://mysql:3306/votify_staging</connection-url>
+                    <connection-url>jdbc:mysql://mysqld:3306/votify_staging</connection-url>
                     <driver>mysql</driver>
                     <pool>
                         <min-pool-size>5</min-pool-size>
@@ -530,9 +530,9 @@
     </interfaces>
     <socket-binding-group name="standard-sockets" default-interface="public" port-offset="${jboss.socket.binding.port-offset:0}">
         <socket-binding name="ajp" port="${jboss.ajp.port:8009}"/>
-        <socket-binding name="http-alt" port="${jboss.http.port.alt:8081}"/>
+        <!-- <socket-binding name="http-alt" port="${jboss.http.port.alt:8081}"/> -->
         <socket-binding name="http" port="${jboss.http.port:8080}"/>
-        <socket-binding name="http-alt2" port="${jboss.http.port.alt2:8082}"/>
+        <!-- <socket-binding name="http-alt2" port="${jboss.http.port.alt2:8082}"/> -->
         <socket-binding name="https" port="${jboss.https.port:8443}"/>
         <socket-binding name="management-http" interface="management" port="${jboss.management.http.port:9990}"/>
         <socket-binding name="management-https" interface="management" port="${jboss.management.https.port:9993}"/>
