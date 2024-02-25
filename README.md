@@ -1,6 +1,7 @@
 # VOTIFY APP (v2)
 
 ```mermaid
+%%{init: {"theme": "default", "themeVariables": { "fontSize": 18 }}}%%
 graph TD;
     A[Create Environments] --> B[Set up Java Dependencies];
     B --> C[Configure Wildfly];
