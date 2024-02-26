@@ -1,7 +1,7 @@
 # VOTIFY APP (v2)
-
 ```mermaid
-graph TD;
+%%{init: {"theme": "default", "themeVariables": { "fontSize": 50 }}}%%
+flowchart TD;
     A[Create Environments] --> B[Set up Java Dependencies];
     B --> C[Configure Wildfly];
     B --> D[Install TestNG];
