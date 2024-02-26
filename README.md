@@ -21,3 +21,4 @@ graph TD;
     P --> R[Install DataDog Agent on VM];
     Q --> S[Install DataDog Agent on Containers];
 
+```

@@ -1,12 +1,9 @@
 package com.votifysoft;
 
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
-import com.votifysoft.app.beans.AuthBean;
 import com.votifysoft.app.beans.AuthBeanI;
 import com.votifysoft.app.dao.GenericDao;
 import com.votifysoft.app.dao.GenericDaoI;
@@ -14,7 +11,6 @@ import com.votifysoft.app.utils.EncryptPwd;
 import com.votifysoft.model.entity.AuditLog;
 import com.votifysoft.model.entity.User;
 
-import javax.ejb.EJB;
 import javax.enterprise.event.Event;
 import javax.persistence.EntityManager;
 import java.sql.SQLException;
@@ -26,7 +22,6 @@ import java.util.List;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
 import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertNotNull;
 import static org.testng.Assert.assertNull;
 
 public class AuthBeanTest {
