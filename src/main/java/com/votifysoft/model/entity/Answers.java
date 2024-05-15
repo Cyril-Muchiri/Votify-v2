@@ -35,6 +35,9 @@ public class Answers implements Serializable {
     public Answers() {
     }
 
+
+    
+
     public Answers(int answer_id, Polls poll, String choice, int votes) {
         this.answer_id = answer_id;
         this.poll = poll;
