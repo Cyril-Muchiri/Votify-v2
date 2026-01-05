@@ -5,21 +5,17 @@ import com.mmsolutions.votifyv2.dto.UserRequestDTO;
 import com.mmsolutions.votifyv2.entity.AppUser;
 import com.mmsolutions.votifyv2.mapper.AppUserMapper;
 import com.mmsolutions.votifyv2.repository.AppUserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class UserCreationService {
 
     AppUserRepository appUserRepository;
     AppUserMapper appUserMapper;
     PasswordEncoder passwordEncoder;
-
-    public UserCreationService(AppUserRepository userRepository, AppUserMapper appUserMapper, PasswordEncoder passwordEncoder) {
-        this.appUserRepository = userRepository;
-        this.appUserMapper = appUserMapper;
-        this.passwordEncoder = passwordEncoder;
-    }
 
     public boolean checkUserExists(AppUser user){
        return appUserRepository.findByEmail(user.getEmail()).isPresent();
