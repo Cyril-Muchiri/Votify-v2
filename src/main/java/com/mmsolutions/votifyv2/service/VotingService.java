@@ -1,6 +1,7 @@
 package com.mmsolutions.votifyv2.service;
 
 
+import com.mmsolutions.votifyv2.dto.CandidateDto;
 import com.mmsolutions.votifyv2.dto.VoteDto;
 import com.mmsolutions.votifyv2.entity.AppUser;
 import com.mmsolutions.votifyv2.entity.Candidate;
@@ -13,6 +14,8 @@ import com.mmsolutions.votifyv2.repository.ContestRepository;
 import com.mmsolutions.votifyv2.repository.VoteRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -32,6 +35,10 @@ public class VotingService {
         Vote vote=voteDtoMapper.maptoEntity(voteDto,appUser,candidate,contest);
 
         return voteRepository.save(vote);
+    }
+
+    public List<Vote>fetchAllVotes(CandidateDto candidateDto) {
+        return voteRepository.findAll();
     }
 
 }
